@@ -1,0 +1,33 @@
+#head {
+    background-color: grey;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.side {
+    display: flex;
+    align-items: center;
+}
+
+h2 {
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+p {
+    margin: 0;
+}
+
+.logo img {
+    width: 90px;
+    height: 70px;
+}
+
+.profile img {
+    width: 70px;
+    height: 70px;
+    margin: 50px;
+}
