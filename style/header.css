@@ -32,3 +32,8 @@ p {
     height: 70px;
     margin: 50px;
 }
+
+.profile a {
+    display: inline-block;
+    height: 0;
+}

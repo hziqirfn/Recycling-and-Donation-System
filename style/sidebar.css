@@ -6,7 +6,7 @@
     border-right: 2px solid gainsboro;
 }
 
-a {
+#side a {
     display: flex;
     align-items: center;
     margin: 20px;
@@ -17,11 +17,11 @@ a {
     border-radius: 20px;
 }
 
-a:hover {
+#side a:hover {
     background-color: rgb(148, 252, 136);
 }
 
-a:visited {
+#side a:visited {
     color: black;
 }
 
