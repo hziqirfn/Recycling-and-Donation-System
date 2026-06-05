@@ -1,0 +1,47 @@
+h2 {
+    margin-bottom: 0;
+}
+
+p {
+    margin-top: 10px;
+    font-size: small;
+}
+
+#content1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+#content2 {
+    display: flex;
+}
+
+#content3 {
+    display: flex;
+}
+
+.boxPoint {
+    background-color: gainsboro;
+    width: 150px;
+    height: 80px;
+    margin: 50px;
+    border-radius: 20px;
+}
+
+.box {
+    background-color: gainsboro;
+    width: 150px;
+    height: 80px;
+    margin: 50px;
+    border-radius: 20px;
+}
+
+.box2 {
+    background-color: gainsboro;
+    width: 550px;
+    height: 300px;
+    margin: 50px;
+    border-radius: 20px;
+}

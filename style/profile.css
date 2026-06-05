@@ -1,0 +1,63 @@
+img {
+    width: 150px;
+}
+
+.content {
+    display: flex;
+}
+
+.profil, .profil2 {
+    background-color: gainsboro;
+    padding: 20px;
+    width: 600px;
+    border-radius: 30px;
+}
+
+.profil2 {
+    height: 450px;
+}
+
+.profil input {
+    display: block;
+    margin: 10px 20px 20px 20px;
+    width: 550px;
+    height: 30px;
+    border-radius: 10px;
+    border: 0px;
+    padding-left: 10px;
+}
+
+.profil label {
+    margin: 0px 20px 0px 20px;
+}
+
+.profil textarea {
+    margin: 10px 20px 0px 20px;
+    width: 550px;
+    height: 60px;
+    border-radius: 10px;
+    border: 0px;
+    padding: 5px 0px 0px 10px;
+}
+
+.top, .bottom {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.top button, .bottom button {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+    width: 100px;
+    font-size: medium;
+    border: none;
+}
+
+.bottom {
+    display: none;
+}
+
+.bottom.show {
+    display: flex;
+}
