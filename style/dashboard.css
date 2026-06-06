@@ -7,11 +7,10 @@ h2 {
     font-size: small;
 }
 
-#main {
-    height: 100%;
-    overflow: hidden !important;
-    display: flex;
-    position: relative;
+#main{
+    min-height:100vh;
+    display:flex;
+    position:relative;
 }
 
 #content {
@@ -64,9 +63,8 @@ h2 {
 }
 
 @media (max-width: 768px) {
-    #content {
-        margin-left: 20px;
-        margin-right: 20px;
+   #content{
+        margin-left:0;
     }
 
     #content1 {
@@ -91,12 +89,13 @@ h2 {
         margin: 50px 0px 0px 0px;
     }
 
-    .box2 {
-        width: 410px;
-        margin: 50px 50px 50px 20px;
-    }
+    .box2{
+    width:100%;
+    margin:20px 0;
+}
 
     .boxPoint {
         margin-right: 35px;
     }
+    
 }
