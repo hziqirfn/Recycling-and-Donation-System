@@ -29,7 +29,7 @@
             <h1>Login</h1>
             <p class="login-subtitle">Sign in to your account</p>
 
-            <form action="" method="post">
+            <form action="dashboard.php" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" placeholder="Username" required>
