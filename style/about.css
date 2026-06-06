@@ -1,0 +1,171 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#ffffff;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+    background:#f5f5f5;
+}
+
+.logo-section{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo-section img{
+    width:60px;
+    height:60px;
+}
+
+.logo-box{
+    width:80px;
+    height:80px;
+    background:#8f8f8f;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo-text h2{
+    font-size:28px;
+    margin-bottom:5px;
+}
+
+.logo-text p{
+    color:#666;
+}
+
+.navbar{
+    display:flex;
+    gap:10px;
+}
+
+.navbar a{
+    text-decoration:none;
+    color:black;
+    background:#74c774;
+    padding:12px 35px;
+    transition:0.3s;
+}
+
+.navbar a:hover{
+    background:#58b958;
+    color:white;
+    transform:translateY(-3px);
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+.about-page{
+    text-align:center;
+    padding:60px 20px;
+    background:white;
+    min-height:80vh;
+}
+
+.about-page h1{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.about-page h3{
+    color:#3c9b3c;
+    font-weight:normal;
+    margin-bottom:30px;
+}
+
+.about-description{
+    width:60%;
+    margin:auto;
+    background:#b9e8b9;
+    padding:25px;
+    margin-bottom:50px;
+}
+
+.about-description p{
+    line-height:1.8;
+    font-size:18px;
+}
+
+.about-cards{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.about-card{
+    width:280px;
+    background:#cdeccd;
+    padding:25px;
+}
+
+.middle-card{
+    background:#74c774;
+}
+
+.about-card h2{
+    margin-bottom:15px;
+    font-size:24px;
+}
+
+.about-card p{
+    line-height:1.6;
+}
+
+@media screen and (max-width:768px){
+
+     .header{
+        padding:10px;
+    }
+
+    .logo-box{
+        width:50px;
+        height:50px;
+    }
+
+    .logo-box img{
+        width:30px;
+        height:30px;
+    }
+
+    .logo-text h2{
+        font-size:16px;
+    }
+
+    .logo-text p{
+        font-size:12px;
+    }
+
+    .navbar a{
+        padding:8px 15px;
+        font-size:10px;
+    }
+
+    .about-description{
+        width:95%;
+    }
+
+    .about-card{
+        width:150px;
+        padding:15px;
+    }
+
+    .about-card h2{
+        font-size:16px;
+    }
+
+    .about-card p{
+        font-size:11px;
+    }
+}
