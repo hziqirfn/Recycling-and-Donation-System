@@ -8,29 +8,47 @@
     border-bottom: 2px solid gainsboro;
 }
 
-.side {
+#head .side {
     display: flex;
     align-items: center;
 }
 
-h2 {
+.text h2 {
     margin: 0;
     padding-bottom: 5px;
 }
 
-p {
+.text p {
     margin: 0;
 }
 
-.logo img {
-    width: 90px;
-    height: 70px;
+.hamburger img {
+    display: none;
+    width: 30px;
+    margin: 0px 0px 0px 20px;
 }
 
 .profile img {
     width: 70px;
     height: 70px;
     margin: 50px;
+}
+
+@media (max-width: 768px) {
+    .hamburger img {
+        display: block;
+    }
+    
+    .profile img {
+    width: 60px;
+    height: 60px;
+    margin: 20px;
+    }
+}
+
+.logo img {
+    width: 90px;
+    height: 70px;
 }
 
 .profile a {
