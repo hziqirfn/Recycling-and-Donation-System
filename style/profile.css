@@ -1,6 +1,7 @@
 #main {
     display: flex;
     min-height: 100vh;
+    width: 100%;
 }
 
 .content {
@@ -8,6 +9,7 @@
     flex-direction: column;
     align-items: center;
     margin: 20px auto;
+    min-width: 0; 
 }
 
 .gambar img {
@@ -22,7 +24,8 @@
 .profil, .profil2 {
     background-color: gainsboro;
     padding: 20px;
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     border-radius: 30px;
 }
 
@@ -76,5 +79,15 @@
 }
 
 @media (max-width: 768px) {
-    
+    .profil, .profil2 {
+        width: 400px;
+    }
+
+    .profil input {
+        width: 350px;
+    }
+
+    .profil textarea {
+        width: 350px;
+    }
 }

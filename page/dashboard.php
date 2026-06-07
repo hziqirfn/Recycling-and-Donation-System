@@ -23,7 +23,13 @@
                     <p>Let's make a positive impact today</p>
                 </div>
                 <div class="boxPoint">
-                    <!-- Code Here -->
+                    <div class="point">
+                        <img src="../image/reward.png" alt="reward">
+                        <div id="text">
+                            <p>Your Point</p>
+                            <p>100</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

@@ -8,6 +8,7 @@ h2 {
 }
 
 #main {
+    background-color: white;
     height: 100%;
     overflow: hidden !important;
     display: flex;
@@ -46,6 +47,27 @@ h2 {
     height: 80px;
     margin-right: 30px;
     border-radius: 20px;
+    box-shadow:0 5px 25px rgba(0,0,0,0.3);
+}
+
+.point {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+#text p {
+    display: flex;
+    justify-content: center;
+}
+
+.boxPoint img {
+    width: 25px;
+}
+
+.point p {
+    margin: 0;
 }
 
 .box {
@@ -92,11 +114,11 @@ h2 {
     }
 
     .box2 {
-        width: 410px;
+        width: 92%;
         margin: 50px 50px 50px 20px;
     }
 
     .boxPoint {
-        margin-right: 35px;
+        margin-right: 0px;
     }
 }
