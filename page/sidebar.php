@@ -4,7 +4,7 @@
     </div>
 
     <div class="add">
-        <a href="addItem.html"><img src="../image/add.png" alt="add item">Add Item</a>
+        <a href="addItem.php"><img src="../image/add.png" alt="add item">Add Item</a>
     </div>
 
     <div class="pickup">
