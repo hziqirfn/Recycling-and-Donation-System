@@ -7,7 +7,7 @@
     <title>UTeM RecycleHub</title>
     <link rel="stylesheet" href="../style/sidebar.css">
     <link rel="stylesheet" href="../style/header.css">
-    <link rel="stylesheet" href="../style/addItem.css">
+    <link rel="stylesheet" href="../style/addItem1.css">
 </head>
 
 <body>
@@ -34,9 +34,11 @@
                             <option value="Other">Other</option>
                         </select><br><br>
                         <label>Condition: </label><br>
-                        <button type="button" onclick="setCondition('New')">New</button>
-                        <button type="button" onclick="setCondition('Used')">Used</button>
-                        <button type="button" onclick="setCondition('Broken')">Broken</button><br><br>
+                        <div class="condition-group">
+                            <button type="button" onclick="setCondition('New')">New</button>
+                            <button type="button" onclick="setCondition('Used')">Used</button>
+                            <button type="button" onclick="setCondition('Broken')">Broken</button><br><br>
+                        </div>
                         <label>Description: </label><br>
                         <textarea name="description" rows="4" cols="50" required></textarea><br><br>
                         <label>Image Item</label><br>
