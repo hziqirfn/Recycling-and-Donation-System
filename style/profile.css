@@ -1,80 +1,173 @@
-#main {
-    display: flex;
-    min-height: 100vh;
+#main{
+    display:flex;
+    min-height:100vh;
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
+.content{
+    display:flex;
+    gap:50px;
+    width:100%;
+    margin-top:110px;
+    padding:30px;
+    box-sizing:border-box;
+    align-items:flex-start;
 }
 
-.gambar img {
-    width: 150px;
+.left-panel{
+    width:250px;
+    text-align:center;
+    flex-shrink:0;
 }
 
-.content h2 {
-    align-self: flex-start;
-    padding-left: 30px;
+.gambar img{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid wheat;
 }
 
-.profil, .profil2 {
-    background-color: gainsboro;
-    padding: 20px;
-    width: 600px;
-    border-radius: 30px;
+.left-panel h2{
+    margin-top:20px;
+    font-size:36px;
 }
 
-.profil2 {
-    height: 450px;
+.right-panel{
+    flex:1;
+    max-width:900px;
 }
 
-.profil input {
-    display: block;
-    margin: 10px 20px 20px 20px;
-    width: 550px;
-    height: 30px;
-    border-radius: 10px;
-    border: 0px;
-    padding-left: 10px;
+.profil,
+.profil2{
+    background:white;
+    border:1px solid #dcdcdc;
+    border-radius:15px;
+    padding:25px;
+    width:100%;
+    box-sizing:border-box;
 }
 
-.profil label {
-    margin: 0px 20px 0px 20px;
+.profil{
+    margin-bottom:30px;
 }
 
-.profil textarea {
-    margin: 10px 20px 0px 20px;
-    width: 550px;
-    height: 60px;
-    border-radius: 10px;
-    border: 0px;
-    padding: 5px 0px 0px 10px;
+.top{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:20px;
 }
 
-.top, .bottom {
-    display: flex;
-    justify-content: flex-end;
+.top button{
+    border:none;
+    background:white;
+    padding:10px 20px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
 }
 
-.top button, .bottom button {
-    padding: 10px;
-    margin: 10px;
-    border-radius: 20px;
-    width: 100px;
-    font-size: medium;
-    border: none;
+.profil label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
 }
 
-.bottom {
-    display: none;
+.profil input{
+    width:100%;
+    height:45px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:0 15px;
+    margin-bottom:20px;
+    box-sizing:border-box;
 }
 
-.bottom.show {
-    display: flex;
+.profil textarea{
+    width:100%;
+    height:100px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:10px 15px;
+    resize:none;
+    box-sizing:border-box;
 }
 
-@media (max-width: 768px) {
-    
+.profil2 h2{
+    margin-top:0;
+    margin-bottom:20px;
+}
+
+.activity-box{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:18px;
+    margin-bottom:15px;
+}
+
+.bottom{
+    display:none;
+}
+
+.bottom.show{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:20px;
+}
+
+.bottom button{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+@media (max-width:768px){
+
+    .content{
+        flex-direction:column;
+        margin-top:110px;
+        padding:15px;
+        gap:25px;
+    }
+
+    .left-panel{
+        width:100%;
+    }
+
+    .gambar img{
+        width:120px;
+        height:120px;
+    }
+
+    .left-panel h2{
+        font-size:28px;
+    }
+
+    .right-panel{
+        width:100%;
+        max-width:100%;
+    }
+
+    .profil,
+    .profil2{
+        width:100%;
+    }
+
+    .top{
+        justify-content:center;
+    }
+
+    .top button{
+        width:100%;
+    }
+
+    .bottom.show{
+        flex-direction:column;
+    }
+
+    .bottom button{
+        width:100%;
+    }
 }

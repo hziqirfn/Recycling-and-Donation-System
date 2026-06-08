@@ -75,7 +75,7 @@
 
                 <p>
                     Provides pickup services for recyclable and reusable
-                    items, making recycling more convenient for users.
+                    items, making recycling more accessible for users.
                 </p>
             </div>
 
