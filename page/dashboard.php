@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="boxPoint">
-                    <h3>250</h3>
+                    <h3>200</h3>
                     <p>Your Points</p>
                 </div>
 
