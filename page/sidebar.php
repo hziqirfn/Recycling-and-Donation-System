@@ -4,11 +4,11 @@
     </div>
 
     <div class="add">
-        <a href="addItem.html"><img src="../image/add.png" alt="add item">Add Item</a>
+        <a href="addItem.php"><img src="../image/add.png" alt="add item">Add Item</a>
     </div>
 
     <div class="pickup">
-        <a href="pickup.html"><img src="../image/pickup.png" alt="pickup request">Pickup Request</a>
+        <a href="pickup.php"><img src="../image/pickup.png" alt="pickup request">Pickup Request</a>
     </div>
 
     <div class="track">
@@ -22,6 +22,6 @@
     <hr>
 
     <div class="logout">
-        <a href="../index.html"><img src="../image/logout.png" alt="log out">Log Out</a>
+        <a href="../index.php"><img src="../image/logout.png" alt="log out">Log Out</a>
     </div>
 </div>
