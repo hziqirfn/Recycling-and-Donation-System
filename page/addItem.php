@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTeM RecycleHub</title>
+    <link rel="stylesheet" href="../style/sidebar.css">
+    <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="../style/addItem.css">
+</head>
+
+<body>
+    <?php include("header.php"); ?>
+    <div class="layout">
+        <div class="sidebar">
+            <?php include 'sidebar.php'; ?>
+        </div>
+        <div class="main">
+            <div class="header">
+                <h2>Add New Item</h2>
+                <p>List an item and donate it to the community!</p>
+                <div id="container">
+                    <form action="addItem" method="post" enctype="multipart/form-data">
+                        <label>Item Name: </label><br>
+                        <input type="text" name="itemName" required><br><br>
+                        <label>Category: </label><br>
+                        <select name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Furniture">Furniture</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Books">Books</option>
+                            <option value="Other">Other</option>
+                        </select><br><br>
+                        <label>Condition: </label><br>
+                        <button type="button" onclick="setCondition('New')">New</button>
+                        <button type="button" onclick="setCondition('Used')">Used</button>
+                        <button type="button" onclick="setCondition('Broken')">Broken</button><br><br>
+                        <label>Description: </label><br>
+                        <textarea name="description" rows="4" cols="50" required></textarea><br><br>
+                        <label>Image Item</label><br>
+                        <input type="file" id="itemImage" name="itemImage" accept="image/*" required><br><br>
+                        <div class="button-group">
+                            <input type="reset" value="Cancel">
+                            <input type="submit" value="Add Item">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
