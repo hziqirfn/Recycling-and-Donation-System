@@ -19,6 +19,7 @@ body {
     flex-grow: 1;
     padding: 50px;
     box-sizing: border-box;
+    margin-top: 100px;
 }
 
 .content-box {
