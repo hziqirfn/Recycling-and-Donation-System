@@ -27,7 +27,7 @@
 
         <div id="content">
 
-            <!-- TOP SECTION -->
+
             <div id="content1">
 
                 <div class="welcome">
@@ -42,7 +42,7 @@
 
             </div>
 
-            <!-- STATISTIC BOXES -->
+
             <div id="content2">
 
                 <div class="box">
@@ -62,41 +62,40 @@
 
             </div>
 
-            <!-- BOTTOM SECTION -->
-            <div id="content3">
 
-                <!-- RECENT ACTIVITY -->
+            <div id="content3">
                 <div class="box2">
 
                     <div class="boxHeader">
                         <h3>Recent Activity</h3>
-                        <button>View All</button>
+                        <button onclick="toggleActivity()">View All</button>
                     </div>
 
-                    <ul class="activityList">
+                    <ul class="activityList" id="activityList">
                         <li>✔ Clothes donated - 15 Jun 2026</li>
                         <li>✔ Plastic recycled - 13 Jun 2026</li>
                         <li>✔ E-Waste pickup completed - 10 Jun 2026</li>
-                        <li>✔ Glass recycled - 8 Jun 2026</li>
-                        <li>✔ Books donated - 6 Jun 2026</li>
+
+                        <li class="hiddenActivity">✔ Glass recycled - 8 Jun 2026</li>
+                        <li class="hiddenActivity">✔ Books donated - 6 Jun 2026</li>
                     </ul>
 
                 </div>
 
-                <!-- TOP CONTRIBUTORS -->
                 <div class="box2">
 
                     <div class="boxHeader">
                         <h3>Top Contributors</h3>
-                        <button>View All</button>
+                        <button onclick="toggleContributor()">View All</button>
                     </div>
 
-                    <ol class="contributorList">
+                    <ol class="contributorList" id="contributorList">
                         <li>Ali - 520 pts</li>
                         <li>Siti - 480 pts</li>
                         <li>Ahmad - 450 pts</li>
-                        <li>John - 400 pts</li>
-                        <li>User - 250 pts</li>
+
+                        <li class="hiddenContributor">John - 400 pts</li>
+                        <li class="hiddenContributor">User - 250 pts</li>
                     </ol>
 
                 </div>
