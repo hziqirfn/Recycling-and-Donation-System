@@ -152,3 +152,56 @@ form textarea {
 .button-group input[type="submit"]:hover {
     opacity: 0.9;
 }
+
+@media (max-width: 768px) {
+
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .main {
+        padding: 15px;
+    }
+
+    .content-box {
+        max-width: 100%;
+    }
+
+    #container {
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .condition-group {
+        flex-direction: column;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .content-box h2 {
+        font-size: 22px;
+    }
+
+    form input[type="text"],
+    form select,
+    form textarea {
+        font-size: 15px;
+    }
+
+    .upload-box {
+        padding: 20px;
+    }
+}
