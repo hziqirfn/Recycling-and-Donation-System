@@ -35,7 +35,7 @@
 
                 <h2>Profile</h2>
 
-                <p>Manage your personal information</p>
+                <p>Manage your personal informations</p>
 
             </div>
 

@@ -30,7 +30,7 @@
 
                 <div class="pickup-title">
                     <h1>Request Pickup</h1>
-                    <p>Schedule a collection for your items</p>
+                    <p>Schedule a collection for your item</p>
                 </div>
 
                 <form class="pickup-form">
