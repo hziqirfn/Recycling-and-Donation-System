@@ -17,13 +17,18 @@
     margin-bottom:20px;
 }
 
+.pickup-title h1,
+.pickup-title p{
+    margin-left: -1px;
+}
+
 .pickup-form{
     background:#cfe6cf;
     padding:15px;
     border-radius:15px;
     width:100%;
     max-width:1000px;
-    margin-left:20px;
+    margin-left:19px;
     box-sizing:border-box;
 }
 
