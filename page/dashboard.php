@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +11,14 @@
     <script src="../js/dashboard.js" defer></script>
     <title>UTeM RecycleHub</title>
 </head>
+
 <body>
     <?php include("header.php"); ?>
 
     <div id="main">
         <?php include("sidebar.php"); ?>
+
+        <label for="cb" id="overlay"></label>
 
         <div id="content">
             <div id="content1">
@@ -53,4 +57,5 @@
         </div>
     </div>
 </body>
+
 </html>
