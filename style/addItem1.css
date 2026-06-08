@@ -4,149 +4,170 @@ body {
     background-color: #fcfcfc;
 }
 
-.layout {
+#main {
     display: flex;
-    width: 100%;
     min-height: 100vh;
 }
 
-.sidebar {
-    width: 250px;
-    flex-shrink: 0;
+#overlay {
+    display: none;
 }
 
-.main {
-    flex-grow: 1;
-    padding: 50px;
-    box-sizing: border-box;
-    margin-top: 100px;
+#content {
+    flex: 1;
+    margin-top: 120px;
+    padding: 20px 40px;
 }
 
-.content-box {
-    max-width: 600px;
+.additem-container {
+    max-width: 1000px;
     margin: 0 auto;
 }
 
-.content-box h2 {
-    font-size: 28px;
-    color: #111111;
-    margin: 0 0 8px 0;
-    font-weight: 600;
+.additem-title {
+    max-width: 1000px;
+    margin: 0 0 15px 20px;
 }
 
-.content-box p {
-    font-size: 14px;
-    color: #888888;
-    margin: 0 0 30px 0;
+.additem-title h1 {
+    margin-bottom: 5px;
+    text-decoration: underline;
 }
 
-#container {
-    background-color: #d1e7dd; 
-    border-radius: 16px;
-    padding: 30px;
-    box-sizing: border-box;
+.additem-title p {
+    color: black;
+    margin-bottom: 20px;
 }
 
-form label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    color: #2b4c3f; 
-    margin-bottom: 8px;
-    margin-top: 15px;
-}
-
-form label:first-of-type {
-    margin-top: 0;
-}
-
-form input[type="text"],
-form select,
-form textarea {
+.additem-form {
+    background: #cfe6cf;
+    padding: 15px;
+    border-radius: 15px;
     width: 100%;
-    padding: 12px 16px;
-    border: none;
-    border-radius: 20px; 
-    background-color: #ffffff;
-    font-size: 14px;
+    max-width: 1000px;
+    margin-left: 20px;
     box-sizing: border-box;
-    outline: none;
-    color: #333;
 }
 
-form textarea {
-    border-radius: 12px; 
-    resize: vertical;
+.additem-form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.additem-form input,
+.additem-form select,
+.additem-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.additem-form input[type="file"] {
+    background-color: white;
+    cursor: pointer;
+    padding: 40px 12px;
 }
 
 .condition-group {
     display: flex;
     gap: 15px;
     width: 100%;
+    margin-top: 8px;
 }
 
 .condition-group button {
     flex: 1;
-    padding: 14px;
+    padding: 12px;
     border: none;
     border-radius: 12px;
-    background-color: #ffffff;
+    background-color: white;
     font-size: 15px;
     font-weight: 500;
     color: #111111;
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.2s;
 }
 
 .condition-group button:hover {
-    background-color: #e9ecef;
-}
-
-.upload-box {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 30px;
-    text-align: center;
-    color: #444444;
-    font-size: 14px;
-    cursor: pointer;
-    display: block;
-}
-
-.upload-box svg {
-    display: block;
-    margin: 0 auto 8px auto;
-}
-
-.upload-box input[type="file"] {
-    display: none; 
+    background-color: #f0f0f0;
 }
 
 .button-group {
     display: flex;
     gap: 20px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
-.button-group input[type="reset"],
-.button-group input[type="submit"] {
+.cancel-btn,
+.submit-btn {
     flex: 1;
-    padding: 14px;
+    padding: 12px;
     border: none;
-    border-radius: 20px;
-    font-size: 15px;
-    font-weight: 500;
+    border-radius: 12px;
     cursor: pointer;
-    background-color: #ffffff;
-    transition: opacity 0.2s;
+    background: white;
 }
 
-.button-group input[type="reset"] {
-    color: #777777;
+.cancel-btn:hover,
+.submit-btn:hover {
+    background: #f0f0f0;
 }
 
-.button-group input[type="submit"] {
-    color: #555555;
+@media (max-width: 768px) {
+    #content {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 120px;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .additem-container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .additem-title {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+
+    .additem-form {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .condition-group {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .additem-form input,
+    .additem-form select,
+    .additem-form textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .cancel-btn,
+    .submit-btn {
+        width: 100%;
+    }
 }
 
 .button-group input[type="reset"]:hover,
