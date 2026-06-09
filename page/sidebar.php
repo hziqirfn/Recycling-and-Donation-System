@@ -12,7 +12,7 @@
     </div>
 
     <div class="track">
-        <a href="trackItem.html"><img src="../image/track.png" alt="track item">Track Item</a>
+        <a href="trackItem.php"><img src="../image/track.png" alt="track item">Track Item</a>
     </div>
 
     <div class="reward">
