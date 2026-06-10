@@ -1,12 +1,6 @@
 <?php
 
-$imgPath = "../image/";
-$profilePath = "profile.php";
-
-if (isset($admin)) {
-    $imgPath = "../../image/";
-    $profilePath = "profileAdmin.php";
-}
+$imgPath = "../../image/";
 
 ?>
 
@@ -16,7 +10,7 @@ if (isset($admin)) {
 
         <div class="hamburger">
 
-            <input type="checkbox" name="cb" id="cb" hidden>
+            <input type="checkbox" id="cb" hidden>
 
             <label for="cb">
                 <img src="<?= $imgPath ?>hamburger.png" alt="hamburger">
@@ -37,10 +31,8 @@ if (isset($admin)) {
 
     <div class="profile">
 
-        <a href="<?= $profilePath ?>">
-
+        <a href="profileAdmin.php">
             <img src="<?= $imgPath ?>profile.png" alt="profile">
-
         </a>
 
     </div>
