@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item Management Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../style/sidebarAdmin.css">
+    <link rel="stylesheet" href="style/addItemAdmin.css">
+    <link rel="stylesheet" href="../../style/header.css">
 </head>
+
 <body>
+    <?php include("../header.php"); ?>
+    <?php include("sidebarAdmin.php"); ?>
 
     <main class="dashboard-container">
         <header class="dashboard-header">
@@ -17,14 +23,14 @@
 
         <section class="table-controls">
             <div class="tabs">
-                <button class="tab-btn active">All</button>
-                <button class="tab-btn">Pending</button>
-                <button class="tab-btn">Approved</button>
-                <button class="tab-btn">Rejected</button>
+                <button class="tab-btn active" data-filter="all">All</button>
+                <button class="tab-btn" data-filter="pending">Pending</button>
+                <button class="tab-btn" data-filter="approved">Approved</button>
+                <button class="tab-btn" data-filter="rejected">Rejected</button>
             </div>
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" placeholder="Search items...">
+                <input type="text" id="searchInput" placeholder="Search items...">
             </div>
         </section>
 
@@ -38,73 +44,54 @@
                         <th>Category</th>
                         <th>Date</th>
                         <th>Status</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr data-status="pending">
                         <td class="text-muted">ITM-001</td>
                         <td><strong>Old Textbooks</strong></td>
                         <td>Ahmad Razif</td>
                         <td>Paper</td>
                         <td>2026-06-07</td>
                         <td><span class="badge badge-pending">Pending</span></td>
-                        <td class="actions-cell">
-                            <button class="btn-action view" title="View Details"><i class="fa-regular fa-eye"></i></button>
-                            <button class="btn-action approve" title="Approve"><i class="fa-solid fa-check"></i></button>
-                            <button class="btn-action reject" title="Reject"><i class="fa-solid fa-xmark"></i></button>
-                        </td>
                     </tr>
-                    <tr>
+                    <tr data-status="approved">
                         <td class="text-muted">ITM-002</td>
                         <td><strong>Plastic Bottles</strong></td>
                         <td>Siti Nurhaliza</td>
                         <td>Plastic</td>
                         <td>2026-06-07</td>
                         <td><span class="badge badge-approved">Approved</span></td>
-                        <td class="actions-cell">
-                            <button class="btn-action view" title="View Details"><i class="fa-regular fa-eye"></i></button>
-                        </td>
                     </tr>
-                    <tr>
+                    <tr data-status="rejected">
                         <td class="text-muted">ITM-003</td>
                         <td><strong>Used Laptop</strong></td>
                         <td>Muhammad Hafiz</td>
                         <td>Electronics</td>
                         <td>2026-06-06</td>
-                        <td><span class="badge badge-approved">Approved</span></td>
-                        <td class="actions-cell">
-                            <button class="btn-action view" title="View Details"><i class="fa-regular fa-eye"></i></button>
-                        </td>
+                        <td><span class="badge badge-rejected">Rejected</span></td>
                     </tr>
-                    <tr>
+                    <tr data-status="pending">
                         <td class="text-muted">ITM-004</td>
                         <td><strong>Glass Jars</strong></td>
                         <td>Nurul Ain</td>
                         <td>Glass</td>
                         <td>2026-06-06</td>
-                        <td><span class="badge badge-rejected">Rejected</span></td>
-                        <td class="actions-cell">
-                            <button class="btn-action view" title="View Details"><i class="fa-regular fa-eye"></i></button>
-                        </td>
+                        <td><span class="badge badge-pending">Pending</span></td>
                     </tr>
-                    <tr>
+                    <tr data-status="pending">
                         <td class="text-muted">ITM-005</td>
                         <td><strong>Cardboard Boxes</strong></td>
                         <td>Faris Izwan</td>
                         <td>Paper</td>
                         <td>2026-06-05</td>
                         <td><span class="badge badge-pending">Pending</span></td>
-                        <td class="actions-cell">
-                            <button class="btn-action view" title="View Details"><i class="fa-regular fa-eye"></i></button>
-                            <button class="btn-action approve" title="Approve"><i class="fa-solid fa-check"></i></button>
-                            <button class="btn-action reject" title="Reject"><i class="fa-solid fa-xmark"></i></button>
-                        </td>
                     </tr>
                 </tbody>
             </table>
         </section>
     </main>
-
+    <script src="js/addItemAdmin.js"></script>
 </body>
+
 </html>
