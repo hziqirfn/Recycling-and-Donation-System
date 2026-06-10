@@ -41,7 +41,7 @@
 
                     <small>
                         Don't see your item?
-                        <a href="addItem.html">Add it first</a>
+                        <a href="addItem.php">Add it first</a>
                     </small>
 
                     <div class="row">

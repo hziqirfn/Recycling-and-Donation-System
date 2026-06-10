@@ -12,13 +12,13 @@ $admin = true;
 
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/header.css">
-    <link rel="stylesheet" href="../../style/sidebar.css">
+    <link rel="stylesheet" href="../../style/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/dashboardAdmin.css">
 </head>
 
 <body>
 
-    <?php include("../header.php"); ?>
+    <?php include("headerAdmin.php"); ?>
     <?php include("sidebarAdmin.php"); ?>
 
     <label for="cb" id="overlay"></label>
