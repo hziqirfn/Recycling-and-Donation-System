@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <?php include("../header.php"); ?>
+    <?php include("headerAdmin.php"); ?>
     <?php include("sidebarAdmin.php"); ?>
 
     <main class="dashboard-container">

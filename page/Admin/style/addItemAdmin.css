@@ -6,8 +6,8 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    color: #0f172a;
+    background: #f5f5f5;
+    color: #111827;
 }
 
 .sidebar {
@@ -38,8 +38,9 @@ body {
 }
 
 .dashboard-container {
-    margin-left: 260px;
-    padding: 40px 50px;
+    margin-left: 280px;
+    margin-top: 110px;
+    padding: 30px;
 }
 
 .dashboard-header {
@@ -56,18 +57,18 @@ body {
 }
 
 .table-wrapper {
-    background: white;
-    border-radius: 18px;
-    border: 1px solid #e5e7eb;
+    background: #cfe6cf;
+    border-radius: 20px;
     overflow: hidden;
+    border: none;
 }
 
 .table-controls {
-    padding: 18px;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eef2f7;
+    border-bottom: none;
 }
 
 .tabs {
@@ -81,12 +82,12 @@ body {
     padding: 11px 18px;
     border-radius: 12px;
     cursor: pointer;
-    color: #475569;
+    color: #333;
     font-weight: 600;
 }
 
 .tab-btn.active {
-    background: #00a63e;
+    background: #2f8f2f;
     color: white;
 }
 
@@ -98,9 +99,10 @@ body {
 .search-box input {
     width: 100%;
     padding: 12px 14px 12px 40px;
-    border: 1px solid #e5e7eb;
+    border: none;
     border-radius: 12px;
     outline: none;
+    background: white;
 }
 
 .search-icon {
@@ -125,12 +127,17 @@ body {
 
 .management-table td {
     padding: 18px;
-    color: #475569;
+    color: #333;
     font-size: 15px;
 }
 
+.management-table tbody tr {
+    background: rgba(255,255,255,0.4);
+}
+
+
 .management-table tbody tr:nth-child(even) {
-    background: #f8fafc;
+    background: rgba(255,255,255,0.7);
 }
 
 .management-table td strong {
@@ -145,18 +152,18 @@ body {
 }
 
 .badge-pending {
-    background: #fef3c7;
-    color: #d97706;
+    background: #f5e3a1;
+    color: #c27c00;
 }
 
 .badge-approved {
-    background: #dcfce7;
-    color: #16a34a;
+    background: #c8f0cf;
+    color: #1b8d39;
 }
 
 .badge-rejected {
-    background: #fee2e2;
-    color: #dc2626;
+    background: #f8d2d2;
+    color: #d62828;
 }
 
 .actions-cell {
@@ -181,4 +188,10 @@ body {
 
 .btn-action.reject {
     color: #ef4444;
+}
+
+.table-container {
+    background: #cfe6cf;
+    padding: 20px;
+    border-radius: 20px;
 }
