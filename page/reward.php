@@ -219,10 +219,6 @@
 </div>
 <script>
 
-// =========================
-// LEADERBOARD TAB FUNCTION
-// =========================
-
 function showCommunity() {
 
     document.getElementById("communityBoard").style.display = "block";
@@ -240,11 +236,6 @@ function showUTeM() {
     document.getElementById("utemBtn").classList.add("active-tab");
     document.getElementById("communityBtn").classList.remove("active-tab");
 }
-
-
-// =========================
-// REDEEM POPUP FUNCTION
-// =========================
 
 document.querySelectorAll(".redeem-btn").forEach(button => {
 
