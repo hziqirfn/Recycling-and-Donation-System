@@ -26,7 +26,7 @@
 
         <div class="content">
 
-            <!-- LEFT SIDE -->
+
             <div class="left-panel">
 
                 <div class="gambar">
@@ -39,10 +39,10 @@
 
             </div>
 
-            <!-- RIGHT SIDE -->
+
             <div class="right-panel">
 
-                <!-- PROFILE DETAILS -->
+
                 <div class="profil">
 
                     <div class="top">
@@ -72,7 +72,6 @@
 
                 </div>
 
-                <!-- RECENT ACTIVITY -->
                 <h2>Recent Activity</h2>
 
                 <div class="profil2">
