@@ -14,7 +14,7 @@ $imgPath = "../../image/";
     </div>
 
     <div class="add">
-        <a href="addItem.php">
+        <a href="addItemAdmin.php">
             <img src="<?= $imgPath ?>add.png" alt="manage item">
             Item Management
         </a>
