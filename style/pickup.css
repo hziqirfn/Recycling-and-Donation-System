@@ -34,6 +34,14 @@ form label {
     color: #212529;
     display: inline-block;
     margin-bottom: 8px;
+.pickup-form{
+    background:#cfe6cf;
+    padding:25px 15px 15px;
+    border-radius:15px;
+    width:100%;
+    max-width:1000px;
+    margin-left:19px;
+    box-sizing:border-box;
 }
 
 input[type="text"],
