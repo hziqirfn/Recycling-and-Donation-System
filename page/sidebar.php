@@ -16,7 +16,7 @@
     </div>
 
     <div class="reward">
-        <a href="reward.html"><img src="../image/reward.png" alt="reward">Reward</a>
+        <a href="reward.php"><img src="../image/reward.png" alt="reward">Reward</a>
     </div>
 
     <hr>
