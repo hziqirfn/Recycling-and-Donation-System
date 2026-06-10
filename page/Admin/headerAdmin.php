@@ -5,7 +5,7 @@ $profilePath = "profile.php";
 
 if (isset($admin)) {
     $imgPath = "../../image/";
-    $profilePath = "../profile.php";
+    $profilePath = "profileAdmin.php";
 }
 
 ?>
