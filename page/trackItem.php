@@ -37,11 +37,6 @@
                     <label>Select item to Track</label>
                     <select id="itemSelect">
                         <option value="">Select Item</option>
-                        <option value="old-laptop">Old Laptop - Processing</option>
-                        <option value="clothes">Clothes - Completed</option>
-                        <option value="plastic">Plastic - Pending</option>
-                        <option value="ewaste">E-Waste - Collected</option>
-                        <option value="glass">Glass - Processing</option>
                     </select>
                 </div>
 
@@ -107,7 +102,7 @@
         </div>
 
     </div>
-
+    <script src="../js/trackItem.js"></script>
 </body>
 
 </html>
