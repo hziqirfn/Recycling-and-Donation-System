@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../../style/global.css">
-    <link rel="stylesheet" href="../../style/header.css">
+    <link rel="stylesheet" href="../../style/headerAdmin.css">
     <link rel="stylesheet" href="../../style/sidebar.css">
-    <link rel="stylesheet" href="../../style/profile.css">
+    <link rel="stylesheet" href="../../style/profileAdmin.css">
 
     <script src="../../js/profile.js" defer></script>
 
@@ -19,7 +19,7 @@
 
     <?php
     $admin = true;
-    include("../header.php");
+    include("headerAdmin.php");
     include("sidebarAdmin.php");
     ?>
 

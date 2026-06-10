@@ -11,7 +11,7 @@ $admin = true;
     <title>Admin Dashboard</title>
 
     <link rel="stylesheet" href="../../style/global.css">
-    <link rel="stylesheet" href="../../style/header.css">
+    <link rel="stylesheet" href="../../style/headerAdmin.css">
     <link rel="stylesheet" href="../../style/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/dashboardAdmin.css">
 </head>
