@@ -35,14 +35,8 @@
 
                 <form class="pickup-form">
 
-                    <label>Select Item</label>
-
-                    <select>
+                    <select id="itemList">
                         <option>Select Item</option>
-                        <option>Clothes</option>
-                        <option>Plastic</option>
-                        <option>E-Waste</option>
-                        <option>Glass</option>
                     </select>
 
                     <small>
@@ -108,7 +102,7 @@
         </div>
 
     </div>
-
+    <script src="../js/pickup.js"></script>
 </body>
 
 </html>
