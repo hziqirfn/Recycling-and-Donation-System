@@ -34,6 +34,13 @@ $imgPath = "../../image/";
         </a>
     </div>
 
+    <div class="track">
+        <a href="trackAdmin.php">
+            <img src="<?= $imgPath ?>track.png" alt="reward">
+            Track Item Management
+        </a>
+    </div>
+
     <hr>
 
     <div class="logout">
