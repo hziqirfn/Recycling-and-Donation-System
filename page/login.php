@@ -49,7 +49,7 @@
                 <button type="submit" class="login-btn">Login</button>
             </form>
 
-            <p class="register-link"><a href="register.php">Register new account</a></p>
+            <p class="register-link"><a href="signup.php">Register new account</a></p>
         </section>
     </main>
 </body>
