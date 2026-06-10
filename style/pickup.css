@@ -36,6 +36,7 @@ p {
     max-width:1000px;
     margin-left:19px;
     box-sizing:border-box;
+}
 form label {
     font-size: 14px;
     font-weight: 600;
