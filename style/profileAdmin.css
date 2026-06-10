@@ -7,13 +7,17 @@
     display:flex;
     gap:40px;
     width:100%;
+
     margin-top:110px;
+    margin-left:280px;
+
     padding:30px;
     box-sizing:border-box;
 }
 
 .left-panel{
-    width:280px;
+     width:250px;
+    flex-shrink:0;
     background:#c8e6c9;
     border-radius:20px;
     padding:30px 20px;
@@ -41,24 +45,36 @@
 }
 
 .admin-stats{
-    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    margin-top:30px;
+    flex-wrap:wrap;
 }
 
 .admin-stats .stat{
-    background:white;
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:15px;
+    width:180px;
+    background:#f8f8f8;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
 }
 
 .admin-stats .stat h3{
+    margin:0;
+    font-size:40px;
     color:#2e7d32;
-    font-size:28px;
-    margin-bottom:5px;
+}
+
+.admin-stats .stat p{
+    margin-top:10px;
+    margin-bottom:0;
 }
 
 .right-panel{
     flex:1;
+    min-width:0;
 }
 
 .profil,
@@ -163,14 +179,14 @@
     background:#eef8ee;
 }
 
-/* MOBILE */
-
 @media(max-width:768px){
 
     .content{
         flex-direction:column;
         margin-top:120px;
+        margin-left:0;
         padding:15px;
+        gap:20px;
     }
 
     .left-panel{
@@ -178,17 +194,27 @@
     }
 
     .gambar img{
-        width:130px;
-        height:130px;
+        width:120px;
+        height:120px;
+    }
+
+    .left-panel h2{
+        font-size:28px;
     }
 
     .right-panel{
         width:100%;
     }
 
+    .profil,
+    .profil2{
+        padding:20px;
+    }
+
     .top{
         flex-direction:column;
-        gap:15px;
+        gap:10px;
+        align-items:stretch;
     }
 
     .top button{
@@ -201,5 +227,10 @@
 
     .bottom button{
         width:100%;
+    }
+
+    .profil input,
+    .profil textarea{
+        font-size:16px;
     }
 }
