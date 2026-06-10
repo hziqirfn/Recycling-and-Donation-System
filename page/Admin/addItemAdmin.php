@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../style/sidebarAdmin.css">
     <link rel="stylesheet" href="style/addItemAdmin.css">
-    <link rel="stylesheet" href="../../style/header.css">
+    <link rel="stylesheet" href="../../style/headerAdmin.css">
 </head>
 
-<body>
+<body class="item-management-page">
     <?php include("headerAdmin.php"); ?>
     <?php include("sidebarAdmin.php"); ?>
+
+    <label for="cb" id="overlay"></label>
 
     <main class="dashboard-container">
         <header class="dashboard-header">
