@@ -129,12 +129,15 @@
     .content{
         flex-direction:column;
         margin-top:110px;
+        margin-left:0;
         padding:15px;
-        gap:25px;
+        gap:20px;
+        width:100%;
     }
 
     .left-panel{
         width:100%;
+        text-align:center;
     }
 
     .gambar img{
@@ -144,6 +147,7 @@
 
     .left-panel h2{
         font-size:28px;
+        margin-top:15px;
     }
 
     .right-panel{
@@ -154,6 +158,8 @@
     .profil,
     .profil2{
         width:100%;
+        padding:20px;
+        margin:0;
     }
 
     .top{
@@ -162,13 +168,37 @@
 
     .top button{
         width:100%;
+        max-width:200px;
+    }
+
+    .profil input,
+    .profil textarea{
+        width:100%;
     }
 
     .bottom.show{
         flex-direction:column;
+        gap:10px;
     }
 
     .bottom button{
         width:100%;
     }
+
+    .activity-box{
+        padding:15px;
+        font-size:14px;
+    }
+
+      .content{
+        position:relative;
+        z-index:1;
+    }
+
+    .left-panel,
+    .right-panel{
+        position:relative;
+        z-index:1;
+    }
+
 }
