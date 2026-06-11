@@ -1,222 +1,196 @@
-#side{
-    margin-top:0 !important;
-    padding-left: 0 !important;
-    left: 0 !important;
-}
-
-.dashboard-container {
-    margin-left: 260px;
+.dashboard-container{
+    margin-left:260px;
     margin-top:120px;
-    padding: 20px 35px;
+    padding:20px 35px;
 }
 
-.dashboard-header {
-    margin-bottom: 25px;
+.dashboard-header{
+    margin-bottom:25px;
 }
 
-.dashboard-header h1 {
-    font-size: 30px;
-    margin-bottom: 8px;
+.dashboard-header h1{
+    font-size:30px;
+    margin-bottom:8px;
 }
 
-.dashboard-header p {
-    color: #555;
+.dashboard-header p{
+    color:#555;
 }
 
-.table-controls {
-    background: #cfe6cf;
-    padding: 20px;
-    border-radius: 20px 20px 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.table-controls{
+    background:#cfe6cf;
+    padding:20px;
+    border-radius:20px 20px 0 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.tabs {
-    display: flex;
-    gap: 15px;
+.tabs{
+    display:flex;
+    gap:15px;
 }
 
-.tab-btn {
-    border: none;
-    background: white;
-    padding: 12px 20px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: bold;
+.tab-btn{
+    border:none;
+    background:white;
+    padding:12px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.tab-btn.active {
-    background: #2f8f2f;
-    color: white;
+.tab-btn.active{
+    background:#2f8f2f;
+    color:white;
 }
 
-.search-box {
-    position: relative;
-    width: 280px;
-    flex-shrink: 0;
+.tab-btn:hover{
+    background:#a5d6a7;
 }
 
-.search-box input {
-    width: 100%;
-    height: 45px;
-    padding-left: 40px;
-    border: none;
-    border-radius: 12px;
-    outline: none;
+.search-box{
+    position:relative;
+    width:280px;
+    flex-shrink:0;
 }
 
-.search-icon {
-    position: absolute;
-    left: 15px;
-    top: 13px;
-    color: #777;
+.search-box input{
+    width:100%;
+    height:45px;
+    padding-left:40px;
+    border:none;
+    border-radius:12px;
+    outline:none;
 }
 
-.table-container {
-    background: #cfe6cf;
-    padding: 20px;
-    border-radius: 0 0 20px 20px;
+.search-icon{
+    position:absolute;
+    left:15px;
+    top:13px;
+    color:#777;
 }
 
-.management-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
+.table-container{
+    background:#cfe6cf;
+    padding:20px;
+    border-radius:0 0 20px 20px;
+    overflow-x:auto;
 }
 
-.management-table th {
-    padding: 18px;
-    text-align: left;
-    background: #b8d8b8;
-    color: #2f4f2f;
+.management-table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
 }
 
-.management-table td {
-    padding: 18px;
-    border-bottom: 1px solid #ddd;
+.management-table th{
+    padding:18px;
+    text-align:left;
+    background:#b8d8b8;
+    color:#2f4f2f;
 }
 
-.management-table tbody tr:nth-child(even) {
-    background: #f5f5f5;
+.management-table td{
+    padding:18px;
+    border-bottom:1px solid #ddd;
 }
 
-.management-table td strong {
-    color: black;
+.management-table td strong{
+    color:black;
 }
 
-.text-muted {
-    color: #333;
+.management-table tbody tr:nth-child(even){
+    background:#f5f5f5;
 }
 
-.badge {
-    padding: 7px 13px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: bold;
+.management-table tbody tr:hover{
+    background:#e8f5e9;
 }
 
-.badge-pending {
-    background: #f5e3a1;
-    color: #c27c00;
+.text-muted{
+    color:#333;
 }
 
-.badge-approved {
-    background: #c8f0cf;
-    color: #1b8d39;
+.badge{
+    padding:7px 13px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
 }
 
-.badge-rejected {
-    background: #f8d2d2;
-    color: #d62828;
+.badge-pending{
+    background:#f5e3a1;
+    color:#c27c00;
 }
 
-.table-container {
-    overflow-x: auto;
+.badge-approved{
+    background:#c8f0cf;
+    color:#1b8d39;
 }
 
-.management-table tbody tr:hover {
-    background: #e8f5e9;
+.badge-rejected{
+    background:#f8d2d2;
+    color:#d62828;
 }
 
-.tab-btn:hover {
-    background: #a5d6a7;
-}
+@media (max-width:768px){
 
-.table-controls {
-    background: #cfe6cf;
-    padding: 20px;
-    border-radius: 20px 20px 0 0;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-body.item-management-page #side {
-    top: 100px !important;
-    margin-top: 0 !important;
-    min-height: calc(100vh - 100px) !important;
-}
-
-@media (max-width: 768px) {
-
-    .dashboard-container {
-        margin-left: 0;
-        margin-top: 120px;
-        padding: 20px 15px;
+    .dashboard-container{
+        margin-left:0;
+        margin-top:120px;
+        padding:20px 15px;
     }
 
-    .dashboard-header h1 {
-        font-size: 24px;
+    .dashboard-header h1{
+        font-size:24px;
     }
 
-    .dashboard-header p {
-        font-size: 14px;
+    .dashboard-header p{
+        font-size:14px;
     }
 
-    .table-controls {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 15px;
-        padding: 15px;
+    .table-controls{
+        flex-direction:column;
+        align-items:stretch;
+        gap:15px;
+        padding:15px;
     }
 
-    .tabs {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+    .tabs{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
     }
 
-    .tab-btn {
-        width: 100%;
-        padding: 12px;
-        font-size: 14px;
+    .tab-btn{
+        width:100%;
+        padding:12px;
+        font-size:14px;
     }
 
-    .search-box {
-        width: 100%;
+    .search-box{
+        width:100%;
     }
 
-    .search-box input {
-        width: 100%;
-        height: 45px;
+    .search-box input{
+        width:100%;
+        height:45px;
     }
 
-    .table-container {
-        padding: 12px;
-        overflow-x: auto;
+    .table-container{
+        padding:12px;
     }
 
-    .management-table {
-        min-width: 750px;
+    .management-table{
+        min-width:750px;
     }
 
     .management-table th,
-    .management-table td {
-        padding: 14px;
-        font-size: 14px;
+    .management-table td{
+        padding:14px;
+        font-size:14px;
     }
 }

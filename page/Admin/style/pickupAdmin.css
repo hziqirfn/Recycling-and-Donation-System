@@ -1,9 +1,3 @@
-#side{
-    margin-top:0 !important;
-    padding-left:0 !important;
-    left:0 !important;
-}
-
 .dashboard-container{
     margin-left:260px;
     margin-top:120px;
@@ -51,12 +45,16 @@
     font-weight:600;
 }
 
+.filter-btn:hover{
+    background:#e9e9e9;
+}
+
 .management-table{
     width:100%;
     border-collapse:collapse;
     background:white;
-    overflow:hidden;
     border-radius:12px;
+    overflow:hidden;
 }
 
 .management-table th{
@@ -115,15 +113,19 @@
     background:#256f25;
 }
 
-@media(max-width:768px){
+@media (max-width:768px){
 
-.dashboard-container{
-    margin-left:0;
-    padding:15px;
-}
+    .dashboard-container{
+        margin-left:0;
+        margin-top:120px;
+        padding:15px;
+    }
 
-.table-card{
-    overflow-x:auto;
-}
+    .table-card{
+        overflow-x:auto;
+    }
 
+    .management-table{
+        min-width:700px;
+    }
 }
