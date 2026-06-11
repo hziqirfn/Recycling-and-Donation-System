@@ -36,13 +36,42 @@
     color:#444;
 }
 
-.filter-btn{
-    background:#f5f5f5;
-    border:1px solid #ddd;
-    padding:10px 16px;
-    border-radius:12px;
-    cursor:pointer;
+.filter-select{
+
+    background: #ffffff;
+    color: #333;
+
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.filter-select:hover{
+    border-color: #2f8f2f;
+    background: #fafafa;
+}
+
+.filter-select:focus{
+    outline: none;
+    border-color: #2f8f2f;
+    box-shadow: 0 0 0 3px rgba(47,143,47,0.15);
+}
+
+.filter-wrapper{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.filter-label{
+    font-size:13px;
     font-weight:600;
+    color:#555;
 }
 
 .filter-btn:hover{
@@ -98,19 +127,6 @@
 .badge-completed{
     background:#d1fae5;
     color:#047857;
-}
-
-.action-btn{
-    border:none;
-    background:#2f8f2f;
-    color:white;
-    padding:6px 10px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.action-btn:hover{
-    background:#256f25;
 }
 
 @media (max-width:768px){
