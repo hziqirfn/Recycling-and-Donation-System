@@ -1,0 +1,166 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#efefef;
+}
+
+.header{
+    padding:20px 10px;
+}
+
+.logo-section{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-section img{
+    width:72px;
+    height:72px;
+}
+
+.logo-section h2{
+    font-family:Arial, sans-serif;
+    font-weight:600;
+}
+
+.signup-wrapper{
+
+    width:85%;
+    max-width:1150px;
+
+    height:425px;
+
+    margin:10px auto;
+
+    display:grid;
+    grid-template-columns:55% 45%;
+}
+
+.signup-left{
+
+    background:#dfeade;
+
+    padding:45px 40px;
+}
+
+.signup-left h1{
+
+    font-family:"Times New Roman", serif;
+    font-size:56px;
+    font-weight:400;
+
+    margin-bottom:10px;
+}
+
+.signup-left p{
+
+    font-family:"Times New Roman", serif;
+    font-size:16px;
+
+    margin-bottom:20px;
+}
+
+.signup-left label{
+
+    display:block;
+
+    font-family:"Times New Roman", serif;
+    font-size:20px;
+
+    margin-bottom:6px;
+}
+
+.signup-left input{
+
+    width:100%;
+
+    height:45px;
+
+    border:none;
+    border-bottom:1px solid #888;
+
+    padding:0 14px;
+
+    margin-bottom:12px;
+
+    font-size:16px;
+}
+
+.signup-left button{
+
+    width:100%;
+
+    margin-top:12px;
+
+    background:#43a047;
+
+    color:white;
+
+    border:none;
+
+    height:44px;
+
+    font-size:18px;
+
+    cursor:pointer;
+}
+
+.signup-right{
+
+    background:#b7dcbf;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo-card{
+
+    width:245px;
+    height:220px;
+
+    background:#dfeade;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo-card img{
+
+    width:100px;
+
+    margin-bottom:20px;
+}
+
+.logo-card h2{
+
+    font-family:Arial, sans-serif;
+    font-size:18px;
+}
+
+@media(max-width:768px){
+
+    .signup-wrapper{
+
+        grid-template-columns:1fr;
+
+        height:auto;
+    }
+
+    .signup-right{
+
+        padding:40px 0;
+    }
+
+    .signup-left h1{
+
+        font-size:40px;
+    }
+}

@@ -30,24 +30,18 @@
 
                 <div class="pickup-title">
                     <h1>Request Pickup</h1>
-                    <p>Schedule a collection for your items</p>
+                    <p>Schedule a collection for your item</p>
                 </div>
 
                 <form class="pickup-form">
 
-                    <label>Select Item</label>
-
-                    <select>
+                    <select id="itemList">
                         <option>Select Item</option>
-                        <option>Clothes</option>
-                        <option>Plastic</option>
-                        <option>E-Waste</option>
-                        <option>Glass</option>
                     </select>
 
                     <small>
                         Don't see your item?
-                        <a href="addItem.html">Add it first</a>
+                        <a href="addItem.php">Add it first</a>
                     </small>
 
                     <div class="row">
@@ -108,7 +102,7 @@
         </div>
 
     </div>
-
+    <script src="../js/pickup.js"></script>
 </body>
 
 </html>

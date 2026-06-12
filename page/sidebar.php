@@ -4,7 +4,7 @@
     </div>
 
     <div class="add">
-        <a href="addItem.html"><img src="../image/add.png" alt="add item">Add Item</a>
+        <a href="addItem.php"><img src="../image/add.png" alt="add item">Add Item</a>
     </div>
 
     <div class="pickup">
@@ -12,16 +12,16 @@
     </div>
 
     <div class="track">
-        <a href="trackItem.html"><img src="../image/track.png" alt="track item">Track Item</a>
+        <a href="trackItem.php"><img src="../image/track.png" alt="track item">Track Item</a>
     </div>
 
     <div class="reward">
-        <a href="reward.html"><img src="../image/reward.png" alt="reward">Reward</a>
+        <a href="reward.php"><img src="../image/reward.png" alt="reward">Reward</a>
     </div>
 
     <hr>
 
     <div class="logout">
-        <a href="../index.php"><img src="../image/logout.png" alt="log out">Log Out</a>
+        <a href="/Recycling-and-Donation-System/index.php"><img src="../image/logout.png" alt="log out">Log Out</a>
     </div>
 </div>

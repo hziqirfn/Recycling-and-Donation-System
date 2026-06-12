@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Login - UTeM RecycleHub</title>
     <link rel="stylesheet" href="../style/login.css">
 </head>
+
 <body>
 
     <header class="header">
@@ -41,14 +43,15 @@
                 </div>
 
                 <div class="login-footer">
-                    <a href="#">Forgot password?</a>
+                    <a href="password.php">Forgot password?</a>
                 </div>
 
                 <button type="submit" class="login-btn">Login</button>
             </form>
 
-            <p class="register-link"><a href="#">Register new account</a></p>
+            <p class="register-link"><a href="signup.php">Register new account</a></p>
         </section>
     </main>
 </body>
+
 </html>
