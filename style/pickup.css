@@ -1,63 +1,62 @@
-#content{
-    flex:1;
-    margin-top:110px;
-    padding:30px;
-    margin-left:250px;
-    box-sizing:border-box;
-}
-
 .pickup-container{
     max-width:1000px;
-    margin:auto;
+    margin:0 auto;
+}
+.pickup-title{
+    max-width:1000px;
+    margin:0 0 15px 20px;
 }
 
 .pickup-title h1{
-    font-size:40px;
-    margin-bottom:10px;
+    margin-bottom:5px;
+    text-decoration:underline;
 }
 
 .pickup-title p{
-    margin-bottom:25px;
-    color:#666;
+    color:black;
+    margin-bottom:20px;
+}
+
+.pickup-title h1,
+.pickup-title p{
+    margin-left: -1px;
 }
 
 .pickup-form{
     background:#cfe6cf;
-    border-radius:20px;
-    padding:25px;
+    padding:25px 15px 15px;
+    border-radius:15px;
+    width:100%;
+    max-width:1000px;
+    margin-left:19px;
+    box-sizing:border-box;
 }
 
 .pickup-form label{
     display:block;
+    margin-top:15px;
     margin-bottom:8px;
-    font-weight:600;
 }
 
-.pickup-form select,
 .pickup-form input,
+.pickup-form select,
 .pickup-form textarea{
     width:100%;
-    padding:15px;
+    padding:12px;
     border:none;
-    border-radius:15px;
-    margin-bottom:20px;
+    border-radius:12px;
     box-sizing:border-box;
 }
 
-.pickup-form textarea{
-    resize:none;
-}
-
-small{
+.pickup-form small{
     display:block;
-    margin-bottom:20px;
+    margin-top:8px;
     color:#666;
 }
 
-small a{
+.pickup-form small a{
     color:green;
     text-decoration:none;
-    font-weight:600;
 }
 
 .row{
@@ -74,70 +73,91 @@ small a{
     border-radius:15px;
     padding:20px;
     margin-top:20px;
-    margin-bottom:20px;
-}
-
-.info-box h3{
-    margin-bottom:15px;
-}
-
-.info-box ul{
-    padding-left:20px;
 }
 
 .button-group{
     display:flex;
     gap:20px;
+    margin-top:20px;
 }
 
 .cancel-btn,
 .submit-btn{
     flex:1;
-    padding:15px;
+    padding:12px;
     border:none;
-    border-radius:15px;
+    border-radius:12px;
     cursor:pointer;
-    font-size:16px;
-}
-
-.cancel-btn{
     background:white;
-}
-
-.submit-btn{
-    background:white;
-    font-weight:bold;
 }
 
 .cancel-btn:hover,
 .submit-btn:hover{
-    opacity:0.9;
+    background:#f0f0f0;
 }
 
-/* MOBILE */
+#content{
+    flex:1;
+    margin-top:120px;
+    padding:20px 40px;
+}
 
 @media (max-width:768px){
 
     #content{
+        width:100%;
         margin-left:0;
-        margin-top:100px;
+        margin-top:120px;
         padding:15px;
+        box-sizing:border-box;
     }
 
-    .pickup-title h1{
-        font-size:32px;
+    .pickup-container{
+        width:100%;
+        margin:0 auto;
+        padding:0;
+        box-sizing:border-box;
     }
 
-    .row{
-        flex-direction:column;
-        gap:0;
-    }
-
-    .button-group{
-        flex-direction:column;
+    .pickup-title{
+        text-align:left;
+        margin-bottom:15px;
     }
 
     .pickup-form{
+        width:100%;
+        max-width:100%;
+        margin:0 auto;
         padding:15px;
+        box-sizing:border-box;
     }
+
+    .row{
+        display:flex;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .input-group{
+        width:100%;
+    }
+
+    .pickup-form input,
+    .pickup-form select,
+    .pickup-form textarea{
+        width:100%;
+        box-sizing:border-box;
+    }
+
+    .button-group{
+        display:flex;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .cancel-btn,
+    .submit-btn{
+        width:100%;
+    }
+
 }

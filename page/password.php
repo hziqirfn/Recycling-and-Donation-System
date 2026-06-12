@@ -14,9 +14,11 @@
 
         <div class="logo-section">
 
-            <img src="../image/logo.png" alt="Logo">
+            <div class="logo-box">
+                <img src="../image/logo.png" alt="Logo">
+            </div>
 
-            <div>
+            <div class="logo-text">
                 <h2>UTeM RecycleHub</h2>
                 <p>Recycling & Donation</p>
             </div>
@@ -36,14 +38,10 @@
             <form id="resetForm">
 
                 <label>Email</label>
-                <input type="email"
-                    placeholder="Email"
-                    required>
+                <input type="email" placeholder="Email" required>
 
                 <label>New Password</label>
-                <input type="password"
-                    placeholder="New Password"
-                    required>
+                <input type="password" placeholder="New Password" required>
 
                 <button type="submit">
                     Reset Password
