@@ -1,0 +1,196 @@
+.dashboard-container{
+    margin-left:260px;
+    margin-top:120px;
+    padding:20px 35px;
+}
+
+.dashboard-header{
+    margin-bottom:25px;
+}
+
+.dashboard-header h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.dashboard-header p{
+    color:#555;
+}
+
+.table-controls{
+    background:#cfe6cf;
+    padding:20px;
+    border-radius:20px 20px 0 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.tabs{
+    display:flex;
+    gap:15px;
+}
+
+.tab-btn{
+    border:none;
+    background:white;
+    padding:12px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.tab-btn.active{
+    background:#2f8f2f;
+    color:white;
+}
+
+.tab-btn:hover{
+    background:#a5d6a7;
+}
+
+.search-box{
+    position:relative;
+    width:280px;
+    flex-shrink:0;
+}
+
+.search-box input{
+    width:100%;
+    height:45px;
+    padding-left:40px;
+    border:none;
+    border-radius:12px;
+    outline:none;
+}
+
+.search-icon{
+    position:absolute;
+    left:15px;
+    top:13px;
+    color:#777;
+}
+
+.table-container{
+    background:#cfe6cf;
+    padding:20px;
+    border-radius:0 0 20px 20px;
+    overflow-x:auto;
+}
+
+.management-table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.management-table th{
+    padding:18px;
+    text-align:left;
+    background:#b8d8b8;
+    color:#2f4f2f;
+}
+
+.management-table td{
+    padding:18px;
+    border-bottom:1px solid #ddd;
+}
+
+.management-table td strong{
+    color:black;
+}
+
+.management-table tbody tr:nth-child(even){
+    background:#f5f5f5;
+}
+
+.management-table tbody tr:hover{
+    background:#e8f5e9;
+}
+
+.text-muted{
+    color:#333;
+}
+
+.badge{
+    padding:7px 13px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.badge-pending{
+    background:#f5e3a1;
+    color:#c27c00;
+}
+
+.badge-approved{
+    background:#c8f0cf;
+    color:#1b8d39;
+}
+
+.badge-rejected{
+    background:#f8d2d2;
+    color:#d62828;
+}
+
+@media (max-width:768px){
+
+    .dashboard-container{
+        margin-left:0;
+        margin-top:120px;
+        padding:20px 15px;
+    }
+
+    .dashboard-header h1{
+        font-size:24px;
+    }
+
+    .dashboard-header p{
+        font-size:14px;
+    }
+
+    .table-controls{
+        flex-direction:column;
+        align-items:stretch;
+        gap:15px;
+        padding:15px;
+    }
+
+    .tabs{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .tab-btn{
+        width:100%;
+        padding:12px;
+        font-size:14px;
+    }
+
+    .search-box{
+        width:100%;
+    }
+
+    .search-box input{
+        width:100%;
+        height:45px;
+    }
+
+    .table-container{
+        padding:12px;
+    }
+
+    .management-table{
+        min-width:750px;
+    }
+
+    .management-table th,
+    .management-table td{
+        padding:14px;
+        font-size:14px;
+    }
+}

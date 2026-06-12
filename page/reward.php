@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="../style/sidebar.css">
+    <link rel="stylesheet" href="../style/dashboard.css">
+    <link rel="stylesheet" href="../style/reward.css">
+
+    <title>Rewards</title>
+</head>
+
+<body>
+
+    <?php include("header.php"); ?>
+
+    <div id="main">
+
+        <?php include("sidebar.php"); ?>
+
+        <label for="cb" id="overlay"></label>
+
+        <div id="content">
+
+            <div class="rewards-container">
+
+                <div class="rewards-title">
+                    <h1>Rewards</h1>
+                    <p>Track your progress and redeem amazing rewards</p>
+                </div>
+
+                <div class="rewards-stats">
+
+                    <div class="stat-card">
+                        <h2>Your Points</h2>
+                        <span>1,250</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <h2>Your Rank</h2>
+                        <span>#15</span>
+                    </div>
+
+                </div>
+
+                <div class="leaderboard-card">
+
+                    <div class="leaderboard-tabs">
+
+                        <button id="communityBtn"
+                                class="active-tab"
+                                onclick="showCommunity()">
+                            Community Leaderboard
+                        </button>
+
+                        <button id="utemBtn"
+                                onclick="showUTeM()">
+                            UTeM Leaderboard
+                        </button>
+
+                        <span class="update-badge">
+                            Updated Daily
+                        </span>
+
+                    </div>
+
+                    <div class="leaderboard-list" id="communityBoard">
+
+                        <div class="leader-item">
+                            <div class="rank">#1</div>
+                            <div class="leader-info">
+                                <h4>Ahmad</h4>
+                                <p>2500 Points</p>
+                            </div>
+                            <span class="point-badge">+3</span>
+                        </div>
+
+                        <div class="leader-item">
+                            <div class="rank">#2</div>
+                            <div class="leader-info">
+                                <h4>Siti</h4>
+                                <p>2200 Points</p>
+                            </div>
+                            <span class="point-badge">+3</span>
+                        </div>
+
+                        <div class="leader-item">
+                            <div class="rank">#3</div>
+                            <div class="leader-info">
+                                <h4>Jason</h4>
+                                <p>2000 Points</p>
+                            </div>
+                            <span class="point-badge">+3</span>
+                        </div>
+
+                    </div>
+
+                    <div class="leaderboard-list"
+                         id="utemBoard"
+                         style="display:none;">
+
+                        <div class="leader-item">
+                            <div class="rank">#1</div>
+                            <div class="leader-info">
+                                <h4>Ali UTeM</h4>
+                                <p>1800 Points</p>
+                            </div>
+                            <span class="point-badge">+3</span>
+                        </div>
+
+                        <div class="leader-item">
+                            <div class="rank">#2</div>
+                            <div class="leader-info">
+                                <h4>Aina UTeM</h4>
+                                <p>1600 Points</p>
+                            </div>
+                            <span class="point-badge">+3</span>
+                        </div>
+
+                        <div class="leader-item">
+                            <div class="rank">#3</div>
+                            <div class="leader-info">
+                                <h4>Hakim UTeM</h4>
+                                <p>1500 Points</p>
+                            </div>
+                            <span class="point-badge">+3</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="available-rewards">
+
+                    <h2>Available Rewards</h2>
+
+                    <div class="reward-grid">
+
+                        <div class="reward-card">
+
+                           <span class="reward-points">100 pts</span>
+
+                           <h4>Food Voucher</h4>
+
+                           <button class="redeem-btn"
+                                   data-reward="Food Voucher">
+                               Redeem Now
+                           </button>
+
+                        </div>
+
+                        <div class="reward-card">
+
+                           <span class="reward-points">150 pts</span>
+
+                           <h4>Grab Voucher</h4>
+
+                           <button class="redeem-btn"
+                                   data-reward="Grab Voucher">
+                               Redeem Now
+                          </button>
+
+                        </div>
+
+                        <div class="reward-card">
+
+                           <span class="reward-points">200 pts</span>
+
+                           <h4>UTeM Merchandise</h4>
+
+                           <button class="redeem-btn"
+                                   data-reward="UTeM Merchandise">
+                                Redeem Now
+                           </button>
+
+                        </div>
+
+                        <div class="reward-card">
+
+                           <span class="reward-points">300 pts</span>
+
+                           <h4>Cash Voucher</h4>
+
+                           <button class="redeem-btn"
+                                   data-reward="Cash Voucher">
+                                Redeem Now
+                           </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+<div id="redeemPopup" class="popup">
+
+    <div class="popup-content">
+
+        <h2>✅ Success</h2>
+
+        <p id="rewardText">
+            Reward Redeemed Successfully!
+        </p>
+
+        <button onclick="closePopup()">
+            OK
+        </button>
+
+    </div>
+
+</div>
+<script>
+
+function showCommunity() {
+
+    document.getElementById("communityBoard").style.display = "block";
+    document.getElementById("utemBoard").style.display = "none";
+
+    document.getElementById("communityBtn").classList.add("active-tab");
+    document.getElementById("utemBtn").classList.remove("active-tab");
+}
+
+function showUTeM() {
+
+    document.getElementById("communityBoard").style.display = "none";
+    document.getElementById("utemBoard").style.display = "block";
+
+    document.getElementById("utemBtn").classList.add("active-tab");
+    document.getElementById("communityBtn").classList.remove("active-tab");
+}
+
+document.querySelectorAll(".redeem-btn").forEach(button => {
+
+    button.addEventListener("click", function() {
+
+        let rewardName = this.dataset.reward;
+
+        document.getElementById("rewardText").innerHTML =
+            rewardName + " redeemed successfully!";
+
+        document.getElementById("redeemPopup").style.display = "flex";
+
+    });
+
+});
+
+function closePopup() {
+
+    document.getElementById("redeemPopup").style.display = "none";
+
+}
+
+</script>
+</body>
+</html>
