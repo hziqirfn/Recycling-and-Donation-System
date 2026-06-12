@@ -11,9 +11,9 @@ $admin = true;
     <title>Rewards Control</title>
 
     <link rel="stylesheet" href="../../style/global.css">
-    <link rel="stylesheet" href="../../style/headerAdmin.css">
-    <link rel="stylesheet" href="../../style/sidebarAdmin.css">
-    <link rel="stylesheet" href="style/rewardAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/rewardAdmin.css">
 </head>
 
 <body class="rewards-page">
@@ -72,12 +72,12 @@ $admin = true;
             <div class="card-actions">
 
                  <button class="edit-btn"
-                         onclick="openEditModal('UTeM Merchandise','150')">
+                         onclick="openEditModal('RM5 Touch n Go','100')">
                      Edit
                  </button>
 
                  <button class="delete-btn"
-                         onclick="deleteReward('UTeM Merchandise')">
+                         onclick="deleteReward('RM5 Touch n Go')">
                      Delete
                  </button>
 
@@ -102,12 +102,12 @@ $admin = true;
             <div class="card-actions">
 
                  <button class="edit-btn"
-                         onclick="openEditModal('UTeM Merchandise','350')">
+                         onclick="openEditModal('RM10 Touch n Go','200')">
                      Edit
                  </button>
 
                  <button class="delete-btn"
-                         onclick="deleteReward('UTeM Merchandise')">
+                         onclick="deleteReward('RM10 Touch n Go')">
                      Delete
                  </button>
 
@@ -132,12 +132,12 @@ $admin = true;
             <div class="card-actions">
 
                  <button class="edit-btn"
-                         onclick="openEditModal('RM10 Touch n Go','100')">
+                         onclick="openEditModal('UTeM Merchandise','350')">
                      Edit
                  </button>
 
                  <button class="delete-btn"
-                         onclick="deleteReward('RM10 Touch n Go')">
+                         onclick="deleteReward('UTeM Merchandise')">
                      Delete
                  </button>
 
@@ -162,12 +162,12 @@ $admin = true;
             <div class="card-actions">
 
                  <button class="edit-btn"
-                         onclick="openEditModal('RM5 Touch n Go','100')">
+                         onclick="openEditModal('Canteen Voucher RM3','60')">
                      Edit
                  </button>
 
                  <button class="delete-btn"
-                         onclick="deleteReward('RM5 Touch n Go')">
+                         onclick="deleteReward('Canteen Voucher RM3')">
                      Delete
                  </button>
 

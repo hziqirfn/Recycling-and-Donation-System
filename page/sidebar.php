@@ -22,6 +22,6 @@
     <hr>
 
     <div class="logout">
-        <a href="/Recycling-and-Donation-System/index.php"><img src="../image/logout.png" alt="log out">Log Out</a>
+        <a href="../index.php"><img src="../image/logout.png" alt="log out">Log Out</a>
     </div>
 </div>

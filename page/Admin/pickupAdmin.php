@@ -11,9 +11,9 @@ $admin = true;
     <title>Pickup Requests</title>
 
     <link rel="stylesheet" href="../../style/global.css">
-    <link rel="stylesheet" href="../../style/headerAdmin.css">
-    <link rel="stylesheet" href="../../style/sidebarAdmin.css">
-    <link rel="stylesheet" href="style/pickupAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/pickupAdmin.css">
 </head>
 
 <body class="pickup-request-page">

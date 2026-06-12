@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../style/global.css">
     <link rel="stylesheet" href="../style/header.css">
     <link rel="stylesheet" href="../style/sidebar.css">
-    <link rel="stylesheet" href="../style/addItem1.css">
+    <link rel="stylesheet" href="../style/addItem.css">
 </head>
 
 <body>
