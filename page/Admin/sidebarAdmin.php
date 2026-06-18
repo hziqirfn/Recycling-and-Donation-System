@@ -37,7 +37,7 @@ $imgPath = "../../image/";
     <hr>
 
     <div class="logout">
-        <a href="../login.php">
+        <a href="../logout.php">
             <img src="<?= $imgPath ?>logout.png" alt="logout">
             Log Out
         </a>

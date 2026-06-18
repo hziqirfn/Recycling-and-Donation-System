@@ -33,9 +33,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
         if (password_verify($password, $user['Password']))
         {
-            $_SESSION['email'] = $email;
+            $_SESSION['email'] = $user['Email'];
+            $_SESSION['role'] = $user['Role'];
+            $_SESSION['userid'] = $user['UserId'];
             $_SESSION['success'] = "Login successful...Redirecting";
-            header("Location: login.php?success=1");
+
+            if ($email == "admin@utem.edu.my" && $user['Role'] == "Admin")
+            {
+                $_SESSION['redirect'] = "../page/admin/dashboardAdmin.php";
+            }
+            else
+            {
+                $_SESSION['redirect'] = "dashboard.php";
+            }
+            header("Location: login.php");
             exit();
         }
         else
@@ -123,7 +134,8 @@ if ($error != "")
     </div>
 <?php 
 }
-else if ($success != "")
+
+if ($success != "")
 {
 ?>
     <div id="alert" class="alert">
@@ -131,33 +143,24 @@ else if ($success != "")
             <p><?= $success; ?></p> <br><br>
         </div>
     </div>
-</body>
-<?php 
-}
-
-if (isset($_GET['success']))
-{
-?>
+    
     <script>
-        setTimeout(function () 
+        setTimeout(() =>
         {
-            window.location.href = "dashboard.php";
+            window.location.href = "<?= $_SESSION['redirect'] ?>";
         }, 2000);
     </script>
-<?php
-}
-else
-{
-?>
-    <script>
-        function closePopup()
-        {
-            document.getElementById('alert').style.display = 'none';
-        }
-    </script>
-
-<?php
+<?php 
+    unset($_SESSION['redirect']); 
 }
 ?>
 
+<script>
+    function closePopup()
+    {
+        document.getElementById('alert').style.display = 'none';
+    }
+</script>
+
+</body>
 </html>

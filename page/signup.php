@@ -17,69 +17,80 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $confPassword = $_POST['confPassword'];
 
-    if ($password != $_POST['confPassword'])
+    if ($password !== $confPassword)
     {
         $_SESSION['error'] = "Password not match";
         header("Location: signup.php");
         exit();
     }
+
+    $checkEmail = "SELECT * FROM user WHERE Email = '$email'";
+    $checkResult = $conn->query($checkEmail);
+
+    if ($checkResult->num_rows > 0) 
+    {
+        $_SESSION['error'] = "Email already exist";
+        header("Location: signup.php");
+        exit();
+    }
+
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    
+    $prefix = "PBC-";
+    $role = "Public";    
+    if ($email === "admin@utem.edu.my") 
+    {
+        $prefix = "ADM-";
+        $role = "Admin";
+    }
+    else if (str_ends_with($email, "@student.utem.edu.my")) 
+    {
+        $prefix = "STD-";
+        $role = "Student(UTeM)";
+    }
+    else if (str_ends_with($email, "@utem.edu.my")) 
+    {
+        $prefix = "STF-";
+        $role = "Staff(UTeM)";
+    }
+
+    $sql = "SELECT UserId FROM user WHERE UserId 
+            LIKE '$prefix%' ORDER BY CAST(SUBSTRING(UserId, " .(strlen($prefix) + 1). ") AS UNSIGNED) 
+            DESC LIMIT 1";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0)
+    {
+        $row = $result->fetch_assoc();
+        $lastNum = (int) preg_replace('/[^0-9]/', '', $row['UserId']);
+        $userId = $prefix . ($lastNum + 1);
+    }
     else 
     {
-        $hash = password_hash($password, PASSWORD_DEFAULT);
-        
-        $prefix = "PBC-";
-        $role = "Public";
-        if (str_ends_with($email, '@student.utem.edu.my'))
-        {
-            $prefix = "STD-";
-            $role = "Student";
-        }
-        else if (str_ends_with($email, '@utem.edu.my'))
-        {
-            $prefix = "STF-";
-            $role = "Staff";
-        }
-        else if (str_ends_with($email, '@admin.com'))
-        {
-            $prefix = "ADM-";
-            $role = "Admin";
-        }
+        $userId = $prefix . "1";
+    }
 
-        $sql = "SELECT UserId FROM user WHERE UserId 
-                LIKE '$prefix%' ORDER BY CAST(SUBSTRING(UserId, " .(strlen($prefix) + 1). ") AS UNSIGNED) 
-                DESC LIMIT 1";
-        $result = $conn->query($sql);
+    $sql2 = "INSERT INTO user (UserId, Email, Name, Password, Role)
+             VALUES ('$userId', '$email', '$username', '$hash', '$role')";
+    $result2 = $conn->query($sql2);
 
-        if ($result->num_rows > 0)
-        {
-            $row = $result->fetch_assoc();
-            $lastNum = (int) preg_replace('/[^0-9]/', '', $row['UserId']);
-            $userId = $prefix . ($lastNum + 1);
-        }
-        else 
-        {
-            $userId = $prefix . "1";
-        }
-
-        $sql2 = "INSERT INTO user(UserId, Email, Name, Password, Role) VALUES ('$userId', '$email', '$username', '$hash', '$role')";
-        $result2 = $conn->query($sql2);
-
-        if ($result2 === TRUE)
-        {
-            $_SESSION['error'] = "Register successful";
-            header("Location: login.php");
-            exit();
-        }
-        else
-        {
-            $_SESSION['error'] = "Register failed";
-            header("Location: signup.php");
-            exit();
-        }
+    if ($result2 === TRUE)
+    {
+        $_SESSION['error'] = "Register successful";
+        header("Location: login.php");
+        exit();
+    }
+    else
+    {
+        $_SESSION['error'] = "Register failed";
+        header("Location: signup.php");
+        exit();
     }
 }
 
+$conn->close();
 ?>
 
 <!DOCTYPE html>
