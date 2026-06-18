@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Password</title>
-    <link rel="stylesheet" href="../style/password.css">
+    <title>UTeM RecycleHub</title>
+    <link rel="stylesheet" href="../style/resetPassword.css">
 </head>
 
 <body>
@@ -38,7 +38,7 @@
             <form id="resetForm">
 
                 <label>Email</label>
-                <input type="email" placeholder="Email" required>
+                <input type="email" placeholder="abc@email.com" required>
 
                 <label>New Password</label>
                 <input type="password" placeholder="New Password" required>

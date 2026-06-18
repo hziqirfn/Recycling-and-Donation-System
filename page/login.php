@@ -5,11 +5,18 @@ session_start();
 include("../inc/connect.php");
 
 $error = "";
+$success = "";
 
 if (isset($_SESSION['error']))
 {
     $error = $_SESSION['error'];
     unset($_SESSION['error']);
+}
+
+if (isset($_SESSION['success']))
+{
+    $success = $_SESSION['success'];
+    unset($_SESSION['success']);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -24,10 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         $user = $result->fetch_assoc();
 
-        if (password_verify($password, $user['password']))
+        if (password_verify($password, $user['Password']))
         {
-             $_SESSION['email'] = $email;
-            header("Location: dashboard.php");
+            $_SESSION['email'] = $email;
+            $_SESSION['success'] = "Login successful...Redirecting";
+            header("Location: login.php?success=1");
             exit();
         }
         else
@@ -54,7 +62,7 @@ $conn->close();
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Login - UTeM RecycleHub</title>
+    <title>UTeM RecycleHub</title>
     <link rel="stylesheet" href="../style/login.css">
 </head>
 
@@ -83,7 +91,7 @@ $conn->close();
 
             <form action="login.php" method="post">
                 <div class="form-group">
-                    <label for="username">Email</label>
+                    <label for="email">Email</label>
                     <input type="text" id="email" name="email" placeholder="abc@email.com" required>
                 </div>
 
@@ -93,7 +101,7 @@ $conn->close();
                 </div>
 
                 <div class="login-footer">
-                    <a href="password.php">Forgot password?</a>
+                    <a href="resetPassword.php">Forgot password?</a>
                 </div>
 
                 <button type="submit" class="login-btn">Login</button>
@@ -115,14 +123,41 @@ if ($error != "")
     </div>
 <?php 
 }
+else if ($success != "")
+{
 ?>
+    <div id="alert" class="alert">
+        <div class="popup-box"><br>
+            <p><?= $success; ?></p> <br><br>
+        </div>
+    </div>
 </body>
+<?php 
+}
 
-<script>
-    function closePopup()
-    {
-        document.getElementById('alert').style.display = 'none';
-    }
-</script>
+if (isset($_GET['success']))
+{
+?>
+    <script>
+        setTimeout(function () 
+        {
+            window.location.href = "dashboard.php";
+        }, 2000);
+    </script>
+<?php
+}
+else
+{
+?>
+    <script>
+        function closePopup()
+        {
+            document.getElementById('alert').style.display = 'none';
+        }
+    </script>
+
+<?php
+}
+?>
 
 </html>
