@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         if (password_verify($password, $user['Password']))
         {
             $_SESSION['email'] = $user['Email'];
+            $_SESSION['name'] = $user['Name'];
             $_SESSION['role'] = $user['Role'];
             $_SESSION['userid'] = $user['UserId'];
             $_SESSION['success'] = "Login successful...Redirecting";
