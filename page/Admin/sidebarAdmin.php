@@ -23,7 +23,7 @@ $imgPath = "../../image/";
     <div class="pickup">
         <a href="pickupAdmin.php">
             <img src="<?= $imgPath ?>pickup.png" alt="pickup request">
-            Request Pickup
+            Pickup Management
         </a>
     </div>
 

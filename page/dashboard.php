@@ -52,7 +52,7 @@ include("../inc/auth.php");
 
                 <div class="box">
                     <h3>7</h3>
-                    <p>Sold</p>
+                    <p>Recycle</p>
                 </div>
             </div>
 

@@ -8,6 +8,7 @@ $admin = true;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
@@ -26,7 +27,7 @@ $admin = true;
     <div class="dashboard-container">
 
         <div class="dashboard-header">
-            <h1>Request Pickup </h1>
+            <h2>Pickup Management</h2>
             <p>View scheduled and pending pickup requests.</p>
         </div>
 

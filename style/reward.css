@@ -91,6 +91,10 @@
     padding: 20px;
 }
 
+#utemBoard {
+    display: none;
+}
+
 .leader-item {
     display: flex;
     align-items: center;

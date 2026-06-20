@@ -18,43 +18,35 @@ $admin = true;
 
 <body class="rewards-page">
 
-<?php include("headerAdmin.php"); ?>
-<?php include("sidebarAdmin.php"); ?>
+<?php 
+
+include("headerAdmin.php");
+include("sidebarAdmin.php"); 
+
+?>
 
 <label for="cb" id="overlay"></label>
 
 <div class="dashboard-container">
 
    <div class="dashboard-header">
-
-    <h1>Rewards Control</h1>
-
+    <h2>Reward Management</h2>
     <p>Manage reward items and point redemption.</p>
 
     <div class="header-actions">
-
-        <button class="add-btn"
-                onclick="openAddModal()">
+        <button class="add-btn" onclick="openAddModal()">
             + Add Reward
         </button>
 
-        <select id="statusFilter"
-                onchange="filterRewards()">
-
+        <select id="statusFilter" onchange="filterRewards()">
             <option value="all">All Rewards</option>
-
             <option value="active">Active</option>
-
             <option value="inactive">Inactive</option>
-
         </select>
-
     </div>
-
 </div>
 
     <div class="reward-grid">
-
         <div class="reward-card active">
 
             <div class="card-top">
@@ -63,136 +55,97 @@ $admin = true;
             </div>
 
             <h3>RM5 Touch n Go</h3>
-
             <h2>100 pts</h2>
-
             <p>Stock: 50</p>
             <p>Redeemed: 128</p>
 
             <div class="card-actions">
-
-                 <button class="edit-btn"
-                         onclick="openEditModal('RM5 Touch n Go','100')">
+                 <button class="edit-btn" onclick="openEditModal('RM5 Touch n Go','100')">
                      Edit
                  </button>
 
-                 <button class="delete-btn"
-                         onclick="deleteReward('RM5 Touch n Go')">
+                 <button class="delete-btn" onclick="deleteReward('RM5 Touch n Go')">
                      Delete
                  </button>
-
             </div>
-
         </div>
 
         <div class="reward-card active">
-
             <div class="card-top">
                 <span class="reward-icon">🎁</span>
                 <span class="badge badge-active">Active</span>
             </div>
 
             <h3>RM10 Touch n Go</h3>
-
             <h2>200 pts</h2>
-
             <p>Stock: 30</p>
             <p>Redeemed: 89</p>
 
             <div class="card-actions">
-
-                 <button class="edit-btn"
-                         onclick="openEditModal('RM10 Touch n Go','200')">
+                 <button class="edit-btn" onclick="openEditModal('RM10 Touch n Go','200')">
                      Edit
                  </button>
 
-                 <button class="delete-btn"
-                         onclick="deleteReward('RM10 Touch n Go')">
+                 <button class="delete-btn" onclick="deleteReward('RM10 Touch n Go')">
                      Delete
                  </button>
-
             </div>
-
         </div>
 
         <div class="reward-card active">
-
             <div class="card-top">
                 <span class="reward-icon">🎁</span>
                 <span class="badge badge-active">Active</span>
             </div>
 
             <h3>UTeM Merchandise</h3>
-
             <h2>350 pts</h2>
-
             <p>Stock: 15</p>
             <p>Redeemed: 42</p>
 
             <div class="card-actions">
-
-                 <button class="edit-btn"
-                         onclick="openEditModal('UTeM Merchandise','350')">
+                 <button class="edit-btn" onclick="openEditModal('UTeM Merchandise','350')">
                      Edit
                  </button>
 
-                 <button class="delete-btn"
-                         onclick="deleteReward('UTeM Merchandise')">
+                 <button class="delete-btn" onclick="deleteReward('UTeM Merchandise')">
                      Delete
                  </button>
-
             </div>
-
         </div>
 
         <div class="reward-card inactive">
-
             <div class="card-top">
                 <span class="reward-icon">🎁</span>
                 <span class="badge badge-inactive">Inactive</span>
             </div>
 
             <h3>Canteen Voucher RM3</h3>
-
             <h2>60 pts</h2>
-
             <p>Stock: 0</p>
             <p>Redeemed: 201</p>
 
             <div class="card-actions">
-
-                 <button class="edit-btn"
-                         onclick="openEditModal('Canteen Voucher RM3','60')">
+                 <button class="edit-btn" onclick="openEditModal('Canteen Voucher RM3','60')">
                      Edit
                  </button>
 
-                 <button class="delete-btn"
-                         onclick="deleteReward('Canteen Voucher RM3')">
+                 <button class="delete-btn" onclick="deleteReward('Canteen Voucher RM3')">
                      Delete
                  </button>
-
             </div>
         </div>
-
     </div>
 
     <div class="points-card">
 
         <div class="points-header">
+            <h2>Points Configuration</h2>
 
-        <h2>
-            Points Configuration
-        </h2>
-
-        <button class="edit-btn"
-                onclick="openPointModal()">
-
-            Update Points
-
-        </button>
-
+            <button class="edit-btn" onclick="openPointModal()">
+                Update Points
+            </button>
         </div>
-
     </div>
 
         <div class="points-grid">
@@ -216,73 +169,44 @@ $admin = true;
                 <span>Glass (per kg)</span>
                 <strong>8 pts</strong>
             </div>
-
         </div>
-
     </div>
-
 </div>
 
-<div id="rewardModal"
-     class="modal">
+<div id="rewardModal" class="modal">
 
     <div class="modal-content">
+        <h2 id="modalTitle">Add Reward</h2>
 
-        <h2 id="modalTitle">
-            Add Reward
-        </h2>
+        <input type="text" id="rewardName" placeholder="Reward Name">
 
-        <input type="text"
-               id="rewardName"
-               placeholder="Reward Name">
-
-        <input type="number"
-               id="rewardPoint"
-               placeholder="Points">
+        <input type="number" id="rewardPoint" placeholder="Points">
 
         <button onclick="saveReward()">
-
             Save
-
         </button>
 
         <button onclick="closeModal()">
-
             Cancel
-
         </button>
-
     </div>
-
 </div>
 
-
-<div id="pointModal"
-     class="modal">
+<div id="pointModal" class="modal">
 
     <div class="modal-content">
+        <h2>Update Point Configuration</h2>
 
-        <h2>
-            Update Point Configuration
-        </h2>
+        <input type="number" placeholder="Paper Points">
 
-        <input type="number"
-               placeholder="Paper Points">
+        <input type="number" placeholder="Plastic Points">
 
-        <input type="number"
-               placeholder="Plastic Points">
-
-        <input type="number"
-               placeholder="Glass Points">
+        <input type="number" placeholder="Glass Points">
 
         <button onclick="closePointModal()">
-
             Save
-
         </button>
-
     </div>
-
 </div>
 
 <script>

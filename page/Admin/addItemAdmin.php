@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/admin/addItemAdmin.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
@@ -19,7 +21,7 @@
 
     <main class="dashboard-container">
         <header class="dashboard-header">
-            <h1>Item Management</h1>
+            <h2>Item Management</h2>
             <p>Review and approve recycling/donation submissions.</p>
         </header>
 
