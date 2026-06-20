@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/sidebar.css">
     <link rel="stylesheet" href="../../style/admin/profileAdmin.css">
-
     <script src="../../js/profile.js" defer></script>
-
-    <title>Admin Profile</title>
+    <title>UTeM RecycleHub</title>
 </head>
 
 <body>

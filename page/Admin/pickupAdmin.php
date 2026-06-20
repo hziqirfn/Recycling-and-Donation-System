@@ -8,12 +8,12 @@ $admin = true;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pickup Requests</title>
-
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/admin/pickupAdmin.css">
+    <script src="../../js/admin/pickupAdmin.js" defer></script>
+    <title>UTeM RecycleHub</title>
 </head>
 
 <body class="pickup-request-page">
@@ -118,8 +118,6 @@ $admin = true;
         </div>
 
     </div>
-
-    <script src="js/pickupAdmin.js"></script>
 
 </body>
 

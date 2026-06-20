@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Management Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/admin/addItemAdmin.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
+    <script src="../../js/admin/addItemAdmin.js" defer></script>
+    <title>UTeM RecycleHub</title>
 </head>
 
 <body class="item-management-page">
@@ -31,7 +31,7 @@
                 <button class="tab-btn" data-filter="rejected">Rejected</button>
             </div>
             <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <img src="../../image/search.png" alt="search">
                 <input type="text" id="searchInput" placeholder="Search items...">
             </div>
         </section>
@@ -93,7 +93,6 @@
             </table>
         </section>
     </main>
-    <script src="js/addItemAdmin.js"></script>
 </body>
 
 </html>

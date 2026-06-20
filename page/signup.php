@@ -26,10 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
         exit();
     }
 
-    $checkEmail = "SELECT * FROM user WHERE Email = '$email'";
-    $checkResult = $conn->query($checkEmail);
+    $sql = "SELECT * FROM user WHERE Email = '$email'";
+    $result = $conn->query($sql);
 
-    if ($checkResult->num_rows > 0) 
+    if ($result->num_rows > 0) 
     {
         $_SESSION['error'] = "Email already exist";
         header("Location: signup.php");
@@ -56,12 +56,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
         $role = "Staff(UTeM)";
     }
 
-    $sql = "SELECT UserId FROM user WHERE UserId 
-            LIKE '$prefix%' ORDER BY CAST(SUBSTRING(UserId, " .(strlen($prefix) + 1). ") AS UNSIGNED) 
-            DESC LIMIT 1";
-    $result = $conn->query($sql);
+    $sql2 = "SELECT UserId FROM user WHERE UserId 
+             LIKE '$prefix%' ORDER BY CAST(SUBSTRING(UserId, " .(strlen($prefix) + 1). ") AS UNSIGNED) 
+             DESC LIMIT 1";
+    $result2 = $conn->query($sql2);
 
-    if ($result->num_rows > 0)
+    if ($result2->num_rows > 0)
     {
         $row = $result->fetch_assoc();
         $lastNum = (int) preg_replace('/[^0-9]/', '', $row['UserId']);
@@ -72,11 +72,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
         $userId = $prefix . "1";
     }
 
-    $sql2 = "INSERT INTO user (UserId, Email, Name, Password, Role)
+    $sql3 = "INSERT INTO user (UserId, Email, Name, Password, Role)
              VALUES ('$userId', '$email', '$username', '$hash', '$role')";
-    $result2 = $conn->query($sql2);
+    $result3 = $conn->query($sql3);
 
-    if ($result2 === TRUE)
+    if ($result3 === TRUE)
     {
         $_SESSION['error'] = "Register successful";
         header("Location: login.php");

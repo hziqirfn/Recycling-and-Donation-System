@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../style/trackItem.css">
     <link rel="stylesheet" href="../style/dashboard.css">
 
-    <title>Track Item</title>
+    <title>UTeM RecycleHub</title>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
             <div class="track-container">
 
                 <div class="track-title">
-                    <h1>Track Items</h1>
+                    <h2>Track Items</h2>
                     <p>Check the status of your item</p>
                 </div>
 

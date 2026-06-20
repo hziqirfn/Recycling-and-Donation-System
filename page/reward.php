@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../style/dashboard.css">
     <link rel="stylesheet" href="../style/reward.css">
 
-    <title>Rewards</title>
+    <title>UTeM RecycleHub</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
             <div class="rewards-container">
 
                 <div class="rewards-title">
-                    <h1>Rewards</h1>
+                    <h2>Rewards</h2>
                     <p>Track your progress and redeem amazing rewards</p>
                 </div>
 

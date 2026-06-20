@@ -9,3 +9,11 @@ items.forEach(function(item) {
 
     dropdown.appendChild(option);
 });
+
+document.querySelector(".date").addEventListener("click", () => {
+    document.getElementById("openDate").showPicker();
+});
+
+document.querySelector(".time").addEventListener("click", () => {
+    document.getElementById("openTime").showPicker();
+});

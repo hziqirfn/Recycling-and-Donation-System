@@ -4,7 +4,8 @@ h2{
 
 .welcome p{
     margin-top:10px;
-    font-size:small;
+    font-size:14px;
+    color: rgb(100, 100, 100);
 }
 
 #main{

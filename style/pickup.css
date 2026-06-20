@@ -7,13 +7,14 @@
     margin:0 0 15px 20px;
 }
 
-.pickup-title h1{
-    margin-bottom:5px;
-    text-decoration:underline;
+.pickup-title h2{
+    margin-bottom:0;
 }
 
 .pickup-title p{
-    color:black;
+    font-size: 14px;
+    color: rgb(100, 100, 100);
+    margin-top:10px;
     margin-bottom:20px;
 }
 
@@ -46,17 +47,19 @@
     border:none;
     border-radius:12px;
     box-sizing:border-box;
+    cursor: pointer;
 }
 
 .pickup-form small{
     display:block;
     margin-top:8px;
-    color:#666;
+    color:rgb(100, 100, 100);
 }
 
 .pickup-form small a{
     color:green;
     text-decoration:none;
+    font-weight: bold;
 }
 
 .row{
@@ -71,7 +74,7 @@
 .info-box{
     background:white;
     border-radius:15px;
-    padding:20px;
+    padding:5px 20px;
     margin-top:20px;
 }
 
@@ -159,5 +162,4 @@
     .submit-btn{
         width:100%;
     }
-
 }

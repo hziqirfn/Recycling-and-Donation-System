@@ -9,12 +9,13 @@
 }
 
 .track-title h1 {
-    margin-bottom: 5px;
-    text-decoration: underline;
+    margin-bottom: 0;
 }
 
 .track-title p {
-    color: black;
+    font-size: 14px;
+    color: rgb(100, 100, 100);
+    margin-top:10px;
     margin-bottom: 20px;
 }
 
