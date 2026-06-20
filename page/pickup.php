@@ -1,3 +1,68 @@
+<?php
+
+session_start();
+
+include("../inc/connect.php");
+include("../inc/auth.php");
+
+$userId = $_SESSION['userid'];
+$sql = "SELECT ItemId, ItemName FROM item WHERE UserId = '$userId'";
+$result = $conn->query($sql);
+
+$error = "";
+
+if (isset($_SESSION['error']))
+{
+    $error = $_SESSION['error'];
+    unset($_SESSION['error']);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    $itemId = $_POST['itemId'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
+    $location = $_POST['location'];
+    $note = $_POST['note'];
+
+    $prefix = "PKP-";
+
+    $sql2 = "SELECT RequestId FROM pickup_request WHERE RequestId
+             LIKE '$prefix%' ORDER BY CAST(SUBSTRING(RequestId, " .(strlen($prefix) + 1). ") AS UNSIGNED)
+             DESC LIMIT 1";
+    $result2 = $conn->query($sql2);
+
+    if ($result2->num_rows > 0)
+    {
+        $row = $result2->fetch_assoc();
+        $lastNum = (int) preg_replace('/[^0-9]/', '', $row['RequestId']);
+        $requestId = $prefix . ($lastNum + 1);
+    }
+    else
+    {
+        $requestId = $prefix . "1";
+    }
+
+    $sql3 = "INSERT INTO pickup_request (RequestId, PickupDate, PickupTime, PickupAddress, Description, UserId, ItemId) 
+             VALUES ('$requestId', '$date', '$time', '$location', '$note', '$userId', '$itemId')";
+    $result3 = $conn->query($sql3);
+
+    if ($result3 === TRUE)
+    {
+        $_SESSION['RequestId'] = $requestId;
+        $_SESSION['error'] = "Your request pickup added";
+    }
+    else
+    {
+        $_SESSION['error'] = "Your request pickup failed to add";
+    }
+    header("Location: pickup.php");
+    exit();
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,11 +94,19 @@
                     <p>Schedule a collection for your item</p>
                 </div>
 
-                <form class="pickup-form">
-                    <select id="itemList">
-                        <option>Select Item</option>
+                <form class="pickup-form" action="pickup.php" method="post">
+                    <label>Item</label>
+                    <select id="itemList" name="itemId" required>
+                        <option selected disabled>Select Item</option>
+                        <?php
+                        while($row = $result->fetch_assoc())
+                        {
+                        ?>
+                            <option value="<?= $row['ItemId'] ?>"><?= $row['ItemName'] ?></option>
+                        <?php
+                        }
+                        ?>
                     </select>
-
                     <small>
                         Don't see your item?
                         <a href="addItem.php">Add it first</a>
@@ -41,29 +114,30 @@
 
                     <div class="row">
                         <div class="input-group">
-                            <label>Pickup Date</label>
+                            <label for="date">Pickup Date</label>
                             <div class="date">
-                                <input type="date" id="openDate">
+                                <input type="date" id="openDate" name="date" required>
                             </div>
                         </div>
 
                         <div class="input-group">
-                            <label>Preferred Time</label>
+                            <label for="time">Preferred Time</label>
                             <div class="time">
-                                <input type="time" id="openTime">
+                                <input type="time" id="openTime" name="time" required>
                             </div>
                         </div>
                     </div>
 
-                    <label>Pickup Location</label>
-                    <textarea rows="4"></textarea>
-
-                    <small>
+                    <label for="location">Pickup Location</label>
+                    <small class="location">
                         Please provide detailed address including building/hostel name
                     </small>
+                    <textarea rows="4" name="location" required></textarea>
 
-                    <label>Additional Notes (Optional)</label>
-                    <textarea rows="4"></textarea>
+
+
+                    <label for="note">Additional Notes (Optional)</label>
+                    <textarea rows="4" name="note"></textarea>
 
                     <div class="info-box">
                         <h3>Pickup Information</h3>
@@ -88,6 +162,20 @@
             </div>
         </div>
     </div>
+
+<?php 
+if ($error != "")
+{
+?>
+    <div id="alert" class="alert">
+        <div class="popup-box"><br>
+            <p><?= $error; ?></p> <br><br>
+            <button onclick="closePopup()">OK</button>
+        </div>
+    </div>
+<?php 
+}
+?>
 </body>
 
 </html>

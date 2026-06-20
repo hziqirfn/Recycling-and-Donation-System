@@ -2,6 +2,7 @@
 session_start();
 
 include("../inc/connect.php");
+include("../inc/auth.php");
 
 $success = "";
 
@@ -154,4 +155,5 @@ if ($success != "")
 </div>
 
 </body>
+
 </html>

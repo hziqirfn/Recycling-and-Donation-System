@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+
+include("../inc/connect.php");
+include("../inc/auth.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

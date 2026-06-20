@@ -8,7 +8,7 @@
     </div>
 
     <div class="pickup">
-        <a href="pickup.php"><img src="../image/pickup.png" alt="pickup request">Pickup Request</a>
+        <a href="pickup.php"><img src="../image/pickup.png" alt="request pickup">Request Pickup</a>
     </div>
 
     <div class="track">

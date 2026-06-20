@@ -3,6 +3,7 @@
 session_start();
 
 include("../inc/connect.php");
+include("../inc/auth.php");
 
 $error = "";
 
@@ -68,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     if ($result2 === TRUE)
     {
+        $_SESSION['ItemId'] = $itemId;
         $_SESSION['error'] = "Your new item added";
     }
     else
@@ -126,6 +128,9 @@ $conn->close();
                     </select>
 
                     <label>Condition</label>
+                    <small>
+                        Please select the condition that best describes your item.
+                    </small>
                     <div class="condition-group">
                         <input type="radio" id="new" name="condition" value="New" required>
                         <label for="new" class="condition-btn">New</label>
@@ -133,8 +138,8 @@ $conn->close();
                         <input type="radio" id="used" name="condition" value="Used">
                         <label for="used" class="condition-btn">Used</label>
 
-                        <input type="radio" id="broken" name="condition" value="Broken">
-                        <label for="broken" class="condition-btn">Broken</label>
+                        <input type="radio" id="damaged" name="condition" value="Damaged">
+                        <label for="damaged" class="condition-btn">Damaged</label>
                     </div>
 
                     <label for="description">Description</label>

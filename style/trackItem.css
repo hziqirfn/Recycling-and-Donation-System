@@ -52,6 +52,7 @@
     max-width: 1000px;
     margin-left: 19px;
     box-sizing: border-box;
+    display: none;
 }
 
 .track-header {
@@ -123,7 +124,7 @@
     background: #b0bec5;
     border: 3px solid white;
     position: absolute;
-    left: 111px;
+    left: 109px;
     top: 12px;
     z-index: 2;
 }
@@ -272,7 +273,7 @@
     }
 
     .timeline-dot {
-        left: 16px;
+        left: 14px;
     }
 
     .timeline-content {

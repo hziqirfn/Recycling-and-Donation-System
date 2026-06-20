@@ -26,7 +26,7 @@ $admin = true;
     <div class="dashboard-container">
 
         <div class="dashboard-header">
-            <h1>Pickup Requests</h1>
+            <h1>Request Pickup </h1>
             <p>View scheduled and pending pickup requests.</p>
         </div>
 
