@@ -2,6 +2,21 @@
 $admin = true;
 ?>
 
+<?php
+
+$conn = mysqli_connect("localhost", "user", "user", "recycling-donation");
+
+$query = "SELECT COUNT(*) AS totalUser
+          FROM user
+          WHERE Role IN ('Public','Student(UTeM)','Staff(UTeM)')";
+$result = mysqli_query($conn, $query);
+
+$data = mysqli_fetch_assoc($result);
+
+$totalUser = $data['totalUser'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +50,7 @@ $admin = true;
             <div class="stats">
 
                 <div class="card">
-                    <h2>150</h2>
+                    <h2><?php echo $totalUser; ?></h2>
                     <p>Total Users</p>
                 </div>
 
@@ -47,11 +62,6 @@ $admin = true;
                 <div class="card">
                     <h2>32</h2>
                     <p>Pickup Requests</p>
-                </div>
-
-                <div class="card">
-                    <h2>1200</h2>
-                    <p>Total Points</p>
                 </div>
 
             </div>
