@@ -1,4 +1,8 @@
 <div id="side">
+    <div class="profile">
+        <a href="profile.php"><img src="../image/profile.png" alt="profile">Profile</a>
+    </div>
+
     <div class="dashboard">
         <a href="dashboard.php"><img src="../image/dashboard.png" alt="dashboard">Dashboard</a>
     </div>
@@ -8,7 +12,7 @@
     </div>
 
     <div class="pickup">
-        <a href="pickup.php"><img src="../image/pickup.png" alt="pickup request">Pickup Request</a>
+        <a href="pickup.php"><img src="../image/pickup.png" alt="request pickup">Request Pickup</a>
     </div>
 
     <div class="track">
@@ -22,6 +26,6 @@
     <hr>
 
     <div class="logout">
-        <a href="/Recycling-and-Donation-System/index.php"><img src="../image/logout.png" alt="log out">Log Out</a>
+        <a href="logout.php"><img src="../image/logout.png" alt="log out">Log Out</a>
     </div>
 </div>

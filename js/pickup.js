@@ -1,11 +1,25 @@
-let items = JSON.parse(localStorage.getItem("items")) || [];
+function closePopup()
+{
+    document.getElementById('alert').style.display = 'none';
+}
 
-let dropdown = document.getElementById("itemList");
-
-items.forEach(function(item) {
-    let option = document.createElement("option");
-    option.value = item;
-    option.textContent = item;
-
-    dropdown.appendChild(option);
+document.querySelector(".date").addEventListener("click", () => {
+    document.getElementById("openDate").showPicker();
 });
+
+document.querySelector(".time").addEventListener("click", () => {
+    document.getElementById("openTime").showPicker();
+});
+
+document.getElementById("dropdown-header").addEventListener("click", function () {
+    this.classList.toggle("active");
+});
+
+function toggleDropdown()
+{
+    let dropdown = document.querySelector(".dropdown-container");
+    let header = document.querySelector(".dropdown-header");
+
+    dropdown.classList.toggle("show");
+    header.classList.toggle("active");
+}

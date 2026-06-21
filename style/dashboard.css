@@ -4,7 +4,8 @@ h2{
 
 .welcome p{
     margin-top:10px;
-    font-size:small;
+    font-size:14px;
+    color: rgb(100, 100, 100);
 }
 
 #main{
@@ -47,12 +48,10 @@ h2{
     width:180px;
     height:100px;
     border-radius:20px;
-
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-
     box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
@@ -61,12 +60,10 @@ h2{
     background:#c8e6c9;
     height:100px;
     border-radius:20px;
-
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-
     box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
@@ -160,6 +157,6 @@ h2{
 
     .activityList,
     .contributorList{
-        padding:0 20px 20px 20px;
+        padding:0 45px 30px 45px;
     }
 }

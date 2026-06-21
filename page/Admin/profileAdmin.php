@@ -4,15 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <link rel="stylesheet" href="../../style/global.css">
-    <link rel="stylesheet" href="../../style/headerAdmin.css">
-    <link rel="stylesheet" href="../../style/sidebar.css">
-    <link rel="stylesheet" href="../../style/profileAdmin.css">
-
+    <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/profileAdmin.css">
     <script src="../../js/profile.js" defer></script>
-
-    <title>Admin Profile</title>
+    <title>UTeM RecycleHub</title>
 </head>
 
 <body>
@@ -32,7 +30,7 @@
             <div class="left-panel">
 
                 <div class="gambar">
-                    <img src="../../image/profile.png" alt="Admin Profile">
+                    <img src="../../image/profile1.png" alt="Admin Profile">
                 </div>
 
                 <h2>Admin Profile</h2>

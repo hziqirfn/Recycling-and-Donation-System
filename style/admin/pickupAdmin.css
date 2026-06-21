@@ -8,13 +8,14 @@
     margin-bottom:25px;
 }
 
-.dashboard-header h1{
-    font-size:30px;
-    margin-bottom:8px;
+.dashboard-header h2{
+    margin-bottom:0;
 }
 
 .dashboard-header p{
-    color:#555;
+    margin-top:10px;
+    font-size:14px;
+    color: rgb(100, 100, 100);
 }
 
 .table-card{
@@ -33,7 +34,7 @@
 
 .total-text{
     font-size:15px;
-    color:#444;
+    color:black;
 }
 
 .filter-select{
@@ -69,9 +70,9 @@
 }
 
 .filter-label{
-    font-size:13px;
+    font-size:15px;
     font-weight:600;
-    color:#555;
+    color:black;
 }
 
 .filter-btn:hover{
@@ -87,8 +88,8 @@
 }
 
 .management-table th{
-    background:#b8d8b8;
-    color:#2f4f2f;
+    background:#81c784;
+    color:black;
     padding:15px;
     text-align:left;
 }

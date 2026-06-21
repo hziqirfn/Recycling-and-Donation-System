@@ -23,7 +23,7 @@ $imgPath = "../../image/";
     <div class="pickup">
         <a href="pickupAdmin.php">
             <img src="<?= $imgPath ?>pickup.png" alt="pickup request">
-            Pickup Requests
+            Pickup Management
         </a>
     </div>
 
@@ -37,7 +37,7 @@ $imgPath = "../../image/";
     <hr>
 
     <div class="logout">
-        <a href="../login.php">
+        <a href="../logout.php">
             <img src="<?= $imgPath ?>logout.png" alt="logout">
             Log Out
         </a>

@@ -7,13 +7,14 @@
     margin:0 0 15px 20px;
 }
 
-.pickup-title h1{
-    margin-bottom:5px;
-    text-decoration:underline;
+.pickup-title h2{
+    margin-bottom:0;
 }
 
 .pickup-title p{
-    color:black;
+    font-size: 14px;
+    color: rgb(100, 100, 100);
+    margin-top:10px;
     margin-bottom:20px;
 }
 
@@ -24,7 +25,7 @@
 
 .pickup-form{
     background:#cfe6cf;
-    padding:25px 15px 15px;
+    padding:5px 15px 15px;
     border-radius:15px;
     width:100%;
     max-width:1000px;
@@ -32,15 +33,28 @@
     box-sizing:border-box;
 }
 
-.pickup-form label{
+.pickup-form > label{
     display:block;
     margin-top:15px;
     margin-bottom:8px;
 }
 
+.row .input-group{
+    margin-top:15px;
+    margin-bottom:8px;
+}
+
 .pickup-form input,
-.pickup-form select,
-.pickup-form textarea{
+.pickup-form select{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    box-sizing:border-box;
+    cursor: pointer;
+}
+
+.pickup-form textarea {
     width:100%;
     padding:12px;
     border:none;
@@ -51,12 +65,20 @@
 .pickup-form small{
     display:block;
     margin-top:8px;
-    color:#666;
+    color:rgb(100, 100, 100);
+}
+
+.pickup-form .location{
+    display:block;
+    margin-top:8px;
+    margin-bottom: 8px;
+    color:rgb(100, 100, 100);
 }
 
 .pickup-form small a{
     color:green;
     text-decoration:none;
+    font-weight: bold;
 }
 
 .row{
@@ -68,10 +90,15 @@
     flex:1;
 }
 
+.row .input-group .pickup {
+    display: block;
+    margin-bottom: 8px;
+}
+
 .info-box{
     background:white;
     border-radius:15px;
-    padding:20px;
+    padding:5px 20px;
     margin-top:20px;
 }
 
@@ -100,6 +127,102 @@
     flex:1;
     margin-top:120px;
     padding:20px 40px;
+}
+
+.alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 300px;
+    text-align: center;
+}
+
+.popup-box button {
+    padding: 8px 15px;
+    cursor: pointer;
+    width: 30%;
+}
+
+.dropdown-container {
+    width: 100%;
+    border: 1px solid #d6ddd6;
+    border-radius: 12px;
+    background: #fff;
+    margin-top: 5px;
+    display: none;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-container.show {
+    display: block;
+}
+
+.dropdown-header {
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 16px;
+    color: rgb(100, 100, 100);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+.dropdown-header.active {
+    border: 2px solid #6abf8a;
+}
+
+.options-scroll-area {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px 0px; 
+}
+
+.category-header {
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(100, 100, 100);
+    letter-spacing: 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0 20px;
+}
+
+.option-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px 20px;
+    width: 100%;
+}
+
+.option-row:hover {
+    background-color: #b4dcc5;
+}
+
+.option-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 5px 20px 5px 0px;
+    flex-shrink: 0;
+    vertical-align: middle; 
 }
 
 @media (max-width:768px){
@@ -135,7 +258,7 @@
     .row{
         display:flex;
         flex-direction:column;
-        gap:15px;
+        gap:0px;
     }
 
     .input-group{
@@ -159,5 +282,4 @@
     .submit-btn{
         width:100%;
     }
-
 }
