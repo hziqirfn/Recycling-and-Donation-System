@@ -1,10 +1,10 @@
 <?php
+session_start();
+
 $admin = true;
-?>
 
-<?php
-
-$conn = mysqli_connect("localhost", "user", "user", "recycling-donation");
+include("../../inc/connect.php");
+include("../../inc/auth.php");
 
 $query = "SELECT COUNT(*) AS totalUser
           FROM user
