@@ -67,7 +67,7 @@ h2{
     box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
-
+.box h2,
 .box h3,
 .boxPoint h3{
     margin:0;
