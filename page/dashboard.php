@@ -16,6 +16,14 @@ $data = mysqli_fetch_assoc($result);
 
 $totalItem = $data['totalItem'];
 
+$sqlRecent = "SELECT ItemName, Status, item_date
+              FROM item
+              WHERE UserId = '$userId'
+              ORDER BY item_date DESC
+              LIMIT 5";
+
+$resultRecent = $conn->query($sqlRecent);
+
 ?>
 
 <!DOCTYPE html>
@@ -78,11 +86,11 @@ $totalItem = $data['totalItem'];
                     </div>
 
                     <ul class="activityList" id="activityList">
-                        <li>✔ Clothes donated - 15 Jun 2026</li>
-                        <li>✔ Plastic recycled - 13 Jun 2026</li>
-                        <li>✔ E-Waste pickup completed - 10 Jun 2026</li>
-                        <li class="hiddenActivity">✔ Glass recycled - 8 Jun 2026</li>
-                        <li class="hiddenActivity">✔ Books donated - 6 Jun 2026</li>
+                        <?php while ($row = $resultRecent->fetch_assoc()) { ?>
+                            <li>
+                                ✔ <?= $row['ItemName'] ?> - <?= $row['Status'] ?> - <?= $row['item_date'] ?>
+                            </li>
+                        <?php } ?>
                     </ul>
                 </div>
 
