@@ -15,6 +15,7 @@ $result = mysqli_query($conn, $query);
 $data = mysqli_fetch_assoc($result);
 
 $totalItem = $data['totalItem'];
+
 ?>
 
 <!DOCTYPE html>
