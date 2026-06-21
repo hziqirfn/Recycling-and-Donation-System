@@ -1,0 +1,160 @@
+<?php
+
+session_start();
+
+$admin = true;
+
+include("../../inc/connect.php");
+include("../../inc/auth.php");
+
+$requestId = $_GET['id'];
+$sql = "SELECT pi.ItemId, i.ItemName
+        FROM pickup_item pi
+        JOIN item i
+            ON pi.ItemId = i.ItemId
+        WHERE pi.RequestId = '$requestId'";
+$result = $conn->query($sql);
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../style/global.css">
+    <link rel="stylesheet" href="../../style/admin/dashboardAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/pickupTrackAdmin.css">
+    <script src="../../js/admin/PickupTrackAdmin.js" defer></script>
+
+    <title>UTeM RecycleHub</title>
+</head>
+
+<body>
+    <?php include("headerAdmin.php"); ?>
+
+    <div id="main">
+        <?php include("sidebarAdmin.php"); ?>
+
+        <label for="cb" id="overlay"></label>
+
+        <div id="content">
+            <div class="track-container">
+
+                <div class="track">
+                    <div class="track-title">
+                        <h2>Track Item Management</h2>
+                        <p>Check the status of your item</p>
+                    </div>
+
+                    <button type="submit" class="savebtn">Save Changes</button>
+                </div>
+
+                <div class="track-selector">
+                    <label>Item to track</label>
+                    <select id="itemSelect">
+                        <option selected disabled>Select Item</option>
+                        <?php 
+                        while($row = $result->fetch_assoc())
+                        {
+                        ?>
+                            <option value="<?= $row['ItemId'] ?>"><?= $row['ItemName'] ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+
+                <div class="track-card" id="track-card">
+                    <div class="track-header">
+                        <h2 id="itemName">---</h2>
+                        <span class="status-badge processing" id="statusBadge">Processing</span>
+                    </div>
+
+                    <div class="timeline-white-box">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot completed"></div>
+
+                                <div class="timeline-content">
+                                    <h3>Pending</h3>
+                                    <div class="editbtn">
+                                        <div>
+                                            <p class="timeline-date">Apr 14, 2026</p>
+                                            <p class="timeline-desc">Your item has been added to the system</p>
+                                        </div>
+                                        <button type="submit">Edit Data</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-dot completed"></div>
+
+                                <div class="timeline-content">
+                                    <h3>Collected</h3>
+                                    <div class="editbtn">
+                                        <div>
+                                            <p class="timeline-date">Apr 15, 2026</p>
+                                            <p class="timeline-desc">Item has been collected from your location</p>
+                                        </div>
+                                            <button type="submit">Edit Data</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-dot active"></div>
+
+                                <div class="timeline-content">
+                                    <h3>Processing</h3>
+                                    <div class="editbtn">
+                                        <div>
+                                            <p class="timeline-status">In Progress</p>
+                                            <p class="timeline-desc">Item is being processed at our facility</p>
+                                        </div>
+                                            <button type="submit">Edit Data</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+
+                                <div class="timeline-content">
+                                    <h3>Completed</h3>
+                                    <div class="editbtn">
+                                        <div>
+                                            <p class="timeline-status">Pending</p>
+                                            <p class="timeline-desc">Item is being processed at our facility</p>
+                                        </div>
+                                            <button type="submit">Edit Data</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="progress-section">
+
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+
+                            <p class="progress-text">75% complete</p>
+                        </div>
+                    </div>
+
+                    <div class="estimated-completion">
+                        Estimated completion: Less than 1 day
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
