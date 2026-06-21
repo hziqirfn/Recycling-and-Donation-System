@@ -1,0 +1,126 @@
+.details-container {
+    margin-left: 260px;
+    padding: 40px;
+    background-color: #f5f7f5;
+    min-height: 100vh;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #1f3d2b;
+    font-weight: bold;
+}
+
+.status-badge {
+    width: fit-content;
+    margin: 10px auto 30px;
+    background: #fff3cd;
+    color: #b7791f;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.image-card {
+    position: relative;
+    width: 800px;
+    height: 450px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: #eef8ee;
+}
+
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.image-text {
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.condition-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #d9fbe6;
+    color: #0f8a45;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.info-card, .review-box {
+    width: 800px;
+    margin: 25px auto;
+    background: #eef8ee;
+    border: 1px solid #c6e6c6;
+    border-radius: 18px;
+    padding: 25px;
+}
+
+.info-card h3, .review-box h3 {
+    color: #315c43;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #cfe3cf;
+    padding: 15px 0;
+}
+
+.user-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar {
+    width: 55px;
+    height: 55px;
+    background: #2f7a55;
+    color: white;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.action-buttons button {
+    flex: 1;
+    padding: 18px;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.approve-btn {
+    background: #2f7a55;
+    color: white;
+}
+
+.reject-btn {
+    background: red;
+    color: white;
+}

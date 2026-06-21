@@ -32,14 +32,18 @@ searchInput.addEventListener("keyup", function () {
 
     rows.forEach(function(row) {
 
+        const id = row.cells[0].textContent.toLowerCase();
         const itemName = row.cells[1].textContent.toLowerCase();
         const submittedBy = row.cells[2].textContent.toLowerCase();
         const category = row.cells[3].textContent.toLowerCase();
+        const date = row.cells[4].textContent.toLowerCase();
 
         if (
+            id.includes(keyword) ||
             itemName.includes(keyword) ||
             submittedBy.includes(keyword) ||
-            category.includes(keyword)
+            category.includes(keyword) ||
+            date.includes(keyword)
         ) {
             row.style.display = "";
         } else {
