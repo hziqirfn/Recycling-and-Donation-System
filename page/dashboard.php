@@ -2,6 +2,20 @@
 session_start();
 
 include("../inc/auth.php");
+include("../inc/connect.php");
+
+$userId = $_SESSION['userid'];
+
+$query = "SELECT COUNT(*) AS totalItem
+          FROM item
+          WHERE UserId = '$userId'";
+
+$result = mysqli_query($conn, $query);
+
+$data = mysqli_fetch_assoc($result);
+
+$totalItem = $data['totalItem'];
+
 ?>
 
 <!DOCTYPE html>
@@ -41,10 +55,10 @@ include("../inc/auth.php");
 
             <div id="content2">
                 <div class="box">
-                    <h3>15</h3>
+                    <h2><?php echo $totalItem; ?></h2>
                     <p>Total Item</p>
                 </div>
-                
+
                 <div class="box">
                     <h3>8</h3>
                     <p>Donated</p>

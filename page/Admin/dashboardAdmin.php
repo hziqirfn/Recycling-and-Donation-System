@@ -1,5 +1,27 @@
 <?php
+session_start();
+
 $admin = true;
+
+include("../../inc/connect.php");
+include("../../inc/auth.php");
+
+$query = "SELECT COUNT(*) AS totalUser
+          FROM user
+          WHERE Role IN ('Public','Student(UTeM)','Staff(UTeM)')";
+$result = mysqli_query($conn, $query);
+$data = mysqli_fetch_assoc($result);
+$totalUser = $data['totalUser'];
+
+$queryItem = "SELECT COUNT(*) AS totalItem FROM item";
+$resultItem = mysqli_query($conn, $queryItem);
+$dataItem = mysqli_fetch_assoc($resultItem);
+$totalItem = $dataItem['totalItem'];
+
+$queryPickup = "SELECT COUNT(*) AS totalPickup FROM pickup_request";
+$resultPickup = mysqli_query($conn, $queryPickup);
+$totalPickup = mysqli_fetch_assoc($resultPickup)['totalPickup'];
+
 ?>
 
 <!DOCTYPE html>
@@ -35,23 +57,18 @@ $admin = true;
             <div class="stats">
 
                 <div class="card">
-                    <h2>150</h2>
+                    <h2><?php echo $totalUser; ?></h2>
                     <p>Total Users</p>
                 </div>
 
                 <div class="card">
-                    <h2>85</h2>
+                    <h2><?php echo $totalItem; ?></h2>
                     <p>Total Items</p>
                 </div>
 
                 <div class="card">
-                    <h2>32</h2>
+                    <h2><?php echo $totalPickup; ?></h2>
                     <p>Pickup Requests</p>
-                </div>
-
-                <div class="card">
-                    <h2>1200</h2>
-                    <p>Total Points</p>
                 </div>
 
             </div>
