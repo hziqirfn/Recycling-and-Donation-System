@@ -1,10 +1,9 @@
+
 <?php
 $admin = true;
-?>
 
-<?php
+include("../../inc/connect.php");
 
-$conn = mysqli_connect("localhost", "user", "user", "recycling-donation");
 
 $query = "SELECT COUNT(*) AS totalUser
           FROM user

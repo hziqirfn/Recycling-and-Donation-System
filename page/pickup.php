@@ -11,15 +11,13 @@ $result = $conn->query($sql);
 
 $error = "";
 
-if (isset($_SESSION['error']))
-{
+if (isset($_SESSION['error'])) {
     $error = $_SESSION['error'];
     unset($_SESSION['error']);
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-    $itemId = $_POST['itemId'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $itemIds = $_POST['itemId'];
     $date = $_POST['date'];
     $time = $_POST['time'];
     $location = $_POST['location'];
@@ -28,32 +26,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $prefix = "PKP-";
 
     $sql2 = "SELECT RequestId FROM pickup_request WHERE RequestId
-             LIKE '$prefix%' ORDER BY CAST(SUBSTRING(RequestId, " .(strlen($prefix) + 1). ") AS UNSIGNED)
+             LIKE '$prefix%' ORDER BY CAST(SUBSTRING(RequestId, " . (strlen($prefix) + 1) . ") AS UNSIGNED)
              DESC LIMIT 1";
     $result2 = $conn->query($sql2);
 
-    if ($result2->num_rows > 0)
-    {
+    if ($result2->num_rows > 0) {
         $row = $result2->fetch_assoc();
         $lastNum = (int) preg_replace('/[^0-9]/', '', $row['RequestId']);
         $requestId = $prefix . ($lastNum + 1);
-    }
-    else
-    {
+    } else {
         $requestId = $prefix . "1";
     }
 
-    $sql3 = "INSERT INTO pickup_request (RequestId, PickupDate, PickupTime, PickupAddress, Description, UserId, ItemId) 
-             VALUES ('$requestId', '$date', '$time', '$location', '$note', '$userId', '$itemId')";
+    $sql3 = "INSERT INTO pickup_request 
+         (RequestId, PickupDate, PickupTime, PickupAddress, Description, UserId) 
+         VALUES 
+         ('$requestId', '$date', '$time', '$location', '$note', '$userId')";
     $result3 = $conn->query($sql3);
 
-    if ($result3 === TRUE)
-    {
+    foreach ($itemIds as $itemId) {
+        $sql4 = "INSERT INTO pickup_item (RequestId, ItemId)
+             VALUES ('$requestId', '$itemId')";
+        $conn->query($sql4);
+    }
+
+    if ($result3 === TRUE) {
         $_SESSION['RequestId'] = $requestId;
         $_SESSION['error'] = "Your request pickup added";
-    }
-    else
-    {
+    } else {
         $_SESSION['error'] = "Your request pickup failed to add";
     }
     header("Location: pickup.php");
@@ -99,31 +99,29 @@ $conn->close();
 
                     <div class="dropdown-header" id="dropdown-header" onclick="toggleDropdown()">
                         Select items...
-                        <span >⌄</span>
+                        <span>⌄</span>
                     </div>
 
                     <div class="dropdown-container">
                         <div class="options-scroll-area">
 
-                        <?php 
-                        $currentCategory = "";
-                        while($row = $result->fetch_assoc())
-                        {
-                            if ($currentCategory != $row['Category'])
-                            {
-                                $currentCategory = $row['Category'];
-                        ?>
-                                <div class="category-header"><?= $currentCategory ?></div>
-                        <?php
-                        }
-                        ?>
-                            <label class="option-row">
-                                <input type="checkbox" name="itemId[] value="<?= $row['ItemId'] ?>">
-                                <span class="item-text"><?= $row['ItemName'] ?></span>
-                            </label>
-                        <?php
-                        }
-                        ?>
+                            <?php
+                            $currentCategory = "";
+                            while ($row = $result->fetch_assoc()) {
+                                if ($currentCategory != $row['Category']) {
+                                    $currentCategory = $row['Category'];
+                            ?>
+                                    <div class="category-header"><?= $currentCategory ?></div>
+                                <?php
+                                }
+                                ?>
+                                <label class="option-row">
+                                    <input type="checkbox" name="itemId[]" value="<?= $row['ItemId'] ?>">
+                                    <span class="item-text"><?= $row['ItemName'] ?></span>
+                                </label>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                     <small>
@@ -182,19 +180,18 @@ $conn->close();
         </div>
     </div>
 
-<?php 
-if ($error != "")
-{
-?>
-    <div id="alert" class="alert">
-        <div class="popup-box"><br>
-            <p><?= $error; ?></p> <br><br>
-            <button onclick="closePopup()">OK</button>
+    <?php
+    if ($error != "") {
+    ?>
+        <div id="alert" class="alert">
+            <div class="popup-box"><br>
+                <p><?= $error; ?></p> <br><br>
+                <button onclick="closePopup()">OK</button>
+            </div>
         </div>
-    </div>
-<?php 
-}
-?>
+    <?php
+    }
+    ?>
 </body>
 
 </html>

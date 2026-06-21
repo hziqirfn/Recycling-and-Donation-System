@@ -1,10 +1,24 @@
+<?php
+include("../../inc/connect.php");
+
+$sql = "SELECT item.ItemId,
+               item.ItemName,
+               item.Category,
+               item.item_date,
+               user.Name
+        FROM item
+        JOIN user ON item.UserId = user.UserId";
+
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/admin/addItemAdmin.css">
@@ -51,46 +65,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-status="pending">
-                        <td class="text-muted">ITM-001</td>
-                        <td><strong>Old Textbooks</strong></td>
-                        <td>Ahmad Razif</td>
-                        <td>Paper</td>
-                        <td>2026-06-07</td>
-                        <td><span class="badge badge-pending">Pending</span></td>
-                    </tr>
-                    <tr data-status="approved">
-                        <td class="text-muted">ITM-002</td>
-                        <td><strong>Plastic Bottles</strong></td>
-                        <td>Siti Nurhaliza</td>
-                        <td>Plastic</td>
-                        <td>2026-06-07</td>
-                        <td><span class="badge badge-approved">Approved</span></td>
-                    </tr>
-                    <tr data-status="rejected">
-                        <td class="text-muted">ITM-003</td>
-                        <td><strong>Used Laptop</strong></td>
-                        <td>Muhammad Hafiz</td>
-                        <td>Electronics</td>
-                        <td>2026-06-06</td>
-                        <td><span class="badge badge-rejected">Rejected</span></td>
-                    </tr>
-                    <tr data-status="pending">
-                        <td class="text-muted">ITM-004</td>
-                        <td><strong>Glass Jars</strong></td>
-                        <td>Nurul Ain</td>
-                        <td>Glass</td>
-                        <td>2026-06-06</td>
-                        <td><span class="badge badge-pending">Pending</span></td>
-                    </tr>
-                    <tr data-status="pending">
-                        <td class="text-muted">ITM-005</td>
-                        <td><strong>Cardboard Boxes</strong></td>
-                        <td>Faris Izwan</td>
-                        <td>Paper</td>
-                        <td>2026-06-05</td>
-                        <td><span class="badge badge-pending">Pending</span></td>
-                    </tr>
+                    <?php while ($row = $result->fetch_assoc()) { ?>
+                        <tr data-status="pending">
+                            <td><?= $row['ItemId'] ?></td>
+                            <td><strong><?= $row['ItemName'] ?></strong></td>
+                            <td><?= $row['Name'] ?></td>
+                            <td><?= $row['Category'] ?></td>
+                            <td><?= $row['item_date'] ?></td>
+                            <td>
+                                <span class="badge badge-pending">Pending</span>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </section>

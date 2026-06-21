@@ -2,12 +2,7 @@
 session_start();
 
 include("../inc/auth.php");
-?>
-
-<?php
-session_start();
-
-$conn = mysqli_connect("localhost", "user", "user", "recycling-donation");
+include("../inc/connect.php");
 
 $userId = $_SESSION['userid'];
 
