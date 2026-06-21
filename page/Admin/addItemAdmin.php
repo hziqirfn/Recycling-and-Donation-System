@@ -5,6 +5,7 @@ $sql = "SELECT item.ItemId,
                item.ItemName,
                item.Category,
                item.item_date,
+               item.Status,
                user.Name
         FROM item
         JOIN user ON item.UserId = user.UserId";
@@ -66,14 +67,18 @@ $result = $conn->query($sql);
                 </thead>
                 <tbody>
                     <?php while ($row = $result->fetch_assoc()) { ?>
-                        <tr data-status="pending">
+                        <tr data-status="<?= strtolower($row['Status']) ?>"
+                            ondblclick="window.location='itemStatusAdmin.php?id=<?= $row['ItemId'] ?>'"
+                            style="cursor:pointer;">
                             <td><?= $row['ItemId'] ?></td>
                             <td><strong><?= $row['ItemName'] ?></strong></td>
                             <td><?= $row['Name'] ?></td>
                             <td><?= $row['Category'] ?></td>
                             <td><?= $row['item_date'] ?></td>
                             <td>
-                                <span class="badge badge-pending">Pending</span>
+                                <span class="badge badge-<?= strtolower($row['Status']) ?>">
+                                    <?= $row['Status'] ?>
+                                </span>
                             </td>
                         </tr>
                     <?php } ?>
