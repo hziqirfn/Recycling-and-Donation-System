@@ -118,7 +118,7 @@ $conn->close();
                         }
                         ?>
                             <label class="option-row">
-                                <input type="checkbox" value="<?= $row['ItemId'] ?>">
+                                <input type="checkbox" name="itemId[] value="<?= $row['ItemId'] ?>">
                                 <span class="item-text"><?= $row['ItemName'] ?></span>
                             </label>
                         <?php
