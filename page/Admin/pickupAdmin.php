@@ -4,23 +4,23 @@ session_start();
 
 $admin = true;
 include("../../inc/connect.php");
+include("../../inc/auth.php");
 
-$queryPickup = "
-SELECT pr.RequestId,
-       pr.UserId,
-       pr.PickupAddress,
-       pr.PickupDate,
-       COUNT(pi.ItemId) AS TotalItems
-FROM pickup_request pr
-LEFT JOIN pickup_item pi
-ON pr.RequestId = pi.RequestId
-GROUP BY pr.RequestId
-ORDER BY pr.PickupDate DESC
-";
+$queryPickup = "SELECT pr.RequestId, pr.UserId, u.Name, pr.PickupAddress, pr.PickupDate,
+                COUNT(pi.ItemId) AS TotalItems
+                FROM pickup_request pr
+                LEFT JOIN pickup_item pi
+                    ON pr.RequestId = pi.RequestId
+                LEFT JOIN user u
+                    ON pr.UserId = u.UserId
+                GROUP BY pr.RequestId, pr.UserId, u.Name, pr.PickupAddress, pr.PickupDate
+                ORDER BY pr.PickupDate DESC";
 
 $resultPickup = mysqli_query($conn, $queryPickup);
 
 $totalPickup = mysqli_num_rows($resultPickup);
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +53,6 @@ $totalPickup = mysqli_num_rows($resultPickup);
         </div>
 
         <div class="table-card">
-
             <div class="table-top">
 
                 <div class="total-text">
@@ -70,11 +69,9 @@ $totalPickup = mysqli_num_rows($resultPickup);
                         <option value="completed">Completed</option>
                     </select>
                 </div>
-
             </div>
 
             <table class="management-table">
-
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -87,14 +84,15 @@ $totalPickup = mysqli_num_rows($resultPickup);
                 </thead>
 
                 <tbody>
-
-                    <?php while ($row = mysqli_fetch_assoc($resultPickup)) { ?>
-
-                        <tr>
+                    <?php 
+                    while ($row = mysqli_fetch_assoc($resultPickup)) 
+                    { 
+                    ?>
+                        <tr ondblclick="goTrack('<?= $row['RequestId'] ?>')">
                             <td><?= $row['RequestId']; ?></td>
 
                             <td>
-                                <strong><?= $row['UserId']; ?></strong>
+                                <strong><?= $row['Name']; ?></strong>
                             </td>
 
                             <td><?= $row['PickupAddress']; ?></td>
@@ -109,16 +107,13 @@ $totalPickup = mysqli_num_rows($resultPickup);
                                 </span>
                             </td>
                         </tr>
-
-                    <?php } ?>
-
+                    <?php 
+                    } 
+                    ?>
                 </tbody>
             </table>
-
         </div>
-
     </div>
-
 </body>
 
 </html>

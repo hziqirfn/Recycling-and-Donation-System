@@ -99,6 +99,10 @@
     border-bottom:1px solid #eee;
 }
 
+.management-table tr {
+    cursor: pointer;
+}
+
 .management-table tbody tr:nth-child(even){
     background:#f9f9f9;
 }

@@ -4,10 +4,15 @@ session_start();
 
 $admin = true;
 
-include("../inc/connect.php");
-include("../inc/auth.php");
+include("../../inc/connect.php");
+include("../../inc/auth.php");
 
-$sql = "SELECT * FROM pickup_item WHERE RequestId = '$requestId'";
+$requestId = $_GET['id'];
+$sql = "SELECT pi.ItemId, i.ItemName
+        FROM pickup_item pi
+        JOIN item i 
+            ON pi.ItemId = i.ItemId
+        WHERE pi.RequestId = '$requestId'";
 $result = $conn->query($sql);
 
 ?>
@@ -20,20 +25,20 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../../style/global.css">
-    <link rel="stylesheet" href="../../style/headerAdmin.css">
-    <link rel="stylesheet" href="../../style/sidebarAdmin.css">
-    <link rel="stylesheet" href="../../style/trackItem.css">
+    <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/pickupTrackAdmin.css">
     <link rel="stylesheet" href="../../style/dashboard.css">
-    <script src="../js/PickupTrackAdmin.js" defer></script>
+    <script src="../../js/admin/PickupTrackAdmin.js" defer></script>
 
     <title>UTeM RecycleHub</title>
 </head>
 
 <body>
-    <?php include("header.php"); ?>
+    <?php include("headerAdmin.php"); ?>
 
     <div id="main">
-        <?php include("sidebar.php"); ?>
+        <?php include("sidebarAdmin.php"); ?>
 
         <label for="cb" id="overlay"></label>
 
