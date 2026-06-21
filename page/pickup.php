@@ -43,11 +43,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         $requestId = $prefix . "1";
     }
 
-    $sql3 = "INSERT INTO pickup_request (RequestId, PickupDate, PickupTime, PickupAddress, Description, UserId, ItemId) 
-             VALUES ('$requestId', '$date', '$time', '$location', '$note', '$userId', '$itemId')";
-    $result3 = $conn->query($sql3);
 
-    if ($result3 === TRUE)
+    $sql3 = "INSERT INTO pickup_request (RequestId, PickupDate, PickupTime, PickupAddress, Description, UserId)
+                VALUES ('$requestId', '$date', '$time', '$location', '$note', '$userId')";
+
+    $success = $conn->query($sql3);
+
+    if ($success)
+    {
+        foreach ($itemId as $itemid)
+        {
+            $sql4 = "INSERT INTO pickup_item (ItemId, RequestId)
+                    VALUES ('$itemid', '$requestId')";
+
+            if (!$conn->query($sql4))
+            {
+                $success = false;
+                break;
+            }
+        }
+    }
+
+    if ($success)
     {
         $_SESSION['RequestId'] = $requestId;
         $_SESSION['error'] = "Your request pickup added";
@@ -118,7 +135,7 @@ $conn->close();
                         }
                         ?>
                             <label class="option-row">
-                                <input type="checkbox" name="itemId[] value="<?= $row['ItemId'] ?>">
+                                <input type="checkbox" name="itemId[]" value="<?= $row['ItemId'] ?>">
                                 <span class="item-text"><?= $row['ItemName'] ?></span>
                             </label>
                         <?php
