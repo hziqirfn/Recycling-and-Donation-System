@@ -10,10 +10,13 @@ $query = "SELECT COUNT(*) AS totalUser
           FROM user
           WHERE Role IN ('Public','Student(UTeM)','Staff(UTeM)')";
 $result = mysqli_query($conn, $query);
-
 $data = mysqli_fetch_assoc($result);
-
 $totalUser = $data['totalUser'];
+
+$queryItem = "SELECT COUNT(*) AS totalItem FROM item";
+$resultItem = mysqli_query($conn, $queryItem);
+$dataItem = mysqli_fetch_assoc($resultItem);
+$totalItem = $dataItem['totalItem'];
 
 ?>
 
@@ -55,7 +58,7 @@ $totalUser = $data['totalUser'];
                 </div>
 
                 <div class="card">
-                    <h2>85</h2>
+                    <h2><?php echo $totalItem; ?></h2>
                     <p>Total Items</p>
                 </div>
 
