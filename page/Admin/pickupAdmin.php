@@ -3,10 +3,24 @@
 session_start();
 
 $admin = true;
+include("../../inc/connect.php");
 
-$sql = "SELECT * FROM pickup_request";
-$result = $conn->query($sql);
+$queryPickup = "
+SELECT pr.RequestId,
+       pr.UserId,
+       pr.PickupAddress,
+       pr.PickupDate,
+       COUNT(pi.ItemId) AS TotalItems
+FROM pickup_request pr
+LEFT JOIN pickup_item pi
+ON pr.RequestId = pi.RequestId
+GROUP BY pr.RequestId
+ORDER BY pr.PickupDate DESC
+";
 
+$resultPickup = mysqli_query($conn, $queryPickup);
+
+$totalPickup = mysqli_num_rows($resultPickup);
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +29,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
@@ -43,7 +57,7 @@ $result = $conn->query($sql);
             <div class="table-top">
 
                 <div class="total-text">
-                    <strong>5</strong> total requests
+                    <strong><?php echo $totalPickup; ?></strong> total requests
                 </div>
 
                 <div class="filter-wrapper">
@@ -73,53 +87,32 @@ $result = $conn->query($sql);
                 </thead>
 
                 <tbody>
-                    <tr data-status="scheduled" onclick="goTrack('')">
-                        <td>PKP-001</td>
-                        <td><strong>Ahmad Razif</strong></td>
-                        <td>Kolej Tun Fatimah, UTeM</td>
-                        <td>2026-06-10</td>
-                        <td>3 items</td>
-                        <td><span class="badge badge-scheduled">Scheduled</span></td>
-                    </tr>
 
-                    <tr data-status="pending">
-                        <td>PKP-002</td>
-                        <td><strong>Siti Nurhaliza</strong></td>
-                        <td>Kolej Kediaman 1, UTeM</td>
-                        <td>2026-06-09</td>
-                        <td>5 items</td>
-                        <td><span class="badge badge-pending">Pending</span></td>
-                    </tr>
+                    <?php while ($row = mysqli_fetch_assoc($resultPickup)) { ?>
 
-                    <tr data-status="completed">
-                        <td>PKP-003</td>
-                        <td><strong>Muhammad Hafiz</strong></td>
-                        <td>FKE Faculty Building</td>
-                        <td>2026-06-08</td>
-                        <td>2 items</td>
-                        <td><span class="badge badge-completed">Completed</span></td>
-                    </tr>
+                        <tr>
+                            <td><?= $row['RequestId']; ?></td>
 
-                    <tr data-status="pending">
-                        <td>PKP-004</td>
-                        <td><strong>Nurul Ain</strong></td>
-                        <td>Kolej Kediaman 2, UTeM</td>
-                        <td>2026-06-08</td>
-                        <td>7 items</td>
-                        <td><span class="badge badge-pending">Pending</span></td>
-                    </tr>
+                            <td>
+                                <strong><?= $row['UserId']; ?></strong>
+                            </td>
 
-                    <tr data-status="completed">
-                        <td>PKP-005</td>
-                        <td><strong>Faris Izwan</strong></td>
-                        <td>Library Complex, UTeM</td>
-                        <td>2026-06-07</td>
-                        <td>4 items</td>
-                        <td><span class="badge badge-completed">Completed</span></td>
-                    </tr>
+                            <td><?= $row['PickupAddress']; ?></td>
+
+                            <td><?= $row['PickupDate']; ?></td>
+
+                            <td><?= $row['TotalItems']; ?> items</td>
+
+                            <td>
+                                <span class="badge badge-pending">
+                                    Pending
+                                </span>
+                            </td>
+                        </tr>
+
+                    <?php } ?>
 
                 </tbody>
-
             </table>
 
         </div>
