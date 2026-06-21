@@ -115,7 +115,7 @@ $conn->close();
                     <label>Item</label>
 
                     <div class="dropdown-header" id="dropdown-header" onclick="toggleDropdown()">
-                        Select items...
+                        <span id="dropdown-text">Select items...</span>
                         <span >⌄</span>
                     </div>
 
