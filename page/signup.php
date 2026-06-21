@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 
     if ($result2->num_rows > 0)
     {
-        $row = $result->fetch_assoc();
+        $row = $result2->fetch_assoc();
         $lastNum = (int) preg_replace('/[^0-9]/', '', $row['UserId']);
         $userId = $prefix . ($lastNum + 1);
     }

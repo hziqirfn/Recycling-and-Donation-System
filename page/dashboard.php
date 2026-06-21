@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include("../inc/auth.php");
 include("../inc/connect.php");
+include("../inc/auth.php");
 
 $userId = $_SESSION['userid'];
 
