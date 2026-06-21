@@ -25,7 +25,7 @@
 
 .pickup-form{
     background:#cfe6cf;
-    padding:25px 15px 15px;
+    padding:5px 15px 15px;
     border-radius:15px;
     width:100%;
     max-width:1000px;
@@ -33,8 +33,13 @@
     box-sizing:border-box;
 }
 
-.pickup-form label{
+.pickup-form > label{
     display:block;
+    margin-top:15px;
+    margin-bottom:8px;
+}
+
+.row .input-group{
     margin-top:15px;
     margin-bottom:8px;
 }
@@ -83,6 +88,11 @@
 
 .input-group{
     flex:1;
+}
+
+.row .input-group .pickup {
+    display: block;
+    margin-bottom: 8px;
 }
 
 .info-box{
@@ -143,6 +153,76 @@
     padding: 8px 15px;
     cursor: pointer;
     width: 30%;
+}
+
+.dropdown-container {
+    width: 100%;
+    border: 1px solid #d6ddd6;
+    border-radius: 12px;
+    background: #fff;
+    margin-top: 5px;
+    display: none;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-container.show {
+    display: block;
+}
+
+.dropdown-header {
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 16px;
+    color: rgb(100, 100, 100);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+.dropdown-header.active {
+    border: 2px solid #6abf8a;
+}
+
+.options-scroll-area {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px 0px; 
+}
+
+.category-header {
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(100, 100, 100);
+    letter-spacing: 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0 20px;
+}
+
+.option-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px 20px;
+    width: 100%;
+}
+
+.option-row:hover {
+    background-color: #b4dcc5;
+}
+
+.option-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 5px 20px 5px 0px;
+    flex-shrink: 0;
+    vertical-align: middle; 
 }
 
 @media (max-width:768px){

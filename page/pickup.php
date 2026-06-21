@@ -6,7 +6,7 @@ include("../inc/connect.php");
 include("../inc/auth.php");
 
 $userId = $_SESSION['userid'];
-$sql = "SELECT ItemId, ItemName FROM item WHERE UserId = '$userId'";
+$sql = "SELECT ItemId, ItemName, Category FROM item WHERE UserId = '$userId'";
 $result = $conn->query($sql);
 
 $error = "";
@@ -96,17 +96,36 @@ $conn->close();
 
                 <form class="pickup-form" action="pickup.php" method="post">
                     <label>Item</label>
-                    <select id="itemList" name="itemId" required>
-                        <option selected disabled>Select Item</option>
-                        <?php
+
+                    <div class="dropdown-header" id="dropdown-header" onclick="toggleDropdown()">
+                        Select items...
+                        <span >⌄</span>
+                    </div>
+
+                    <div class="dropdown-container">
+                        <div class="options-scroll-area">
+
+                        <?php 
+                        $currentCategory = "";
                         while($row = $result->fetch_assoc())
                         {
+                            if ($currentCategory != $row['Category'])
+                            {
+                                $currentCategory = $row['Category'];
                         ?>
-                            <option value="<?= $row['ItemId'] ?>"><?= $row['ItemName'] ?></option>
+                                <div class="category-header"><?= $currentCategory ?></div>
                         <?php
                         }
                         ?>
-                    </select>
+                            <label class="option-row">
+                                <input type="checkbox" value="<?= $row['ItemId'] ?>">
+                                <span class="item-text"><?= $row['ItemName'] ?></span>
+                            </label>
+                        <?php
+                        }
+                        ?>
+                        </div>
+                    </div>
                     <small>
                         Don't see your item?
                         <a href="addItem.php">Add it first</a>
@@ -114,14 +133,14 @@ $conn->close();
 
                     <div class="row">
                         <div class="input-group">
-                            <label for="date">Pickup Date</label>
+                            <label class="pickup">Pickup Date</label>
                             <div class="date">
                                 <input type="date" id="openDate" name="date" required>
                             </div>
                         </div>
 
                         <div class="input-group">
-                            <label for="time">Preferred Time</label>
+                            <label class="pickup">Preferred Time</label>
                             <div class="time">
                                 <input type="time" id="openTime" name="time" required>
                             </div>

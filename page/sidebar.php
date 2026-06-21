@@ -1,4 +1,8 @@
 <div id="side">
+    <div class="profile">
+        <a href="profile.php"><img src="../image/profile.png" alt="profile">Profile</a>
+    </div>
+
     <div class="dashboard">
         <a href="dashboard.php"><img src="../image/dashboard.png" alt="dashboard">Dashboard</a>
     </div>

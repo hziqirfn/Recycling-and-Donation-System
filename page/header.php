@@ -15,6 +15,7 @@ if (isset($admin)) {
 
         <div class="hamburger">
             <input type="checkbox" name="cb" id="cb" hidden>
+            
             <label for="cb">
                 <img src="<?= $imgPath ?>hamburger.png" alt="hamburger">
             </label>
@@ -31,9 +32,9 @@ if (isset($admin)) {
 
     </div>
 
-    <div class="profile">
+    <div class="profile1">
         <a href="<?= $profilePath ?>">
-            <img src="<?= $imgPath ?>profile.png" alt="profile">
+            <img src="<?= $imgPath ?>profile1.png" alt="profile">
         </a>
     </div>
 </div>

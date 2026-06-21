@@ -72,7 +72,7 @@ $conn->close();
         <div class="content">
             <div class="left-panel">
                 <div class="gambar">
-                    <img src="../image/profile.png" alt="Profile">
+                    <img src="../image/profile1.png" alt="Profile">
                 </div>
 
                 <h2>Profile</h2>
