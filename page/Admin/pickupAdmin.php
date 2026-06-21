@@ -1,5 +1,12 @@
 <?php
+
+session_start();
+
 $admin = true;
+
+$sql = "SELECT * FROM pickup_request";
+$result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -66,8 +73,7 @@ $admin = true;
                 </thead>
 
                 <tbody>
-
-                    <tr data-status="scheduled">
+                    <tr data-status="scheduled" onclick="goTrack('')">
                         <td>PKP-001</td>
                         <td><strong>Ahmad Razif</strong></td>
                         <td>Kolej Tun Fatimah, UTeM</td>
