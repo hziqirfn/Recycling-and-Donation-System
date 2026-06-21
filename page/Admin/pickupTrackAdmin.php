@@ -10,7 +10,7 @@ include("../../inc/auth.php");
 $requestId = $_GET['id'];
 $sql = "SELECT pi.ItemId, i.ItemName
         FROM pickup_item pi
-        JOIN item i 
+        JOIN item i
             ON pi.ItemId = i.ItemId
         WHERE pi.RequestId = '$requestId'";
 $result = $conn->query($sql);
@@ -28,7 +28,6 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/admin/pickupTrackAdmin.css">
-    <link rel="stylesheet" href="../../style/dashboard.css">
     <script src="../../js/admin/PickupTrackAdmin.js" defer></script>
 
     <title>UTeM RecycleHub</title>
