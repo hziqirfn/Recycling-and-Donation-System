@@ -25,6 +25,7 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../../style/global.css">
+    <link rel="stylesheet" href="../../style/admin/dashboardAdmin.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/admin/pickupTrackAdmin.css">
@@ -43,9 +44,14 @@ $result = $conn->query($sql);
 
         <div id="content">
             <div class="track-container">
-                <div class="track-title">
-                    <h2>Track Items</h2>
-                    <p>Check the status of your item</p>
+
+                <div class="track">
+                    <div class="track-title">
+                        <h2>Track Item Management</h2>
+                        <p>Check the status of your item</p>
+                    </div>
+
+                    <button type="submit" class="savebtn">Save Changes</button>
                 </div>
 
                 <div class="track-selector">
@@ -76,8 +82,13 @@ $result = $conn->query($sql);
 
                                 <div class="timeline-content">
                                     <h3>Pending</h3>
-                                    <p class="timeline-date">Apr 14, 2026</p>
-                                    <p class="timeline-desc">Your item has been added to the system</p>
+                                    <div class="editbtn">
+                                        <div>
+                                            <p class="timeline-date">Apr 14, 2026</p>
+                                            <p class="timeline-desc">Your item has been added to the system</p>
+                                        </div>
+                                        <button type="submit">Edit Data</button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -86,8 +97,13 @@ $result = $conn->query($sql);
 
                                 <div class="timeline-content">
                                     <h3>Collected</h3>
-                                    <p class="timeline-date">Apr 15, 2026</p>
-                                    <p class="timeline-desc">Item has been collected from your location</p>
+                                    <div class="editbtn">
+                                        <div>
+                                            <p class="timeline-date">Apr 15, 2026</p>
+                                            <p class="timeline-desc">Item has been collected from your location</p>
+                                        </div>
+                                            <button type="submit">Edit Data</button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -96,8 +112,13 @@ $result = $conn->query($sql);
 
                                 <div class="timeline-content">
                                     <h3>Processing</h3>
-                                    <p class="timeline-status">In Progress</p>
-                                    <p class="timeline-desc">Item is being processed at our facility</p>
+                                    <div class="editbtn">
+                                        <div>
+                                            <p class="timeline-status">In Progress</p>
+                                            <p class="timeline-desc">Item is being processed at our facility</p>
+                                        </div>
+                                            <button type="submit">Edit Data</button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -106,7 +127,13 @@ $result = $conn->query($sql);
 
                                 <div class="timeline-content">
                                     <h3>Completed</h3>
-                                    <p class="timeline-status">Pending</p>
+                                    <div class="editbtn">
+                                        <div>
+                                            <p class="timeline-status">Pending</p>
+                                            <p class="timeline-desc">Item is being processed at our facility</p>
+                                        </div>
+                                            <button type="submit">Edit Data</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

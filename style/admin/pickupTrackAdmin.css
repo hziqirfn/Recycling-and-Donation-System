@@ -1,285 +1,310 @@
-.pickup-container{
-    max-width:1000px;
-    margin:0 auto;
-}
-.pickup-title{
-    max-width:1000px;
-    margin:0 0 15px 20px;
+.track-container {
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.pickup-title h2{
-    margin-bottom:0;
-}
-
-.pickup-title p{
-    font-size: 14px;
-    color: rgb(100, 100, 100);
-    margin-top:10px;
-    margin-bottom:20px;
-}
-
-.pickup-title h1,
-.pickup-title p{
-    margin-left: -1px;
-}
-
-.pickup-form{
-    background:#cfe6cf;
-    padding:5px 15px 15px;
-    border-radius:15px;
-    width:100%;
-    max-width:1000px;
-    margin-left:19px;
-    box-sizing:border-box;
-}
-
-.pickup-form > label{
-    display:block;
-    margin-top:15px;
-    margin-bottom:8px;
-}
-
-.row .input-group{
-    margin-top:15px;
-    margin-bottom:8px;
-}
-
-.pickup-form input,
-.pickup-form select{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:12px;
-    box-sizing:border-box;
-    cursor: pointer;
-}
-
-.pickup-form textarea {
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:12px;
-    box-sizing:border-box;
-}
-
-.pickup-form small{
-    display:block;
-    margin-top:8px;
-    color:rgb(100, 100, 100);
-}
-
-.pickup-form .location{
-    display:block;
-    margin-top:8px;
-    margin-bottom: 8px;
-    color:rgb(100, 100, 100);
-}
-
-.pickup-form small a{
-    color:green;
-    text-decoration:none;
-    font-weight: bold;
-}
-
-.row{
-    display:flex;
-    gap:20px;
-}
-
-.input-group{
-    flex:1;
-}
-
-.row .input-group .pickup {
-    display: block;
-    margin-bottom: 8px;
-}
-
-.info-box{
-    background:white;
-    border-radius:15px;
-    padding:5px 20px;
-    margin-top:20px;
-}
-
-.button-group{
-    display:flex;
-    gap:20px;
-    margin-top:20px;
-}
-
-.cancel-btn,
-.submit-btn{
-    flex:1;
-    padding:12px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    background:white;
-}
-
-.cancel-btn:hover,
-.submit-btn:hover{
-    background:#f0f0f0;
-}
-
-#content{
-    flex:1;
-    margin-top:120px;
-    padding:20px 40px;
-}
-
-.alert {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.popup-box {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    min-width: 300px;
-    text-align: center;
-}
-
-.popup-box button {
-    padding: 8px 15px;
-    cursor: pointer;
-    width: 30%;
-}
-
-.dropdown-container {
-    width: 100%;
-    border: 1px solid #d6ddd6;
-    border-radius: 12px;
-    background: #fff;
-    margin-top: 5px;
-    display: none;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-}
-
-.dropdown-container.show {
-    display: block;
-}
-
-.dropdown-header {
-    padding: 12px;
-    border-radius: 12px;
-    font-size: 16px;
-    color: rgb(100, 100, 100);
+.track {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
-    cursor: pointer;
 }
 
-.dropdown-header.active {
-    border: 2px solid #6abf8a;
+.savebtn {
+    height: 50px;
+    border-radius: 10px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    padding: 10px 20px;
 }
 
-.options-scroll-area {
-    height: 100px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 10px 0px; 
-}
-
-.category-header {
-    font-size: 12px;
-    font-weight: bold;
-    color: rgb(100, 100, 100);
-    letter-spacing: 1px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 0 20px;
-}
-
-.option-row {
+.editbtn {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 0px;
-    font-size: 16px;
-    cursor: pointer;
-    line-height: 1;
-    padding: 5px 20px;
+}
+
+.editbtn button {
+    background-color: white;
+    border-radius: 10px;
+    border-color: rgb(100, 100, 100);
+}
+
+.track-title {
+    max-width: 1000px;
+    margin: 0 0 0px 20px;
+}
+
+.track-title h2 {
+    margin-bottom: 0;
+}
+
+.track-title p {
+    font-size: 14px;
+    color: rgb(100, 100, 100);
+    margin-top:10px;
+    margin-bottom: 20px;
+}
+
+.track-selector {
+    background: #cfe6cf;
+    padding: 5px 15px 20px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: 19px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.track-selector label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.track-selector select {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.track-card {
+    background: #cfe6cf;
+    padding: 25px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: 19px;
+    box-sizing: border-box;
+    display: none;
+}
+
+.track-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.track-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    color: white;
+    background: #4caf50;
+}
+
+.timeline-white-box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px 30px;
+    box-shadow: none;
+    box-sizing: border-box;
+    width: 85%;
+    margin: 0 auto 20px auto;
+}
+
+.timeline {
+    position: relative;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 72px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #4caf50;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #b0bec5;
+    border: 3px solid white;
+    position: absolute;
+    left: 60px;
+    top: 12px;
+    z-index: 2;
+}
+
+.timeline-dot.completed {
+    background: #4caf50;
+}
+
+.timeline-dot.active {
+    background: #4caf50;
+}
+
+.timeline-content {
+    margin-left: 120px;
+    background: white;
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.timeline-content h3 {
+    margin: 0 0 5px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.timeline-date {
+    margin: 0 0 5px 0;
+    font-size: 12px;
+    color: #666;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.timeline-status {
+    margin: 0 0 5px 0;
+    font-size: 12px;
+    color: #666;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.timeline-desc {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.progress-section {
+    margin-top: 40px;
     width: 100%;
 }
 
-.option-row:hover {
-    background-color: #b4dcc5;
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
 }
 
-.option-row input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    margin: 5px 20px 5px 0px;
-    flex-shrink: 0;
-    vertical-align: middle; 
+.progress-fill {
+    width: 75%;
+    height: 100%;
+    background: #4caf50;
+    border-radius: 10px;
 }
 
-@media (max-width:768px){
+.progress-text {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
 
-    #content{
-        width:100%;
-        margin-left:0;
-        margin-top:90px;
-        padding:15px;
-        box-sizing:border-box;
+.estimated-completion {
+    background: white;
+    padding: 14px 15px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 13px;
+    color: #555;
+    margin-top: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+@media (max-width: 768px) {
+    #content {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 90px;
+        padding: 15px;
+        box-sizing: border-box;
     }
 
-    .pickup-container{
-        width:100%;
-        margin:0 auto;
-        padding:0;
-        box-sizing:border-box;
+    .track-container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        box-sizing: border-box;
     }
 
-    .pickup-title{
-        text-align:left;
-        margin-bottom:15px;
+    .track-title {
+        text-align: left;
+        margin-bottom: 15px;
     }
 
-    .pickup-form{
-        width:100%;
-        max-width:100%;
-        margin:0 auto;
-        padding:15px;
-        box-sizing:border-box;
+    .track-selector {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto 20px;
+        padding: 15px;
+        box-sizing: border-box;
     }
 
-    .row{
-        display:flex;
-        flex-direction:column;
-        gap:0px;
+    .track-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 15px;
+        box-sizing: border-box;
     }
 
-    .input-group{
-        width:100%;
+    .track-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
     }
 
-    .pickup-form input,
-    .pickup-form select,
-    .pickup-form textarea{
-        width:100%;
-        box-sizing:border-box;
+    .timeline-white-box {
+        width: 100%;
+        padding: 20px 15px;
     }
 
-    .button-group{
-        display:flex;
-        flex-direction:column;
-        gap:15px;
+    .timeline::before {
+        left: 25px;
     }
 
-    .cancel-btn,
-    .submit-btn{
-        width:100%;
+    .timeline-dot {
+        left: 14px;
+    }
+
+    .timeline-content {
+        margin-left: 55px;
+        width: calc(100% - 65px);
     }
 }

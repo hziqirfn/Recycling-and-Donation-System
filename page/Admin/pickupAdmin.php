@@ -79,7 +79,6 @@ $conn->close();
                         <th>Address</th>
                         <th>Pickup Date</th>
                         <th>Items</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
 
@@ -100,12 +99,6 @@ $conn->close();
                             <td><?= $row['PickupDate']; ?></td>
 
                             <td><?= $row['TotalItems']; ?> items</td>
-
-                            <td>
-                                <span class="badge badge-pending">
-                                    Pending
-                                </span>
-                            </td>
                         </tr>
                     <?php 
                     } 
