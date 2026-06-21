@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include("../inc/auth.php");
 include("../inc/connect.php");
+include("../inc/auth.php");
 
 $userId = $_SESSION['userid'];
 
@@ -15,6 +15,7 @@ $result = mysqli_query($conn, $query);
 $data = mysqli_fetch_assoc($result);
 
 $totalItem = $data['totalItem'];
+
 ?>
 
 <!DOCTYPE html>

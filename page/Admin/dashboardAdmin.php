@@ -1,9 +1,11 @@
 
 <?php
+session_start();
+
 $admin = true;
 
 include("../../inc/connect.php");
-
+include("../../inc/auth.php");
 
 $query = "SELECT COUNT(*) AS totalUser
           FROM user
@@ -16,6 +18,10 @@ $queryItem = "SELECT COUNT(*) AS totalItem FROM item";
 $resultItem = mysqli_query($conn, $queryItem);
 $dataItem = mysqli_fetch_assoc($resultItem);
 $totalItem = $dataItem['totalItem'];
+
+$queryPickup = "SELECT COUNT(*) AS totalPickup FROM pickup_request";
+$resultPickup = mysqli_query($conn, $queryPickup);
+$totalPickup = mysqli_fetch_assoc($resultPickup)['totalPickup'];
 
 ?>
 
@@ -62,7 +68,7 @@ $totalItem = $dataItem['totalItem'];
                 </div>
 
                 <div class="card">
-                    <h2>32</h2>
+                    <h2><?php echo $totalPickup; ?></h2>
                     <p>Pickup Requests</p>
                 </div>
 

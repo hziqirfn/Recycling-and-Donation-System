@@ -38,19 +38,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $requestId = $prefix . "1";
     }
 
-    $sql3 = "INSERT INTO pickup_request 
-         (RequestId, PickupDate, PickupTime, PickupAddress, Description, UserId) 
-         VALUES 
-         ('$requestId', '$date', '$time', '$location', '$note', '$userId')";
-    $result3 = $conn->query($sql3);
 
-    foreach ($itemIds as $itemId) {
-        $sql4 = "INSERT INTO pickup_item (RequestId, ItemId)
-             VALUES ('$requestId', '$itemId')";
-        $conn->query($sql4);
+    $sql3 = "INSERT INTO pickup_request (RequestId, PickupDate, PickupTime, PickupAddress, Description, UserId)
+                VALUES ('$requestId', '$date', '$time', '$location', '$note', '$userId')";
+
+    $success = $conn->query($sql3);
+
+    if ($success)
+    {
+        foreach ($itemIds as $itemid)
+        {
+            $sql4 = "INSERT INTO pickup_item (ItemId, RequestId)
+                    VALUES ('$itemid', '$requestId')";
+
+            if (!$conn->query($sql4))
+            {
+                $success = false;
+                break;
+            }
+        }
     }
 
-    if ($result3 === TRUE) {
+    if ($success)
+    {
         $_SESSION['RequestId'] = $requestId;
         $_SESSION['error'] = "Your request pickup added";
     } else {
@@ -98,30 +108,32 @@ $conn->close();
                     <label>Item</label>
 
                     <div class="dropdown-header" id="dropdown-header" onclick="toggleDropdown()">
-                        Select items...
-                        <span>⌄</span>
+                        <span id="dropdown-text">Select items...</span>
+                        <span >⌄</span>
                     </div>
 
                     <div class="dropdown-container">
                         <div class="options-scroll-area">
 
-                            <?php
-                            $currentCategory = "";
-                            while ($row = $result->fetch_assoc()) {
-                                if ($currentCategory != $row['Category']) {
-                                    $currentCategory = $row['Category'];
-                            ?>
-                                    <div class="category-header"><?= $currentCategory ?></div>
-                                <?php
-                                }
-                                ?>
-                                <label class="option-row">
-                                    <input type="checkbox" name="itemId[]" value="<?= $row['ItemId'] ?>">
-                                    <span class="item-text"><?= $row['ItemName'] ?></span>
-                                </label>
-                            <?php
-                            }
-                            ?>
+                        <?php 
+                        $currentCategory = "";
+                        while($row = $result->fetch_assoc())
+                        {
+                            if ($currentCategory != $row['Category'])
+                            {
+                                $currentCategory = $row['Category'];
+                        ?>
+                                <div class="category-header"><?= $currentCategory ?></div>
+                        <?php
+                        }
+                        ?>
+                            <label class="option-row">
+                                <input type="checkbox" name="itemId[]" value="<?= $row['ItemId'] ?>">
+                                <span class="item-text"><?= $row['ItemName'] ?></span>
+                            </label>
+                        <?php
+                        }
+                        ?>
                         </div>
                     </div>
                     <small>

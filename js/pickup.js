@@ -23,3 +23,18 @@ function toggleDropdown()
     dropdown.classList.toggle("show");
     header.classList.toggle("active");
 }
+
+const checkboxes = document.querySelectorAll("input[name='itemId[]']");
+const text = document.getElementById("dropdown-text");
+
+function updateSelectedText() {
+    let checked = document.querySelectorAll("input[name='itemId[]']:checked").length;
+
+    text.textContent = checked === 0
+        ? "Select items..."
+        : `${checked} item(s) selected`;
+}
+
+checkboxes.forEach(cb => {
+    cb.addEventListener("change", updateSelectedText);
+});
