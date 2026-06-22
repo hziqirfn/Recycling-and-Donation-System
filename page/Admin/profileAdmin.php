@@ -61,12 +61,14 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../image/logo.png">
 
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/admin/profileAdmin.css">
     <script src="../../js/profile.js" defer></script>
+
     <title>UTeM RecycleHub</title>
 </head>
 
@@ -114,9 +116,6 @@ $conn->close();
 
                         <label>Role</label>
                         <input type="text" name="role" value="<?= $_SESSION['role'] ?>" readonly>
-
-                        <label>Last Login</label>
-                        <input type="text" value="10 Jun 2026 10:30 PM" readonly>
 
                         <div class="bottom" id="bottomBtn">
                             <button type="submit">Save</button>
