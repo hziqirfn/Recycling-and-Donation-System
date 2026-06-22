@@ -27,15 +27,20 @@ function cancelbtn()
 function showConfirm(message, yesCallback)
 {
     document.getElementById("confirmText").innerText = message;
-    document.getElementById("alert").style.display = "flex";
+    document.getElementById("confirmAlert").style.display = "flex";
 
     document.getElementById("yesBtn").onclick = function () {
         yesCallback();
-        closePopup();
+        confirmClosePopup();
     };
 }
 
 function closePopup()
 {
     document.getElementById('alert').style.display = 'none';
+}
+
+function confirmClosePopup()
+{
+    document.getElementById('confirmAlert').style.display = 'none';
 }

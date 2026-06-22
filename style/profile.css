@@ -72,8 +72,8 @@
 
 .top button{
     border:none;
-    background:#2e7d32;
-    color: white;
+    color: #FFFFFF;
+    background-color: #45B058;
     padding:10px 20px;
     border-radius:10px;
     width: 100px;
@@ -82,7 +82,7 @@
 }
 
 .top button:hover {
-    background: #1b5e20;
+    background-color: #378F46;
 }
 
 .profil label{
@@ -149,12 +149,22 @@
 }
 
 .bottom button:first-child{
-    background:#2e7d32;
-    color:white;
+    color: #FFFFFF;
+    background-color: #45B058;
 }
 
 .bottom button:first-child:hover {
-    background: #1b5e20;
+    background-color: #378F46;
+}
+
+.bottom #cancel{
+    background-color: #e9e8e8;
+    color: black;
+}
+
+.bottom #cancel:hover{
+    background-color: #d4d4d4;
+    color: black;
 }
 
 .alert {
@@ -196,7 +206,7 @@
     }
 
     .left-panel{
-        width:100%;
+        width:92%;
         text-align:center;
     }
 

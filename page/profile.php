@@ -148,12 +148,12 @@ if ($success != "")
 } 
 ?>
 
-<div id="alert" class="alert" style="display:none;">
+<div id="confirmAlert" class="alert" style="display:none;">
     <div class="popup-box">
         <p id="confirmText"></p>
         <br>
         <button id="yesBtn">Yes</button>
-        <button onclick="closePopup()">No</button>
+        <button onclick="confirmClosePopup()">No</button>
     </div>
 </div>
 
