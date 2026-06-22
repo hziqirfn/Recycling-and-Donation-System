@@ -131,7 +131,7 @@
 }
 
 .timeline.progress-active::before {
-    background: #4caf50;
+    background: #b0bec5;
 }
 
 .timeline-item {
