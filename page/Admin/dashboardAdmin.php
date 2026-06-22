@@ -1,10 +1,12 @@
 <?php
-session_start();
 
-$admin = true;
+session_start();
 
 include("../../inc/connect.php");
 include("../../inc/auth.php");
+
+$admin = true;
+
 //total user
 $query = "SELECT COUNT(*) AS totalUser
           FROM user
@@ -12,31 +14,28 @@ $query = "SELECT COUNT(*) AS totalUser
 $result = mysqli_query($conn, $query);
 $data = mysqli_fetch_assoc($result);
 $totalUser = $data['totalUser'];
+
 //total item
 $queryItem = "SELECT COUNT(*) AS totalItem FROM item";
 $resultItem = mysqli_query($conn, $queryItem);
 $dataItem = mysqli_fetch_assoc($resultItem);
 $totalItem = $dataItem['totalItem'];
+
 //total pick
 $queryPickup = "SELECT COUNT(*) AS totalPickup FROM pickup_request";
 $resultPickup = mysqli_query($conn, $queryPickup);
 $totalPickup = mysqli_fetch_assoc($resultPickup)['totalPickup'];
+
 // Recent Req
-$queryRecent = "
-SELECT
-    pr.RequestId,
-    u.Name,
-    COUNT(pi.ItemId) AS TotalItems
-FROM pickup_request pr
-JOIN user u ON pr.UserId = u.UserId
-LEFT JOIN pickup_item pi ON pr.RequestId = pi.RequestId
-GROUP BY pr.RequestId
-ORDER BY pr.PickupDate DESC
-LIMIT 5
-";
-
-$resultRecent = mysqli_query($conn, $queryRecent);
-
+$queryRecent = "SELECT pr.RequestId, u.Name, COUNT(pi.ItemId) AS TotalItems
+                FROM pickup_request pr
+                JOIN user u 
+                    ON pr.UserId = u.UserId
+                LEFT JOIN pickup_item pi 
+                    ON pr.RequestId = pi.RequestId
+                GROUP BY pr.RequestId
+                ORDER BY pr.PickupDate DESC
+                LIMIT 5";
 $resultRecent = mysqli_query($conn, $queryRecent);
 
 ?>
