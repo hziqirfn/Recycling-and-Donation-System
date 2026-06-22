@@ -8,7 +8,7 @@ function toggleActivity() {
 
     if (btn.textContent === "View All") {
         hiddenItems.forEach(item => {
-            item.style.display = "list-item";
+            item.style.display = "table-row";
         });
         btn.textContent = "Hide";
     } else {
@@ -25,7 +25,7 @@ function toggleContributor() {
 
     if (btn.textContent === "View All") {
         hiddenItems.forEach(item => {
-            item.style.display = "list-item";
+            item.style.display = "table-row";
         });
         btn.textContent = "Hide";
     } else {

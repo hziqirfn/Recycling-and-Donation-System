@@ -58,7 +58,7 @@ $sqlContributor = "SELECT Name, Points
                    FROM user
                    WHERE Role NOT LIKE '%Admin%'
                    ORDER BY Points DESC
-                   LIMIT 5";
+                   LIMIT 10";
 
 $resultContributor = $conn->query($sqlContributor);
 
@@ -168,34 +168,43 @@ $conn->close();
                             <th>Name</th>
                             <th>Total Points</th>
                         </tr>
-
                         <?php
                         $countContributor = 0;
 
                         if ($resultContributor->num_rows > 0) {
                             while ($row = $resultContributor->fetch_assoc()) {
-                                $countContributor++;
-                                $rankDisplay = $countContributor;
 
-                                if ($countContributor == 1) {
-                                    $rankDisplay = "🥇";
-                                } elseif ($countContributor == 2) {
-                                    $rankDisplay = "🥈";
-                                } elseif ($countContributor == 3) {
-                                    $rankDisplay = "🥉";
-                                }
+                                $countContributor++;
                         ?>
                                 <tr class="<?= ($countContributor > 3) ? 'hiddenContributor' : ''; ?>">
-                                    <td><?= $rankDisplay ?></td>
+
+                                    <td>
+                                        <?php
+                                        if ($countContributor == 1) {
+                                            echo "🥇";
+                                        } elseif ($countContributor == 2) {
+                                            echo "🥈";
+                                        } elseif ($countContributor == 3) {
+                                            echo "🥉";
+                                        } else {
+                                            echo "#" . $countContributor;
+                                        }
+                                        ?>
+                                    </td>
+
                                     <td><?= $row['Name']; ?></td>
                                     <td><?= $row['Points']; ?> pts</td>
+
                                 </tr>
+
                             <?php
                             }
                         } else {
                             ?>
                             <tr>
-                                <td colspan="3" style="text-align: center;">No contributors yet</td>
+                                <td colspan="3" style="text-align:center;">
+                                    No contributors yet
+                                </td>
                             </tr>
                         <?php
                         }
