@@ -126,6 +126,7 @@ $totalRecycle = mysqli_fetch_assoc($resultRecycle)['totalRecycle'];
                         ?>
                             <li>
                                 <?= $row['ItemName'] ?> - <?= $row['Status'] ?> - <?= $row['ItemDate'] ?>
+
                             </li>
                         <?php
                         }
