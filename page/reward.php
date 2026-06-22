@@ -5,6 +5,30 @@ session_start();
 include("../inc/connect.php");
 include("../inc/auth.php");
 
+$userId = $_SESSION['userid'];
+
+$queryUser = "
+SELECT Points
+FROM user
+WHERE UserId='$userId'
+";
+
+$resultUser = mysqli_query($conn,$queryUser);
+
+$user = mysqli_fetch_assoc($resultUser);
+
+$userPoints = $user['Points'];
+
+$queryReward = "
+SELECT *
+FROM reward
+WHERE Status='Active'
+AND Stock > 0
+ORDER BY RewardPoint ASC
+";
+
+$resultReward = mysqli_query($conn,$queryReward);
+
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +66,7 @@ include("../inc/auth.php");
                 <div class="rewards-stats">
                     <div class="stat-card">
                         <h2>Your Points</h2>
-                        <span>1,250</span>
+                        <span><?= $userPoints; ?></span>
                     </div>
 
                     <div class="stat-card">
@@ -141,41 +165,63 @@ include("../inc/auth.php");
                     <h2>Available Rewards</h2>
 
                     <div class="reward-grid">
-                        <div class="reward-card">
-                           <span class="reward-points">100 pts</span>
+                    <?php
 
-                           <h4>Food Voucher</h4>
-                           <button class="redeem-btn" data-reward="Food Voucher">
-                               Redeem Now
+                    if(mysqli_num_rows($resultReward) > 0)
+                    {
+                       while($row = mysqli_fetch_assoc($resultReward))
+                       {
+                    ?>
+
+                       <div class="reward-card">
+
+                           <div class="reward-icon">
+                               🎁
+                           </div>
+
+                           <h3>
+                               <?= $row['RewardName']; ?>
+                           </h3>
+
+                           <p>
+                               Required Points:
+                               <?= $row['RewardPoint']; ?>
+                           </p>
+
+                           <p>
+                               Stock:
+                               <?= $row['Stock']; ?>
+                           </p>
+
+                           <button class="redeem-btn">
+
+                               Redeem
+
                            </button>
+
+                       </div>
+
+                    <?php
+                        }
+                    }
+                    else
+                    {
+                    ?>
+
+                        <div class="empty-state">
+
+                            <h3>No Reward Available</h3>
+
+                            <p>
+                               Please check again later.
+                            </p>
+
                         </div>
 
-                        <div class="reward-card">
-                           <span class="reward-points">150 pts</span>
+                    <?php
+                    }
+                    ?>
 
-                           <h4>Grab Voucher</h4>
-                           <button class="redeem-btn" data-reward="Grab Voucher">
-                               Redeem Now
-                          </button>
-                        </div>
-
-                        <div class="reward-card">
-                           <span class="reward-points">200 pts</span>
-
-                           <h4>UTeM Merchandise</h4>
-                           <button class="redeem-btn" data-reward="UTeM Merchandise">
-                                Redeem Now
-                           </button>
-                        </div>
-
-                        <div class="reward-card">
-                           <span class="reward-points">300 pts</span>
-
-                           <h4>Cash Voucher</h4>
-                           <button class="redeem-btn" data-reward="Cash Voucher">
-                                Redeem Now
-                           </button>
-                        </div>
                     </div>
                 </div>
             </div>
