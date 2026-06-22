@@ -6,7 +6,6 @@ include("../../inc/connect.php");
 include("../../inc/auth.php");
 
 $admin = true;
-
 $adminId = $_SESSION['userid'];
 
 $queryActivity = "
@@ -18,7 +17,6 @@ ORDER BY ActivityDate DESC
 ";
 
 $resultActivity = mysqli_query($conn, $queryActivity);
-
 ?>
 
 <!DOCTYPE html>
