@@ -1,9 +1,16 @@
 <?php
+
+session_start();
+
 include("../../inc/connect.php");
+include("../../inc/auth.php");
 
 $itemId = $_GET['id'];
 
-$sql = "SELECT item.*, user.Name, user.Email
+$sql = "SELECT item.*,
+               user.Name,
+               user.Email,
+               user.NoPhone
         FROM item
         JOIN user ON item.UserId = user.UserId
         WHERE item.ItemId = '$itemId'";
@@ -43,6 +50,7 @@ if (isset($_POST['reject'])) {
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item Details</title>
 
     <link rel="stylesheet" href="../../style/global.css">
@@ -55,14 +63,13 @@ if (isset($_POST['reject'])) {
     <?php include("headerAdmin.php"); ?>
     <?php include("sidebarAdmin.php"); ?>
 
+    <label for="cb" id="overlay"></label>
+
     <main class="details-container">
 
-        <a href="addItemAdmin.php" class="back-btn">← Back to Items</a>
-
-        <div class="status-badge">Pending Review</div>
 
         <section class="image-card">
-            <img src="../../image/<?= $item['Image'] ?>" alt="Item Image">
+            <img src="../../image-UserItem/<?= $item['Image'] ?>" alt="Item Image">
 
             <div class="image-text">
                 <h1><?= $item['ItemName'] ?></h1>
@@ -102,7 +109,12 @@ if (isset($_POST['reject'])) {
 
             <div class="info-row">
                 <span>Submitted Date</span>
-                <b><?= $item['item_date'] ?></b>
+                <b><?= $item['ItemDate'] ?></b>
+            </div>
+
+            <div class="info-row">
+                <span>Activity Type</span>
+                <b><?= $item['ActivityType'] ?></b>
             </div>
         </section>
 
@@ -113,8 +125,8 @@ if (isset($_POST['reject'])) {
                 <div class="avatar"><?= strtoupper(substr($item['Name'], 0, 1)) ?></div>
                 <div>
                     <b><?= $item['Name'] ?></b>
-                     <p>No Phone Number</p>
-                    <p><?= $item['Email'] ?></p>
+                    <p>📞 <?= $item['NoPhone'] ?></p>
+                    <p>✉ <?= $item['Email'] ?></p>
                     <small><?= $item['UserId'] ?></small>
                 </div>
             </div>

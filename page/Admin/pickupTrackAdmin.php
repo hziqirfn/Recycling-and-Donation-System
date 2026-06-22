@@ -69,6 +69,7 @@ $urlSelectedItem = isset($_GET['selected_item']) ? $_GET['selected_item'] : '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../style/global.css">
+    <link rel="stylesheet" href="../../style/admin/dashboardAdmin.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/admin/pickupTrackAdmin.css">

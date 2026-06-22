@@ -4,23 +4,55 @@
     box-sizing:border-box;
 }
 
-body{
-    background:#efefef;
+#head{
+    background-color:rgb(240, 240, 240);
+    width:100%;
+    height:100px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    position:fixed;
+    top:0;
+    left:0;
+
+    z-index:1000;
 }
 
-.header{
-    padding:20px 10px;
+#head .side {
+    display: flex;
+    align-items: center;
+}
+
+.text h2 {
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.text p {
+    margin: 0;
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+    margin: 30px;
+}
+
+body{
+    background:#efefef;
 }
 
 .logo-section{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:15px;
 }
 
 .logo-section img{
-    width:72px;
-    height:72px;
+    width:60px;
+    height:60px;
 }
 
 .logo-section h2{
@@ -28,63 +60,77 @@ body{
     font-weight:600;
 }
 
+.signup-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 120px;
+    padding-bottom: 40px;
+    padding-left: 24px;
+    padding-right: 24px;
+    width: 100%;
+}
+
 .signup-wrapper{
     width:85%;
     max-width:1150px;
-    height:425px;
-    margin:10px auto;
+    margin:0 auto;
     display:grid;
     grid-template-columns:55% 45%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .signup-left{
-    background:#dfeade;
-    padding: 20px 40px 45px;
+    background:#c8e6c9;
+    padding: 40px;
 }
 
 .signup-left h1{
-    font-family:"Times New Roman", serif;
-    font-size:56px;
-    font-weight:400;
-    margin-bottom:10px;
+    margin-bottom:6px;
 }
 
 .signup-left p{
-    font-family:"Times New Roman", serif;
     font-size:16px;
     margin-bottom:20px;
 }
 
 .signup-left label{
     display:block;
-    font-family:"Times New Roman", serif;
-    font-size:20px;
-    margin-bottom:6px;
+    margin-bottom:8px;
 }
 
 .signup-left input{
     width:100%;
     height:45px;
     border:none;
-    border-bottom:1px solid #888;
-    padding:0 14px;
+    border-bottom:1px solid #444;
+    padding:14px 16px;
     margin-bottom:12px;
-    font-size:16px;
+    font-size:15px;
+    border-radius: 10px;
 }
 
 .signup-left button{
     width:100%;
     margin-top:12px;
-    background:#43a047;
+    background:#2e7d32;
     color:white;
     border:none;
     height:44px;
-    font-size:18px;
+    border-radius: 10px;
+    font-size:17px;
     cursor:pointer;
 }
 
+.signup-left button:hover {
+    background: #1b5e20;
+}
+
 .signup-right{
-    background:#b7dcbf;
+    background:#acd6b5;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -93,7 +139,7 @@ body{
 .logo-card{
     width:245px;
     height:220px;
-    background:#dfeade;
+    background:#d7e2d6;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -120,6 +166,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .popup-box {
@@ -144,10 +191,32 @@ body{
     }
 
     .signup-right{
-        padding:40px 0;
+        display: none;
+    }
+
+    .signup-wrapper {
+        width: 500px;
+    }
+
+    .signup-left{
+        padding: 36px 36px 28px;
     }
 
     .signup-left h1{
         font-size:40px;
+    }
+
+    .logo img{
+        width: 45px;
+        height: 45px;
+        margin: 20px 10px 20px 20px;
+    }
+
+    .text h2{
+        font-size: 20px;
+    }
+
+    .text p{
+        font-size: 13px;
     }
 }
