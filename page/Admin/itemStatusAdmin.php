@@ -1,5 +1,9 @@
 <?php
+
+session_start();
+
 include("../../inc/connect.php");
+include("../../inc/auth.php");
 
 $itemId = $_GET['id'];
 

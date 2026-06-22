@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 include("../inc/connect.php");
@@ -86,11 +87,16 @@ $resultRecent = $conn->query($sqlRecent);
                     </div>
 
                     <ul class="activityList" id="activityList">
-                        <?php while ($row = $resultRecent->fetch_assoc()) { ?>
+                        <?php 
+                        while ($row = $resultRecent->fetch_assoc()) 
+                        { 
+                        ?>
                             <li>
-                                ✔ <?= $row['ItemName'] ?> - <?= $row['Status'] ?> - <?= $row['ItemDate'] ?>
+                                <?= $row['ItemName'] ?> - <?= $row['Status'] ?> - <?= $row['ItemDate'] ?>
                             </li>
-                        <?php } ?>
+                        <?php 
+                        } 
+                        ?>
                     </ul>
                 </div>
 

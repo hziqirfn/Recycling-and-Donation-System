@@ -61,7 +61,7 @@
     .logo img{
         width: 45px;
         height: 45px;
-        margin: 10px;
+        margin: 20px 10px 20px 20px;
     }
 
     .text h2{
@@ -76,5 +76,6 @@
         width: 60px;
         height: 60px;
         margin: 20px;
+        display: none;
     }
 }

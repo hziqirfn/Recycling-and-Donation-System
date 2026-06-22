@@ -1,5 +1,9 @@
 <?php
+
+session_start();
+
 include("../../inc/connect.php");
+include("../../inc/auth.php");
 
 $sql = "SELECT item.ItemId,
                item.ItemName,
@@ -77,7 +81,6 @@ $result = $conn->query($sql);
                             <td><?= $row['Name'] ?></td>
                             <td><?= $row['Category'] ?></td>
                             <td><?= $row['ItemDate'] ?></td>
-                            <td><?= $row['ActivityType'] ?></td>
                             <td>
                                 <span class="badge badge-<?= strtolower($row['Status']) ?>">
                                     <?= $row['Status'] ?>

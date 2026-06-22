@@ -67,25 +67,25 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UTeM RecycleHub</title>
     <link rel="stylesheet" href="../style/resetPassword.css">
+    <link rel="stylesheet" href="../style/global.css">
 </head>
 
 <body>
-    <header class="header">
-        <div class="logo-section">
-            <div class="logo-box">
-                <img src="../image/logo.png" alt="Logo">
+    <div id="head">
+        <div class="side">
+            <div class="logo">
+                <img src="../image/logo.png" alt="logo">
             </div>
-            <div class="logo-text">
+
+            <div class="text">
                 <h2>UTeM RecycleHub</h2>
                 <p>Recycling & Donation</p>
             </div>
         </div>
-    </header>
+    </div>
 
     <div class="reset-container">
         <div class="reset-card">
-
-            <img src="../image/logo.png" alt="Logo" class="reset-logo">
             <h1>Reset Password</h1>
 
             <form id="resetForm" action="resetPassword.php" method="post">
