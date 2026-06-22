@@ -18,7 +18,6 @@ $sql = "SELECT item.*,
 $result = $conn->query($sql);
 $item = $result->fetch_assoc();
 
-
 // APPROVE
 if (isset($_POST['approve'])) {
 
@@ -57,7 +56,6 @@ if (isset($_POST['approve'])) {
     exit();
 }
 
-
 // REJECT
 if (isset($_POST['reject'])) {
 
@@ -95,6 +93,8 @@ if (isset($_POST['reject'])) {
     header("Location: addItemAdmin.php");
     exit();
 }
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -103,12 +103,12 @@ if (isset($_POST['reject'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Details</title>
 
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
-    <link rel="stylesheet" href="../../style/admin/itemDetailsAdmin.css">
+    <link rel="stylesheet" href="../../style/admin/itemDetailAdmin.css">
+    <title>UTeM RecycleHub</title>
 </head>
 
 <body>
@@ -118,7 +118,6 @@ if (isset($_POST['reject'])) {
     <label for="cb" id="overlay"></label>
 
     <main class="details-container">
-
 
         <section class="image-card">
             <img src="../../image-UserItem/<?= $item['Image'] ?>" alt="Item Image">
@@ -177,7 +176,7 @@ if (isset($_POST['reject'])) {
                 <div class="avatar"><?= strtoupper(substr($item['Name'], 0, 1)) ?></div>
                 <div>
                     <b><?= $item['Name'] ?></b>
-                    <p>No Phone Number</p>
+                     <p><?= $item['NoPhone'] ?? '---' ?></p>
                     <p><?= $item['Email'] ?></p>
                     <small><?= $item['UserId'] ?></small>
                 </div>
@@ -192,11 +191,11 @@ if (isset($_POST['reject'])) {
                 <input type="hidden" name="itemId" value="<?= $item['ItemId'] ?>">
 
                 <button type="submit" name="approve" class="approve-btn">
-                    ✓ Approve
+                    Approve
                 </button>
 
                 <button type="submit" name="reject" class="reject-btn">
-                    ✕ Reject
+                    Reject
                 </button>
             </form>
         </section>

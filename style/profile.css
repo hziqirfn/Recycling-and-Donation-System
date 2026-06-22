@@ -19,7 +19,12 @@
 .left-panel{
     width:250px;
     flex-shrink:0;
+    background:#c8e6c9;
+    border-radius:20px;
+    padding:30px 20px;
     text-align:center;
+    height:fit-content;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .gambar img{
@@ -34,6 +39,12 @@
     margin-top:20px;
     margin-bottom:10px;
     font-size:36px;
+    color:#2e7d32;
+}
+
+.left-panel p{
+    margin-top:10px;
+    color:#555;
 }
 
 /* RIGHT PANEL */
@@ -46,6 +57,7 @@
 .profil{
     background:white;
     border:1px solid #dcdcdc;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius:15px;
     padding:25px;
     width:100%;
@@ -71,8 +83,8 @@
     font-size:15px;
 }
 
-.top button:hover{
-    background:#1b5e20;
+.top button:hover {
+    background-color: #378F46;
 }
 
 /* FORM */
@@ -101,7 +113,7 @@
     display:flex;
     justify-content:flex-end;
     gap:10px;
-    margin-top:20px;
+    margin-top:10px;
 }
 
 .bottom button{
@@ -112,19 +124,36 @@
     cursor:pointer;
 }
 
-/* POPUP */
+.bottom button:first-child{
+    color: #FFFFFF;
+    background-color: #45B058;
+}
 
-.alert{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:rgba(0,0,0,0.5);
-    z-index:1000;
+.bottom button:first-child:hover {
+    background-color: #378F46;
+}
+
+.bottom #cancel{
+    background-color: #e9e8e8;
+    color: black;
+}
+
+.bottom #cancel:hover{
+    background-color: #d4d4d4;
+    color: black;
+}
+
+.alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
 .popup-box{
@@ -153,7 +182,8 @@
     }
 
     .left-panel{
-        width:100%;
+        width:92%;
+        text-align:center;
     }
 
     .gambar img{
