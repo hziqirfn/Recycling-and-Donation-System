@@ -8,11 +8,13 @@
     gap:50px;
     width:100%;
     margin-top:110px;
+    margin-left:250px;
     padding:30px;
     box-sizing:border-box;
     align-items:flex-start;
-    margin-left:250px;
 }
+
+/* LEFT PANEL */
 
 .left-panel{
     width:250px;
@@ -35,6 +37,7 @@
 
 .left-panel h2{
     margin-top:20px;
+    margin-bottom:10px;
     font-size:36px;
     color:#2e7d32;
 }
@@ -44,13 +47,14 @@
     color:#555;
 }
 
+/* RIGHT PANEL */
+
 .right-panel{
     flex:1;
     max-width:900px;
 }
 
-.profil,
-.profil2{
+.profil{
     background:white;
     border:1px solid #dcdcdc;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -60,9 +64,7 @@
     box-sizing:border-box;
 }
 
-.profil{
-    margin-bottom:30px;
-}
+/* TOP BUTTON */
 
 .top{
     display:flex;
@@ -71,12 +73,12 @@
 }
 
 .top button{
-    border:none;
-    color: #FFFFFF;
-    background-color: #45B058;
+    width:100px;
     padding:10px 20px;
+    border:none;
     border-radius:10px;
-    width: 100px;
+    background:#2e7d32;
+    color:white;
     cursor:pointer;
     font-size:15px;
 }
@@ -85,6 +87,7 @@
     background-color: #378F46;
 }
 
+/* FORM */
 .profil label{
     display:block;
     margin-bottom:8px;
@@ -94,41 +97,14 @@
 .profil input{
     width:100%;
     height:45px;
-    border:1px solid #ddd;
-    border-radius:10px;
     padding:0 15px;
     margin-bottom:20px;
-    box-sizing:border-box;
-    background-color: whitesmoke;
-}
-
-.profil textarea{
-    width:100%;
-    height:100px;
     border:1px solid #ddd;
     border-radius:10px;
-    padding:10px 15px;
-    resize:none;
     box-sizing:border-box;
 }
 
-.profil2 h2{
-    margin-top:0;
-    margin-bottom:20px;
-}
-
-.activity-box{
-    background:#f8f8f8;
-    border-left:5px solid #4caf50;
-    border-radius:10px;
-    padding:15px;
-    margin-bottom:15px;
-}
-
-.activity-box:hover{
-    background:#eef8ee;
-}
-
+/* SAVE & CANCEL */
 .bottom{
     display:none;
 }
@@ -141,10 +117,10 @@
 }
 
 .bottom button{
+    width:100px;
     padding:10px 20px;
     border:none;
     border-radius:10px;
-    width: 100px;
     cursor:pointer;
 }
 
@@ -180,29 +156,29 @@
     z-index: 1000;
 }
 
-.popup-box {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    min-width: 300px;
-    text-align: center;
+.popup-box{
+    min-width:300px;
+    padding:20px;
+    background:white;
+    border-radius:10px;
+    text-align:center;
 }
 
-.popup-box button {
-    padding: 8px 15px;
-    cursor: pointer;
-    width: 30%;
+.popup-box button{
+    width:30%;
+    padding:8px 15px;
+    cursor:pointer;
 }
 
+/* Mobile */
 @media (max-width:768px){
 
     .content{
         flex-direction:column;
-        margin-top:110px;
         margin-left:0;
+        margin-top:110px;
         padding:15px;
         gap:20px;
-        width:100%;
     }
 
     .left-panel{
@@ -217,7 +193,6 @@
 
     .left-panel h2{
         font-size:28px;
-        margin-top:15px;
     }
 
     .right-panel{
@@ -225,49 +200,15 @@
         max-width:100%;
     }
 
-    .profil,
-    .profil2{
-        width:100%;
+    .profil{
         padding:20px;
-        margin:0;
-    }
-
-    .top{
-        justify-content:end;
-    }
-
-    .top button{
-        width:100%;
-        max-width:100px;
-    }
-
-    .profil input,
-    .profil textarea{
-        width:100%;
     }
 
     .bottom.show{
         flex-direction:column;
-        gap:10px;
     }
 
     .bottom button{
         width:100%;
     }
-
-    .activity-box{
-        padding:15px;
-        font-size:14px;
-    }
-
-      .content{
-        position:relative;
-        z-index:1;
-    }
-
-    .left-panel,
-    .right-panel{
-        position:relative;
-        z-index:1;
-    }   
 }

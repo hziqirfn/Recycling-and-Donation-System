@@ -7,7 +7,10 @@ include("../../inc/auth.php");
 
 $itemId = $_GET['id'];
 
-$sql = "SELECT item.*, user.Name, user.Email
+$sql = "SELECT item.*,
+               user.Name,
+               user.Email,
+               user.NoPhone
         FROM item
         JOIN user ON item.UserId = user.UserId
         WHERE item.ItemId = '$itemId'";
@@ -15,7 +18,9 @@ $sql = "SELECT item.*, user.Name, user.Email
 $result = $conn->query($sql);
 $item = $result->fetch_assoc();
 
+// APPROVE
 if (isset($_POST['approve'])) {
+
     $itemId = $_POST['itemId'];
 
     $sql = "UPDATE item
@@ -24,11 +29,36 @@ if (isset($_POST['approve'])) {
 
     $conn->query($sql);
 
+    // Activity Admin
+    $adminId = $_SESSION['userid'];
+
+    mysqli_query($conn, "
+    INSERT INTO activity(UserId, ActivityText, ActivityType)
+    VALUES(
+        '$adminId',
+        'Approved item $itemId',
+        'Admin'
+    )");
+
+    // Activity User
+    $userId = $item['UserId'];
+    $itemName = $item['ItemName'];
+
+    mysqli_query($conn, "
+    INSERT INTO activity(UserId, ActivityText, ActivityType)
+    VALUES(
+        '$userId',
+        'Your item $itemName has been approved by admin',
+        'User'
+    )");
+
     header("Location: addItemAdmin.php");
     exit();
 }
 
+// REJECT
 if (isset($_POST['reject'])) {
+
     $itemId = $_POST['itemId'];
 
     $sql = "UPDATE item
@@ -37,9 +67,34 @@ if (isset($_POST['reject'])) {
 
     $conn->query($sql);
 
+    // Activity Admin
+    $adminId = $_SESSION['userid'];
+
+    mysqli_query($conn, "
+    INSERT INTO activity(UserId, ActivityText, ActivityType)
+    VALUES(
+        '$adminId',
+        'Rejected item $itemId',
+        'Admin'
+    )");
+
+    // Activity User
+    $userId = $item['UserId'];
+    $itemName = $item['ItemName'];
+
+    mysqli_query($conn, "
+    INSERT INTO activity(UserId, ActivityText, ActivityType)
+    VALUES(
+        '$userId',
+        'Your item $itemName has been rejected by admin',
+        'User'
+    )");
+
     header("Location: addItemAdmin.php");
     exit();
 }
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -47,17 +102,20 @@ if (isset($_POST['reject'])) {
 
 <head>
     <meta charset="UTF-8">
-    <title>UTeM RecycleHub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/admin/itemDetailAdmin.css">
+    <title>UTeM RecycleHub</title>
 </head>
 
 <body>
     <?php include("headerAdmin.php"); ?>
     <?php include("sidebarAdmin.php"); ?>
+
+    <label for="cb" id="overlay"></label>
 
     <main class="details-container">
 
@@ -103,6 +161,11 @@ if (isset($_POST['reject'])) {
             <div class="info-row">
                 <span>Submitted Date</span>
                 <b><?= $item['ItemDate'] ?></b>
+            </div>
+
+            <div class="info-row">
+                <span>Activity Type</span>
+                <b><?= $item['ActivityType'] ?></b>
             </div>
         </section>
 

@@ -8,6 +8,7 @@ include("../../inc/auth.php");
 $sql = "SELECT item.ItemId,
                item.ItemName,
                item.Category,
+               item.ActivityType,
                item.ItemDate,
                item.Status,
                user.Name
@@ -66,6 +67,7 @@ $result = $conn->query($sql);
                         <th>Submitted By</th>
                         <th>Category</th>
                         <th>Date</th>
+                        <th>Activity Type</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -79,6 +81,7 @@ $result = $conn->query($sql);
                             <td><?= $row['Name'] ?></td>
                             <td><?= $row['Category'] ?></td>
                             <td><?= $row['ItemDate'] ?></td>
+                            <td><?= $row['ActivityType'] ?></td>
                             <td>
                                 <span class="badge badge-<?= strtolower($row['Status']) ?>">
                                     <?= $row['Status'] ?>

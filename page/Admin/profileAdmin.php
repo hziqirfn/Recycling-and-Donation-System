@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 include("../../inc/connect.php");
@@ -10,12 +11,6 @@ if (isset($_SESSION['success']))
 {
     $success = $_SESSION['success'];
     unset($_SESSION['success']);
-}
-
-if (!isset($_SESSION['userid']))
-{
-    header("Location: login.php");
-    exit();
 }
 
 $email = $_SESSION['email'];
@@ -44,6 +39,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     }
 }
 
+$admin = true;
+$adminId = $_SESSION['userid'];
+
+$queryActivity = "
+SELECT *
+FROM activity
+WHERE UserId = '$adminId'
+AND ActivityType = 'Admin'
+ORDER BY ActivityDate DESC
+";
+
+$resultActivity = mysqli_query($conn, $queryActivity);
+
 $conn->close();
 ?>
 
@@ -53,7 +61,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
@@ -121,25 +129,28 @@ $conn->close();
                 <h2>Admin Activity</h2>
 
                 <div class="profil2">
-                    <div class="activity-box">
-                        Approved pickup request - 5 Jun 2026
-                    </div>
-
-                    <div class="activity-box">
-                        Added new reward item - 7 Jun 2026
-                    </div>
-
-                    <div class="activity-box">
-                        Updated item category - 8 Jun 2026
-                    </div>
-
-                    <div class="activity-box">
-                        Managed user account - 9 Jun 2026
-                    </div>
-
-                    <div class="activity-box">
-                        Approved reward redemption - 10 Jun 2026
-                    </div>
+                    <?php
+                    if (mysqli_num_rows($resultActivity) > 0) 
+                    {
+                        while ($activity = mysqli_fetch_assoc($resultActivity)) 
+                        {
+                    ?>
+                            <div class="activity-box">
+                                <?= $activity['ActivityText']; ?>-
+                                <?= date('d M Y', strtotime($activity['ActivityDate'])); ?>
+                            </div>
+                    <?php
+                        }
+                    } 
+                    else 
+                    {
+                    ?>
+                        <div class="activity-box">
+                            No activity found
+                        </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -159,12 +170,12 @@ if ($success != "")
 } 
 ?>
 
-<div id="alert" class="alert" style="display:none;">
+<div id="confirmAlert" class="alert" style="display:none;">
     <div class="popup-box">
         <p id="confirmText"></p>
         <br>
         <button id="yesBtn">Yes</button>
-        <button onclick="closePopup()">No</button>
+        <button onclick="confirmClosePopup()">No</button>
     </div>
 </div>
 
