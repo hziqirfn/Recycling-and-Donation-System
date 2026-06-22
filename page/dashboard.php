@@ -7,58 +7,52 @@ include("../inc/auth.php");
 
 $userId = $_SESSION['userid'];
 
+$point = "SELECT Points
+          FROM user
+          WHERE UserId = '$userId'";
+$resultPoint = mysqli_query($conn, $point);
+$dataPoint = mysqli_fetch_assoc($resultPoint);
+
 $query = "SELECT COUNT(*) AS totalItem
           FROM item
           WHERE UserId = '$userId'";
-
 $result = mysqli_query($conn, $query);
-
 $data = mysqli_fetch_assoc($result);
-
-$totalItem = $data['totalItem'];
 
 $sqlRecent = "SELECT ItemName, Status, ItemDate
               FROM item
               WHERE UserId = '$userId'
               ORDER BY ItemDate DESC
               LIMIT 5";
-
 $resultRecent = $conn->query($sqlRecent);
 
-$userId = $_SESSION['userid'];
-$queryActivity = "
-SELECT *
-FROM activity
-WHERE UserId = '$userId'
-AND ActivityType = 'User'
-ORDER BY ActivityDate DESC
-LIMIT 5
-";
+$queryActivity = "SELECT *
+                  FROM activity
+                  WHERE UserId = '$userId'
+                  AND ActivityType = 'User'
+                  ORDER BY ActivityDate DESC
+                  LIMIT 5";
 $resultActivity = mysqli_query($conn, $queryActivity);
 
 //Donate
-$userId = $_SESSION['userid'];
-$queryDonate = "
-SELECT COUNT(*) AS totalDonate
-FROM item
-WHERE UserId = '$userId'
-AND ActivityType = 'Donate'
-AND Status = 'Approved'
-";
+$queryDonate = "SELECT COUNT(*) AS totalDonate 
+                FROM item
+                WHERE UserId = '$userId'
+                AND ActivityType = 'Donate'
+                AND Status = 'Approved'";
 $resultDonate = mysqli_query($conn, $queryDonate);
 $totalDonate = mysqli_fetch_assoc($resultDonate)['totalDonate'];
 
 //recycled
-$queryRecycle = "
-SELECT COUNT(*) AS totalRecycle
-FROM item
-WHERE UserId = '$userId'
-AND ActivityType = 'Recycle'
-AND Status = 'Approved'
-";
-
+$queryRecycle = "SELECT COUNT(*) AS totalRecycle 
+                 FROM item 
+                 WHERE UserId = '$userId'
+                 AND ActivityType = 'Recycle'
+                 AND Status = 'Approved'";
 $resultRecycle = mysqli_query($conn, $queryRecycle);
 $totalRecycle = mysqli_fetch_assoc($resultRecycle)['totalRecycle'];
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -91,14 +85,14 @@ $totalRecycle = mysqli_fetch_assoc($resultRecycle)['totalRecycle'];
                 </div>
 
                 <div class="boxPoint">
-                    <h3>200</h3>
+                    <h3><?= $dataPoint['Points'] ?></h3>
                     <p>Your Points</p>
                 </div>
             </div>
 
             <div id="content2">
                 <div class="box">
-                    <h2><?php echo $totalItem; ?></h2>
+                    <h2><?= $data['totalItem'] ?></h2>
                     <p>Total Item</p>
                 </div>
 
@@ -125,8 +119,9 @@ $totalRecycle = mysqli_fetch_assoc($resultRecycle)['totalRecycle'];
                         while ($row = $resultRecent->fetch_assoc()) {
                         ?>
                             <li>
-                                <?= $row['ItemName'] ?> - <?= $row['Status'] ?> - <?= $row['ItemDate'] ?>
-
+                                <span><?= $row['ItemName'] ?></span>
+                                <span><?= $row['Status'] ?></span>
+                                <span><?= $row['ItemDate'] ?></span>
                             </li>
                         <?php
                         }
