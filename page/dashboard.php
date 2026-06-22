@@ -126,9 +126,9 @@ $conn->close();
 
                     <table>
                         <tr>
-                            <th>Request ID</th>
-                            <th>User</th>
-                            <th>Total Items</th>
+                            <th>Item Name</th>
+                            <th>Status</th>
+                            <th>Date</th>
                         </tr>
 
                         <?php
@@ -139,15 +139,20 @@ $conn->close();
                         ?>
                             <tr class="<?= ($countActivity > 3) ? 'hiddenActivity' : ''; ?>">
                                 <td><?= $row['ItemName']; ?></td>
-                                <td><?php if ($row['Status'] == 'Rejected' && !empty($row['RejectReason'])) {
-                                        $row['Status']; ?> (<?php $row['RejectReason'] ?>)</td>
+                                <td>
+                                    <?php
+                                    if ($row['Status'] == 'Rejected' && !empty($row['RejectReason'])) {
+                                        echo htmlspecialchars($row['Status']) . " (" . htmlspecialchars($row['RejectReason']) . ")";
+                                    } else {
+                                        echo $row['Status'];
+                                    }
+                                    ?>
+                                </td>
                                 <td><?= $row['ItemDate']; ?></td>
                             </tr>
-
-                    <?php
-                                    }
-                                }
-                    ?>
+                        <?php
+                        }
+                        ?>
                     </table>
                 </div>
 
