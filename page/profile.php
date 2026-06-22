@@ -87,17 +87,17 @@ $conn->close();
 
                     <form action="profile.php" method="post">
                         <label>Name</label>
-                        <input type="text" name="name" class="edit" value="<?= $user['Name'] ?>" readonly>
+                        <input type="text" name="name" class="edit" value="<?= htmlspecialchars($user['Name'], ENT_QUOTES, 'UTF-8') ?>" readonly>
 
                         <label>Email</label>
-                        <input type="email" name="email" value="<?= $_SESSION['email'] ?>" readonly>
+                        <input type="email" name="email" value="<?= htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8') ?>" readonly>
 
                         <label>Phone Number</label>
-                        <input type="text" name="phone" class="edit" value="<?= $user['NoPhone'] ?>" placeholder="---"
+                        <input type="text" name="phone" class="edit" value="<?= htmlspecialchars($user['NoPhone'], ENT_QUOTES, 'UTF-8') ?>" placeholder="---"
                             maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g, '')" inputmode="numeric" readonly>
 
                         <label>Role</label>
-                        <input type="text" name="role" id="role" value="<?= $_SESSION['role'] ?>" readonly>
+                        <input type="text" name="role" id="role" value="<?= htmlspecialchars($_SESSION['role'], ENT_QUOTES, 'UTF-8') ?>" readonly>
 
                         <div class="bottom" id="bottomBtn">
                             <button type="submit">Save</button>
@@ -115,7 +115,7 @@ if ($success != "")
 ?>
     <div id="alert" class="alert">
         <div class="popup-box"><br>
-            <p><?= $success; ?></p> <br><br>
+            <p><?= htmlspecialchars($success, ENT_QUOTES, 'UTF-8'); ?></p> <br><br>
             <button onclick="closePopup()">OK</button>
         </div>
     </div>

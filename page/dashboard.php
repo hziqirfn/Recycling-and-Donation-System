@@ -92,29 +92,29 @@ $conn->close();
         <div id="content">
             <div id="content1">
                 <div class="welcome">
-                    <h2>Welcome Back, <?= $_SESSION['name']; ?>!</h2>
+                    <h2>Welcome Back, <?= htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8'); ?>!</h2>
                     <p>Let's make a positive impact today</p>
                 </div>
 
                 <div class="boxPoint">
-                    <h3><?= $dataPoint['Points'] ?></h3>
+                    <h3><?= htmlspecialchars($dataPoint['Points'], ENT_QUOTES, 'UTF-8'); ?></h3>
                     <p>Your Points</p>
                 </div>
             </div>
 
             <div id="content2">
                 <div class="box">
-                    <h2><?= $data['totalItem'] ?></h2>
+                    <h2><?= htmlspecialchars($data['totalItem'], ENT_QUOTES, 'UTF-8'); ?></h2>
                     <p>Total Item</p>
                 </div>
 
                 <div class="box">
-                    <h3><?= $totalDonate ?></h3>
+                    <h3><?= htmlspecialchars($totalDonate, ENT_QUOTES, 'UTF-8'); ?></h3>
                     <p>Donated</p>
                 </div>
 
                 <div class="box">
-                    <h3><?= $totalRecycle ?></h3>
+                    <h3><?= htmlspecialchars($totalRecycle, ENT_QUOTES, 'UTF-8'); ?></h3>
                     <p>Recycled</p>
                 </div>
             </div>
@@ -140,17 +140,17 @@ $conn->close();
                             $countActivity++;
                         ?>
                             <tr class="<?= ($countActivity > 3) ? 'hiddenActivity' : ''; ?>">
-                                <td><?= $row['ItemName']; ?></td>
+                                <td><?= htmlspecialchars($row['ItemName'], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td>
                                     <?php
                                     if ($row['Status'] == 'Rejected' && !empty($row['RejectReason'])) {
-                                        echo ($row['Status']) . " (" . ($row['RejectReason']) . ")";
+                                        echo htmlspecialchars($row['Status'], ENT_QUOTES, 'UTF-8') . " (" . htmlspecialchars($row['RejectReason'], ENT_QUOTES, 'UTF-8') . ")";
                                     } else {
-                                        echo $row['Status'];
+                                        echo htmlspecialchars($row['Status'], ENT_QUOTES, 'UTF-8');
                                     }
                                     ?>
                                 </td>
-                                <td><?= $row['ItemDate']; ?></td>
+                                <td><?= htmlspecialchars($row['ItemDate'], ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
                         <?php
                         }
@@ -194,8 +194,8 @@ $conn->close();
                                         ?>
                                     </td>
 
-                                    <td><?= $row['Name']; ?></td>
-                                    <td><?= $row['Points']; ?> pts</td>
+                                    <td><?= htmlspecialchars($row['Name'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?= htmlspecialchars($row['Points'], ENT_QUOTES, 'UTF-8'); ?> pts</td>
 
                                 </tr>
 

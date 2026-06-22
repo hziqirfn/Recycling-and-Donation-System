@@ -75,7 +75,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="../image/logo.png">
-    
+
     <link rel="stylesheet" href="../style/login.css">
     <link rel="stylesheet" href="../style/global.css">
     <title>UTeM RecycleHub</title>
@@ -129,7 +129,7 @@ if ($error != "")
 ?>
     <div id="alert" class="alert">
         <div class="popup-box"><br>
-            <p><?= $error; ?></p> <br><br>
+            <p><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></p> <br><br>
             <button onclick="closePopup()">OK</button>
         </div>
     </div>
@@ -141,14 +141,14 @@ if ($success != "")
 ?>
     <div id="alert" class="alert">
         <div class="popup-box"><br>
-            <p><?= $success; ?></p> <br><br>
+            <p><?= htmlspecialchars($success, ENT_QUOTES, 'UTF-8'); ?></p> <br><br>
         </div>
     </div>
     
     <script>
         setTimeout(() =>
         {
-            window.location.href = "<?= $_SESSION['redirect'] ?>";
+            window.location.href = "<?= htmlspecialchars($_SESSION['redirect'], ENT_QUOTES, 'UTF-8'); ?>";
         }, 2000);
     </script>
 <?php 

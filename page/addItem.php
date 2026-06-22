@@ -165,7 +165,7 @@ $conn->close();
     ?>
         <div id="alert" class="alert">
             <div class="popup-box"><br>
-                <p><?= $error; ?></p> <br><br>
+                <p><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></p> <br><br>
                 <button onclick="closePopup()">OK</button>
             </div>
         </div>
