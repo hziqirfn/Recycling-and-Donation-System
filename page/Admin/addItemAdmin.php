@@ -74,23 +74,28 @@ $result = $conn->query($sql);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($row = $result->fetch_assoc()) { ?>
+                    <?php 
+                    while ($row = $result->fetch_assoc()) 
+                    { 
+                    ?>
                         <tr data-status="<?= strtolower($row['Status']) ?>"
-                            ondblclick="window.location='itemDetailAdmin.php?id=<?= $row['ItemId'] ?>'"
+                            ondblclick="window.location='itemDetailAdmin.php?id=<?= htmlspecialchars($row['ItemId'], ENT_QUOTES, 'UTF-8') ?>'"
                             style="cursor:pointer;">
-                            <td><?= $row['ItemId'] ?></td>
-                            <td><strong><?= $row['ItemName'] ?></strong></td>
-                            <td><?= $row['Name'] ?></td>
-                            <td><?= $row['Category'] ?></td>
-                            <td><?= $row['ItemDate'] ?></td>
-                            <td><?= $row['ActivityType'] ?></td>
+                            <td><?= htmlspecialchars($row['ItemId'], ENT_QUOTES, 'UTF-8') ?></td>
+                            <td><strong><?= htmlspecialchars($row['ItemName'], ENT_QUOTES, 'UTF-8') ?></strong></td>
+                            <td><?= htmlspecialchars($row['Name'], ENT_QUOTES, 'UTF-8') ?></td>
+                            <td><?= htmlspecialchars($row['Category'], ENT_QUOTES, 'UTF-8') ?></td>
+                            <td><?= htmlspecialchars($row['ItemDate'], ENT_QUOTES, 'UTF-8') ?></td>
+                            <td><?= htmlspecialchars($row['ActivityType'], ENT_QUOTES, 'UTF-8') ?></td>
                             <td>
-                                <span class="badge badge-<?= strtolower($row['Status']) ?>">
-                                    <?= $row['Status'] ?>
+                                <span class="badge badge-<?= htmlspecialchars(strtolower($row['Status']), ENT_QUOTES, 'UTF-8') ?>">
+                                    <?= htmlspecialchars($row['Status'], ENT_QUOTES, 'UTF-8') ?>
                                 </span>
                             </td>
                         </tr>
-                    <?php } ?>
+                    <?php 
+                    } 
+                    ?>
                 </tbody>
             </table>
         </section>

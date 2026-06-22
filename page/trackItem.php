@@ -21,10 +21,30 @@ $sql = "SELECT
             t.completed_desc
         FROM item i
         LEFT JOIN track_item t ON i.ItemId = t.ItemId
-        WHERE i.UserId = '$userId'";
+        WHERE i.UserId = ?";
 
-$result = $conn->query($sql);
+$sql = "SELECT
+            i.ItemId,
+            i.ItemName,
+            COALESCE(t.Status,'Not Started') AS Status,
+            t.pending_date,
+            t.pending_desc,
+            t.collected_date,
+            t.collected_desc,
+            t.processing_date,
+            t.processing_desc,
+            t.completed_date,
+            t.completed_desc
+        FROM item i
+        LEFT JOIN track_item t ON i.ItemId = t.ItemId
+        WHERE i.UserId = ?";
 
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -65,21 +85,27 @@ $result = $conn->query($sql);
                     <select id="itemSelect">
                         <option selected disabled value="">Select Item</option>
 
-                        <?php while ($row = $result->fetch_assoc()) { ?>
+                        <?php 
+                        while ($row = $result->fetch_assoc()) 
+                        { 
+                        ?>
                             <option
-                                value="<?= htmlspecialchars($row['ItemId']) ?>"
-                                data-status="<?= htmlspecialchars($row['Status']) ?>"
-                                data-pending-date="<?= htmlspecialchars($row['pending_date'] ?? '') ?>"
-                                data-pending-desc="<?= htmlspecialchars($row['pending_desc'] ?? '') ?>"
-                                data-collected-date="<?= htmlspecialchars($row['collected_date'] ?? '') ?>"
-                                data-collected-desc="<?= htmlspecialchars($row['collected_desc'] ?? '') ?>"
-                                data-processing-date="<?= htmlspecialchars($row['processing_date'] ?? '') ?>"
-                                data-processing-desc="<?= htmlspecialchars($row['processing_desc'] ?? '') ?>"
-                                data-completed-date="<?= htmlspecialchars($row['completed_date'] ?? '') ?>"
-                                data-completed-desc="<?= htmlspecialchars($row['completed_desc'] ?? '') ?>">
-                                <?= htmlspecialchars($row['ItemName']) ?>
+                                value="<?= htmlspecialchars($row['ItemId'], ENT_QUOTES, 'UTF-8') ?>"
+                                data-status="<?= htmlspecialchars($row['Status'], ENT_QUOTES, 'UTF-8') ?>"
+                                data-pending-date="<?= htmlspecialchars($row['pending_date'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                data-pending-desc="<?= htmlspecialchars($row['pending_desc'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                data-collected-date="<?= htmlspecialchars($row['collected_date'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                data-collected-desc="<?= htmlspecialchars($row['collected_desc'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                data-processing-date="<?= htmlspecialchars($row['processing_date'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                data-processing-desc="<?= htmlspecialchars($row['processing_desc'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                data-completed-date="<?= htmlspecialchars($row['completed_date'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                data-completed-desc="<?= htmlspecialchars($row['completed_desc'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                            >
+                                <?= htmlspecialchars($row['ItemName'], ENT_QUOTES, 'UTF-8') ?>
                             </option>
-                        <?php } ?>
+                        <?php 
+                        } 
+                        ?>
                     </select>
                 </div>
 

@@ -5,22 +5,13 @@ session_start();
 include("../../inc/connect.php");
 include("../../inc/auth.php");
 
-$id = $_POST['rewardId'];
-$name = $_POST['rewardName'];
-$points = $_POST['pointsRequired'];
-$stock = $_POST['stock'];
-$status = $_POST['status'];
+$error = "";
 
-$query = "INSERT INTO reward_catalog(RewardId, RewardName, PointsRequired, Stock, Status)
-          VALUES ('$id', '$name', '$points', '$stock', '$status')";
-mysqli_query($conn,$query);
-
-header("Location: rewardAdmin.php");
-
-exit();
-
-include("../../inc/connect.php");
-include("../../inc/auth.php");
+if (isset($_SESSION['error']))
+{
+    $error = $_SESSION['error'];
+    unset($_SESSION['error']);
+}
 
 if(isset($_POST['rewardId']))
 {
@@ -31,18 +22,15 @@ if(isset($_POST['rewardId']))
     $rewardRole = $_POST['rewardRole'];
     $status = $_POST['status'];
 
-    $check = mysqli_query(
-        $conn,
-        "SELECT * FROM reward
-        WHERE RewardId='$rewardId'"
-    );
+    $stmt = $conn->prepare("SELECT * FROM reward WHERE RewardId = ?");
+    $stmt->bind_param("s", $rewardId);
+    $stmt->execute();
+    $check = $stmt->get_result();
 
     if(mysqli_num_rows($check) > 0)
     {
-        echo "<script>
-                alert('Reward ID already exists');
-                window.location='rewardAdmin.php';
-              </script>";
+        $_SESSION['error'] = "Reward ID already exists";
+        header("Location: rewardAdmin.php");
         exit();
     }
 
@@ -73,3 +61,43 @@ if(isset($_POST['rewardId']))
     exit();
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+<body>
+    <?php 
+if ($error != "")
+{
+?>
+<div id="alert" class="alert">
+    <div class="popup-box"><br>
+        <p><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></p>
+        <br><br>
+        <button onclick="closePopup()">OK</button>
+    </div>
+</div>
+<?php 
+}
+
+if ($success != "")
+{
+?>
+<div id="alert" class="alert">
+    <div class="popup-box"><br>
+        <p><?= htmlspecialchars($success, ENT_QUOTES, 'UTF-8'); ?></p>
+        <br><br>
+        <button onclick="closePopup()">OK</button>
+    </div>
+</div>
+<?php 
+}
+?>
+
+<script>
+function closePopup()
+{
+    document.getElementById('alert').style.display = 'none';
+}
+</script>
+
+</body>

@@ -125,6 +125,10 @@
     align-items:center;
 }
 
+.total-text{
+    padding: 20px;
+}
+
 .point-item strong{
     color:#16a34a;
 }
@@ -136,12 +140,16 @@
 }
 
 .add-btn{
-    background:#2f8f2f;
+    background:#45B058;
     color:white;
     border:none;
     padding:10px 15px;
     border-radius:10px;
     cursor:pointer;
+}
+
+.add-btn:hover{
+    background-color: #378F46;
 }
 
 .card-actions{
@@ -195,6 +203,41 @@
     width:100%;
     padding:10px;
     margin:10px 0;
+}
+
+.alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-box{
+    min-width:300px;
+    padding:20px;
+    background:white;
+    border-radius:10px;
+    text-align:center;
+}
+
+.popup-box button{
+    width:30%;
+    padding:8px 15px;
+    cursor:pointer;
+    background:#45B058;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.popup-box button:hover{
+    background:#378F46;
 }
 
 @media(max-width:1200px){
