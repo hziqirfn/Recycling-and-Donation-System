@@ -23,6 +23,7 @@ if(!$resultReward){
 
 $totalReward = mysqli_num_rows($resultReward);
 
+$conn->close();
 ?>
 
 <!DOCTYPE html>
