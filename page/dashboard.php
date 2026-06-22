@@ -111,7 +111,7 @@ $conn->close();
                 <div class="box2">
                     <div class="boxHeader">
                         <h3>Recent Activity</h3>
-                        <button onclick="toggleActivity()">View All</button>
+                        <button id="activityBtn" onclick="toggleActivity()">View All</button>
                     </div>
 
                     <ul class="activityList" id="activityList">
@@ -132,15 +132,26 @@ $conn->close();
                 <div class="box2">
                     <div class="boxHeader">
                         <h3>Top Contributors</h3>
-                        <button onclick="toggleContributor()">View All</button>
+                        <button id="contributorBtn" onclick="toggleContributor()">View All</button>
                     </div>
 
                     <ol class="contributorList" id="contributorList">
-                        <li>Ali - 520 pts</li>
-                        <li>Siti - 480 pts</li>
-                        <li>Ahmad - 450 pts</li>
-                        <li class="hiddenContributor">John - 400 pts</li>
-                        <li class="hiddenContributor">User - 250 pts</li>
+                        <?php
+                        $countContributor = 0;
+
+                        if ($resultContributor->num_rows > 0) {
+                            while ($row = $resultContributor->fetch_assoc()) {
+                                $countContributor++;
+                        ?>
+                                <li class="<?= ($countContributor > 3) ? 'hiddenContributor' : ''; ?>">
+                                    <?= $row['Name']; ?> - <?= $row['Points']; ?> pts
+                                </li>
+                            <?php
+                            }
+                        } else {
+                            ?>
+                            <li>No contributors yet</li>
+                        <?php } ?>
                     </ol>
                 </div>
             </div>
