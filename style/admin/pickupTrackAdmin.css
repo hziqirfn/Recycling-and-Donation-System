@@ -1,89 +1,20 @@
 #content {
-    padding: 40px;
-    box-sizing: border-box;
-    margin-left: 300px; /* Offset spacing to move past the admin sidebar area */
-    padding-top: 110px; 
-    position: relative;
+    margin-left: 250px;
     width: calc(100% - 250px);
+    padding: 30px 40px;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .track-container {
     width: 100%;
     max-width: 1000px;
-    margin: 0; 
-}
-
-.track {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.savebtn {
-    height: 50px;
-    border-radius: 10px;
-    background-color: #2e7d32;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-weight: 600;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-.savebtn:hover {
-    background-color: #1b5e20;
-}
-
-.editbtn {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.editbtn button {
-    border-radius: 10px;
-    padding: 6px 14px;
-    font-size: 13px;
-    cursor: pointer;
-    border: 1px solid rgb(100, 100, 100);
-    background-color: white;
-    transition: all 0.2s ease;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-.editbtn button.btn-sub {
-    background-color: white;
-    color: #333;
-}
-
-.editbtn button.btn-action {
-    background-color: white;
-    border: 1px solid rgb(100, 100, 100);
-    color: #333;
-}
-
-.editbtn button.btn-action:hover {
-    background-color: #f5f5f5;
-}
-
-/* Style rule for the clean, green "✓ Done" pill badge */
-.badge-done {
-    background-color: #e8f5e9; 
-    color: #1b5e20;            
-    border: 1px solid #a5d6a7;  
-    padding: 6px 16px;
-    border-radius: 20px;       
-    font-size: 13px;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
+    margin: 0 auto;
 }
 
 .track-title {
@@ -94,7 +25,6 @@
 .track-title h2 {
     margin-bottom: 0;
     font-weight: 700;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .track-title p {
@@ -102,26 +32,6 @@
     color: rgb(100, 100, 100);
     margin-top: 10px;
     margin-bottom: 20px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-.admin-inputs-row {
-    display: flex !important;
-    gap: 20px;
-}
-
-.admin-inputs-row .input-col {
-    flex: 1;
-}
-
-.admin-inputs-row input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    box-sizing: border-box;
-    font-size: 14px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .track-selector {
@@ -139,7 +49,6 @@
     margin-bottom: 8px;
     font-weight: 600;
     color: #2e5c38;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .track-selector select {
@@ -148,7 +57,17 @@
     border: none;
     border-radius: 12px;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: inherit;
+}
+
+.admin-inputs-row {
+    display: flex;
+    gap: 20px;
+}
+
+.admin-inputs-row .input-col {
+    flex: 1;
+    width: 100%;
 }
 
 .track-card {
@@ -172,7 +91,6 @@
 .track-header h2 {
     margin: 0;
     color: #333;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .status-badge {
@@ -182,14 +100,12 @@
     color: white;
     background: #2e7d32;
     font-weight: bold;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .timeline-white-box {
-    background: #ffffff;
+    background: white;
     border-radius: 16px;
     padding: 40px 30px;
-    box-shadow: none;
     box-sizing: border-box;
     width: 100%;
     margin: 0 auto 20px auto;
@@ -204,7 +120,7 @@
 }
 
 .timeline::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 72px;
     top: 0;
@@ -242,7 +158,8 @@
     z-index: 2;
 }
 
-.timeline-dot.completed, .timeline-dot.active {
+.timeline-dot.completed,
+.timeline-dot.active {
     background: #4caf40;
 }
 
@@ -253,7 +170,7 @@
     border-radius: 12px;
     border: 1px solid #e0e0e0;
     width: 100%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     box-sizing: border-box;
 }
 
@@ -262,18 +179,64 @@
     font-size: 15px;
     font-weight: 700;
     color: #333;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-.timeline-date, .timeline-status, .timeline-desc {
+.timeline-date,
+.timeline-desc {
     margin: 0 0 5px 0;
     font-size: 12px;
     color: #666;
     line-height: 1.4;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-.timeline-desc { margin: 0; }
+.timeline-desc {
+    margin: 0;
+}
+
+.editbtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+}
+
+.editbtn button {
+    border-radius: 10px;
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid rgb(100, 100, 100);
+    background-color: white;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.editbtn button.btn-sub {
+    color: #333;
+}
+
+.editbtn button.btn-action {
+    color: #333;
+}
+
+.editbtn button.btn-action:hover {
+    background-color: #f5f5f5;
+}
+
+.badge-done {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+    border: 1px solid #a5d6a7;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
 
 .progress-section {
     margin-top: 40px;
@@ -303,29 +266,14 @@
     font-weight: 600;
     color: #555;
     text-align: center;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-.estimated-completion {
-    background: white;
-    padding: 14px 15px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 13px;
-    color: #555;
-    margin-top: 15px;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-/* =========================================================
-   UPDATED POPUP MODAL STYLES
-   ========================================================= */
 .popup-modal-overlay {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
     display: flex;
@@ -354,16 +302,9 @@
 
 .popup-modal-header h2 {
     margin: 0;
-    font-size: 24px; /* Slightly larger as per design */
+    font-size: 24px;
     font-weight: 700;
     color: #1e3d25;
-}
-
-/* Add this to your PHP modal form to match the "Set date and notes" text */
-.modal-subheader {
-    font-size: 14px;
-    color: #558b61;
-    margin: 8px 0 20px 0;
 }
 
 .popup-modal-box label {
@@ -385,7 +326,7 @@
     border-radius: 12px;
     box-sizing: border-box;
     font-size: 14px;
-    background-color: #f8fdf8; /* Very subtle green tint */
+    background-color: #f8fdf8;
     outline: none;
 }
 
@@ -411,7 +352,7 @@
 }
 
 .modal-save-btn {
-    background-color: #1e3d25; /* Matches the dark green in design */
+    background-color: #1e3d25;
     border: none;
     color: white;
     padding: 12px 32px;
@@ -423,14 +364,34 @@
 @media (max-width: 768px) {
     #content {
         margin-left: 0;
+        width: 100%;
         padding: 15px;
     }
+
     .admin-inputs-row {
         flex-direction: column;
         gap: 10px;
     }
-    .timeline::before { left: 25px; }
-    .timeline-dot { left: 14px; }
+
+    .track-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .editbtn {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .timeline::before {
+        left: 25px;
+    }
+
+    .timeline-dot {
+        left: 14px;
+    }
+
     .timeline-content {
         margin-left: 55px;
         width: calc(100% - 65px);
