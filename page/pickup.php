@@ -11,15 +11,13 @@ $result = $conn->query($sql);
 
 $error = "";
 
-if (isset($_SESSION['error']))
-{
+if (isset($_SESSION['error'])) {
     $error = $_SESSION['error'];
     unset($_SESSION['error']);
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-    $itemId = $_POST['itemId'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $itemIds = $_POST['itemId'];
     $date = $_POST['date'];
     $time = $_POST['time'];
     $location = $_POST['location'];
@@ -28,33 +26,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $prefix = "PKP-";
 
     $sql2 = "SELECT RequestId FROM pickup_request WHERE RequestId
-             LIKE '$prefix%' ORDER BY CAST(SUBSTRING(RequestId, " .(strlen($prefix) + 1). ") AS UNSIGNED)
+             LIKE '$prefix%' ORDER BY CAST(SUBSTRING(RequestId, " . (strlen($prefix) + 1) . ") AS UNSIGNED)
              DESC LIMIT 1";
     $result2 = $conn->query($sql2);
 
-    if ($result2->num_rows > 0)
-    {
+    if ($result2->num_rows > 0) {
         $row = $result2->fetch_assoc();
         $lastNum = (int) preg_replace('/[^0-9]/', '', $row['RequestId']);
         $requestId = $prefix . ($lastNum + 1);
-    }
-    else
-    {
+    } else {
         $requestId = $prefix . "1";
     }
 
-
     $sql3 = "INSERT INTO pickup_request (RequestId, PickupDate, PickupTime, PickupAddress, Description, UserId)
-                VALUES ('$requestId', '$date', '$time', '$location', '$note', '$userId')";
-
+             VALUES ('$requestId', '$date', '$time', '$location', '$note', '$userId')";
     $success = $conn->query($sql3);
 
     if ($success)
     {
-        foreach ($itemId as $itemid)
+        foreach ($itemIds as $itemid)
         {
             $sql4 = "INSERT INTO pickup_item (ItemId, RequestId)
-                    VALUES ('$itemid', '$requestId')";
+                     VALUES ('$itemid', '$requestId')";
 
             if (!$conn->query($sql4))
             {
@@ -68,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         $_SESSION['RequestId'] = $requestId;
         $_SESSION['error'] = "Your request pickup added";
-    }
-    else
+    } 
+    else 
     {
         $_SESSION['error'] = "Your request pickup failed to add";
     }
@@ -199,19 +192,18 @@ $conn->close();
         </div>
     </div>
 
-<?php 
-if ($error != "")
-{
-?>
-    <div id="alert" class="alert">
-        <div class="popup-box"><br>
-            <p><?= $error; ?></p> <br><br>
-            <button onclick="closePopup()">OK</button>
+    <?php
+    if ($error != "") {
+    ?>
+        <div id="alert" class="alert">
+            <div class="popup-box"><br>
+                <p><?= $error; ?></p> <br><br>
+                <button onclick="closePopup()">OK</button>
+            </div>
         </div>
-    </div>
-<?php 
-}
-?>
+    <?php
+    }
+    ?>
 </body>
 
 </html>

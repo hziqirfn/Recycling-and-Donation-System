@@ -1,0 +1,286 @@
+.details-container {
+    margin-left: 260px;
+    padding: 140px 40px 40px 40px;
+    background-color: #f5f7f5;
+    min-height: 100vh;
+}
+
+.image-card {
+    position: relative;
+    width: 800px;
+    height: 450px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: #eef8ee;
+    border: 1px solid #c6e6c6;
+}
+
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.image-text {
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.condition-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #d9fbe6;
+    color: #0f8a45;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.info-card,
+.review-box {
+    width: 800px;
+    margin: 25px auto;
+    background: #eef8ee;
+    border: 1px solid #c6e6c6;
+    border-radius: 18px;
+    padding: 25px;
+}
+
+.info-card h3,
+.review-box h3 {
+    color: #315c43;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #cfe3cf;
+    padding: 15px 0;
+}
+
+.user-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar {
+    width: 55px;
+    height: 55px;
+    background: #2f7a55;
+    color: white;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+/* BUTTONS */
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.action-buttons button {
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.approve-btn {
+    background: #2f7a55;
+    color: white;
+    padding: 12px 24px;
+}
+
+.reject-btn {
+    background: #ef4444;
+    color: white;
+    padding: 12px 24px;
+}
+
+/* REJECT BOX */
+
+.reject-box {
+    display: none;
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff5f5;
+    border: 1px solid #fecaca;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+.reject-box label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: bold;
+    color: #b91c1c;
+    font-size: 16px;
+}
+
+.reject-textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 15px;
+    border: 1px solid #fca5a5;
+    border-radius: 12px;
+    resize: vertical;
+    font-size: 15px;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.reject-textarea:focus {
+    outline: none;
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.confirm-reject-btn {
+    margin-top: 15px;
+    background: #dc2626;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    width: auto !important;
+    height: auto !important;
+}
+
+.confirm-reject-btn:hover {
+    background: #b91c1c;
+}
+
+@media (max-width:768px) {
+
+    .details-container {
+        margin-left: 0;
+        margin-top: 90px;
+        padding: 20px 15px;
+    }
+
+    .image-card,
+    .info-card,
+    .review-box {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .image-card {
+        height: auto;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .image-card img {
+        width: 100%;
+        height: 230px;
+        object-fit: contain;
+        order: 1;
+    }
+
+    .condition-badge {
+        position: static;
+        width: fit-content;
+        margin-bottom: 10px;
+        order: 0;
+    }
+
+    .image-text {
+        position: static;
+        color: black;
+        padding: 10px 0 0;
+        order: 2;
+    }
+
+    .image-text h1 {
+        font-size: 24px;
+        margin: 0 0 8px;
+    }
+
+    .image-text p {
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .info-card,
+    .review-box {
+        margin: 18px auto;
+        padding: 18px;
+    }
+
+    .info-card h3,
+    .review-box h3 {
+        font-size: 16px;
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 12px 0;
+        font-size: 14px;
+    }
+
+    .info-row span {
+        width: 45%;
+    }
+
+    .info-row b {
+        width: 55%;
+        text-align: right;
+    }
+
+    .user-box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .avatar {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .approve-btn,
+    .reject-btn {
+        width: 100%;
+        height: 60px;
+    }
+
+    .reject-textarea {
+        min-height: 100px;
+    }
+}
+.approve-btn,
+.reject-btn,
+.confirm-reject-btn {
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+}

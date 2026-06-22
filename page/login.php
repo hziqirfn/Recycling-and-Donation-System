@@ -76,28 +76,26 @@ $conn->close();
     <meta charset="UTF-8">
     <title>UTeM RecycleHub</title>
     <link rel="stylesheet" href="../style/login.css">
+    <link rel="stylesheet" href="../style/global.css">
 </head>
 
 <body>
 
-    <header class="header">
-        <div class="logo-section">
-            <div class="logo-box">
-                <img src="../image/logo.png" alt="Logo">
+    <div id="head">
+        <div class="side">
+            <div class="logo">
+                <img src="../image/logo.png" alt="logo">
             </div>
 
-            <div class="logo-text">
+            <div class="text">
                 <h2>UTeM RecycleHub</h2>
                 <p>Recycling & Donation</p>
             </div>
         </div>
-    </header>
+    </div>
 
     <main class="login-page">
         <section class="login-card">
-            <div class="login-card-icon">
-                <img src="../image/logo.png" alt="Login icon">
-            </div>
             <h1>Login</h1>
             <p class="login-subtitle">Sign in to your account</p>
 

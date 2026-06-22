@@ -35,9 +35,14 @@
     text-align:center;
 }
 
+.card p {
+    font-weight: 600;
+}
+
 .card h2{
     color:#2e7d32;
     font-size:40px;
+    margin-top: 0px;
     margin-bottom:10px;
 }
 

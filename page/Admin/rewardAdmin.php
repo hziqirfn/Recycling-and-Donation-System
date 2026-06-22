@@ -43,6 +43,7 @@ $pointDisplay = mysqli_query(
     "SELECT * FROM point_configure"
 );
 
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -51,12 +52,12 @@ $pointDisplay = mysqli_query(
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTeM RecycleHub</title>
 
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/admin/rewardAdmin.css">
+    <title>UTeM RecycleHub</title>
 </head>
 
 <body class="rewards-page">

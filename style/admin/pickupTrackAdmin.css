@@ -1,66 +1,54 @@
+#content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 30px 40px;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
 .track-container {
+    width: 100%;
     max-width: 1000px;
     margin: 0 auto;
 }
 
-.track {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.savebtn {
-    height: 50px;
-    border-radius: 10px;
-    background-color: #2e7d32;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-}
-
-.editbtn {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.editbtn button {
-    background-color: white;
-    border-radius: 10px;
-    border-color: rgb(100, 100, 100);
-}
-
 .track-title {
-    max-width: 1000px;
-    margin: 0 0 0px 20px;
+    width: 100%;
+    margin: 0 0 10px 0;
 }
 
 .track-title h2 {
     margin-bottom: 0;
+    font-weight: 700;
 }
 
 .track-title p {
     font-size: 14px;
     color: rgb(100, 100, 100);
-    margin-top:10px;
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 
 .track-selector {
     background: #cfe6cf;
-    padding: 5px 15px 20px;
+    padding: 5px 20px 20px;
     border-radius: 15px;
     width: 100%;
-    max-width: 1000px;
-    margin-left: 19px;
+    margin: 0 0 20px 0;
     box-sizing: border-box;
-    margin-bottom: 20px;
 }
 
 .track-selector label {
     display: block;
     margin-top: 15px;
     margin-bottom: 8px;
+    font-weight: 600;
+    color: #2e5c38;
 }
 
 .track-selector select {
@@ -69,6 +57,17 @@
     border: none;
     border-radius: 12px;
     box-sizing: border-box;
+    font-family: inherit;
+}
+
+.admin-inputs-row {
+    display: flex;
+    gap: 20px;
+}
+
+.admin-inputs-row .input-col {
+    flex: 1;
+    width: 100%;
 }
 
 .track-card {
@@ -76,10 +75,8 @@
     padding: 25px;
     border-radius: 15px;
     width: 100%;
-    max-width: 1000px;
-    margin-left: 19px;
+    margin: 0;
     box-sizing: border-box;
-    display: none;
 }
 
 .track-header {
@@ -101,16 +98,16 @@
     border-radius: 15px;
     font-size: 12px;
     color: white;
-    background: #4caf50;
+    background: #2e7d32;
+    font-weight: bold;
 }
 
 .timeline-white-box {
-    background: #ffffff;
+    background: white;
     border-radius: 16px;
     padding: 40px 30px;
-    box-shadow: none;
     box-sizing: border-box;
-    width: 85%;
+    width: 100%;
     margin: 0 auto 20px auto;
 }
 
@@ -123,13 +120,18 @@
 }
 
 .timeline::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 72px;
     top: 0;
     bottom: 0;
     width: 2px;
-    background: #4caf50;
+    background: #b0bec5;
+    transition: background 0.3s ease;
+}
+
+.timeline.progress-active::before {
+    background: #b0bec5;
 }
 
 .timeline-item {
@@ -156,12 +158,9 @@
     z-index: 2;
 }
 
-.timeline-dot.completed {
-    background: #4caf50;
-}
-
+.timeline-dot.completed,
 .timeline-dot.active {
-    background: #4caf50;
+    background: #4caf40;
 }
 
 .timeline-content {
@@ -171,7 +170,8 @@
     border-radius: 12px;
     border: 1px solid #e0e0e0;
     width: 100%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    box-sizing: border-box;
 }
 
 .timeline-content h3 {
@@ -179,29 +179,63 @@
     font-size: 15px;
     font-weight: 700;
     color: #333;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-.timeline-date {
+.timeline-date,
+.timeline-desc {
     margin: 0 0 5px 0;
     font-size: 12px;
     color: #666;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-.timeline-status {
-    margin: 0 0 5px 0;
-    font-size: 12px;
-    color: #666;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.4;
 }
 
 .timeline-desc {
     margin: 0;
-    font-size: 12px;
-    color: #666;
-    line-height: 1.4;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.editbtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+}
+
+.editbtn button {
+    border-radius: 10px;
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid rgb(100, 100, 100);
+    background-color: white;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.editbtn button.btn-sub {
+    color: #333;
+}
+
+.editbtn button.btn-action {
+    color: #333;
+}
+
+.editbtn button.btn-action:hover {
+    background-color: #f5f5f5;
+}
+
+.badge-done {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+    border: 1px solid #a5d6a7;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
 }
 
 .progress-section {
@@ -219,10 +253,11 @@
 }
 
 .progress-fill {
-    width: 75%;
+    width: 0%;
     height: 100%;
     background: #4caf50;
     border-radius: 10px;
+    transition: width 0.3s ease;
 }
 
 .progress-text {
@@ -231,57 +266,111 @@
     font-weight: 600;
     color: #555;
     text-align: center;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-.estimated-completion {
-    background: white;
-    padding: 14px 15px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 13px;
-    color: #555;
-    margin-top: 15px;
+.popup-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.popup-modal-overlay.show-modal {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.popup-modal-box {
+    background-color: white;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.popup-modal-header h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e3d25;
+}
+
+.popup-modal-box label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e3d25;
+    margin-bottom: 8px;
+    margin-top: 20px;
+}
+
+.popup-modal-box input[type="date"],
+.popup-modal-box textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d1ebd1;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #f8fdf8;
+    outline: none;
+}
+
+.popup-modal-box textarea {
+    min-height: 120px;
+}
+
+.popup-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.modal-cancel-btn {
+    background: white;
+    border: 1px solid #c2dbd0;
+    color: #1e3d25;
+    padding: 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.modal-save-btn {
+    background-color: #1e3d25;
+    border: none;
+    color: white;
+    padding: 12px 32px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
 }
 
 @media (max-width: 768px) {
     #content {
-        width: 100%;
         margin-left: 0;
-        margin-top: 90px;
-        padding: 15px;
-        box-sizing: border-box;
-    }
-
-    .track-container {
         width: 100%;
-        margin: 0 auto;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    .track-title {
-        text-align: left;
-        margin-bottom: 15px;
-    }
-
-    .track-selector {
-        width: 100%;
-        max-width: 100%;
-        margin: 0 auto 20px;
         padding: 15px;
-        box-sizing: border-box;
     }
 
-    .track-card {
-        width: 100%;
-        max-width: 100%;
-        margin: 0 auto;
-        padding: 15px;
-        box-sizing: border-box;
+    .admin-inputs-row {
+        flex-direction: column;
+        gap: 10px;
     }
 
     .track-header {
@@ -290,9 +379,9 @@
         gap: 10px;
     }
 
-    .timeline-white-box {
-        width: 100%;
-        padding: 20px 15px;
+    .editbtn {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .timeline::before {

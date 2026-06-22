@@ -1,11 +1,13 @@
 <?php
-session_start();
 
-$admin = true;
+session_start();
 
 include("../../inc/connect.php");
 include("../../inc/auth.php");
 
+$admin = true;
+
+//total user
 $query = "SELECT COUNT(*) AS totalUser
           FROM user
           WHERE Role IN ('Public','Student(UTeM)','Staff(UTeM)')";
@@ -13,14 +15,28 @@ $result = mysqli_query($conn, $query);
 $data = mysqli_fetch_assoc($result);
 $totalUser = $data['totalUser'];
 
+//total item
 $queryItem = "SELECT COUNT(*) AS totalItem FROM item";
 $resultItem = mysqli_query($conn, $queryItem);
 $dataItem = mysqli_fetch_assoc($resultItem);
 $totalItem = $dataItem['totalItem'];
 
+//total pick
 $queryPickup = "SELECT COUNT(*) AS totalPickup FROM pickup_request";
 $resultPickup = mysqli_query($conn, $queryPickup);
 $totalPickup = mysqli_fetch_assoc($resultPickup)['totalPickup'];
+
+// Recent Req
+$queryRecent = "SELECT pr.RequestId, u.Name, COUNT(pi.ItemId) AS TotalItems
+                FROM pickup_request pr
+                JOIN user u 
+                    ON pr.UserId = u.UserId
+                LEFT JOIN pickup_item pi 
+                    ON pr.RequestId = pi.RequestId
+                GROUP BY pr.RequestId
+                ORDER BY pr.PickupDate DESC
+                LIMIT 5";
+$resultRecent = mysqli_query($conn, $queryRecent);
 
 ?>
 
@@ -80,29 +96,20 @@ $totalPickup = mysqli_fetch_assoc($resultPickup)['totalPickup'];
                 <table>
 
                     <tr>
+                        <th>Request ID</th>
                         <th>User</th>
-                        <th>Item</th>
-                        <th>Status</th>
+                        <th>Total Items</th>
                     </tr>
 
-                    <tr>
-                        <td>Hakim</td>
-                        <td>Books</td>
-                        <td>Pending</td>
-                    </tr>
+                    <?php while ($row = mysqli_fetch_assoc($resultRecent)) { ?>
 
-                    <tr>
-                        <td>Ali</td>
-                        <td>Plastic</td>
-                        <td>Completed</td>
-                    </tr>
+                        <tr>
+                            <td><?= $row['RequestId']; ?></td>
+                            <td><?= $row['Name']; ?></td>
+                            <td><?= $row['TotalItems']; ?> Items</td>
+                        </tr>
 
-                    <tr>
-                        <td>Siti</td>
-                        <td>E-Waste</td>
-                        <td>Pending</td>
-                    </tr>
-
+                    <?php } ?>
                 </table>
 
             </div>

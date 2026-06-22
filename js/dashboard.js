@@ -2,37 +2,36 @@ document.getElementById("content").addEventListener("click", () => {
     document.getElementById("cb").checked = false;
 })
 
-let activityOpen = false;
-let contributorOpen = false;
+function toggleActivity() {
+    const hiddenItems = document.querySelectorAll(".hiddenActivity");
+    const btn = document.getElementById("activityBtn");
 
-function toggleActivity(){
-
-    const items = document.querySelectorAll(".hiddenActivity");
-    const button = document.querySelector("#activityList")
-                    .previousElementSibling
-                    .querySelector("button");
-
-    activityOpen = !activityOpen;
-
-    items.forEach(item=>{
-        item.style.display = activityOpen ? "list-item" : "none";
-    });
-
-    button.textContent = activityOpen ? "Hide" : "View All";
+    if (btn.textContent === "View All") {
+        hiddenItems.forEach(item => {
+            item.style.display = "table-row";
+        });
+        btn.textContent = "Hide";
+    } else {
+        hiddenItems.forEach(item => {
+            item.style.display = "none";
+        });
+        btn.textContent = "View All";
+    }
 }
 
-function toggleContributor(){
+function toggleContributor() {
+    const hiddenItems = document.querySelectorAll(".hiddenContributor");
+    const btn = document.getElementById("contributorBtn");
 
-    const items = document.querySelectorAll(".hiddenContributor");
-    const button = document.querySelector("#contributorList")
-                    .previousElementSibling
-                    .querySelector("button");
-
-    contributorOpen = !contributorOpen;
-
-    items.forEach(item=>{
-        item.style.display = contributorOpen ? "list-item" : "none";
-    });
-
-    button.textContent = contributorOpen ? "Hide" : "View All";
+    if (btn.textContent === "View All") {
+        hiddenItems.forEach(item => {
+            item.style.display = "table-row";
+        });
+        btn.textContent = "Hide";
+    } else {
+        hiddenItems.forEach(item => {
+            item.style.display = "none";
+        });
+        btn.textContent = "View All";
+    }
 }

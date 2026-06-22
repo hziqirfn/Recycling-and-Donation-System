@@ -44,6 +44,7 @@ body {
     max-width: 1000px;
     margin-left: 20px;
     box-sizing: border-box;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .additem-form label {
@@ -129,12 +130,25 @@ body {
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    background: white;
 }
 
-.cancel-btn:hover,
-.submit-btn:hover {
-    background: #f0f0f0;
+.submit-btn{
+    color: #FFFFFF;
+    background-color: #45B058;
+}
+
+.submit-btn:hover{
+    background-color: #378F46;
+}
+
+.cancel-btn{
+    background-color: whitesmoke;
+    color: black;
+}
+
+.cancel-btn:hover {
+    background-color: #d4d4d4;
+    color: black;
 }
 
 .button-group input[type="reset"]:hover,
@@ -152,6 +166,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .popup-box {
