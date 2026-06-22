@@ -19,7 +19,9 @@ $query = "SELECT COUNT(*) AS totalItem
 $result = mysqli_query($conn, $query);
 $data = mysqli_fetch_assoc($result);
 
-$sqlRecent = "SELECT ItemName, Status, ItemDate
+$totalItem = $data['totalItem'];
+
+$sqlRecent = "SELECT ItemName, Status, ItemDate, RejectReason
               FROM item
               WHERE UserId = '$userId'
               ORDER BY ItemDate DESC
@@ -51,6 +53,14 @@ $queryRecycle = "SELECT COUNT(*) AS totalRecycle
                  AND Status = 'Approved'";
 $resultRecycle = mysqli_query($conn, $queryRecycle);
 $totalRecycle = mysqli_fetch_assoc($resultRecycle)['totalRecycle'];
+
+$sqlContributor = "SELECT Name, Points
+                   FROM user
+                   WHERE Role NOT LIKE '%Admin%'
+                   ORDER BY Points DESC
+                   LIMIT 5";
+
+$resultContributor = $conn->query($sqlContributor);
 
 $conn->close();
 ?>
@@ -111,7 +121,7 @@ $conn->close();
                 <div class="box2">
                     <div class="boxHeader">
                         <h3>Recent Activity</h3>
-                        <button onclick="toggleActivity()">View All</button>
+                        <button id="activityBtn" onclick="toggleActivity()">View All</button>
                     </div>
 
                     <table>
@@ -121,17 +131,23 @@ $conn->close();
                             <th>Total Items</th>
                         </tr>
 
-                        <?php while ($row = $resultRecent->fetch_assoc())
-                        { 
-                        ?>
+                        <?php
+                        $countActivity = 0;
 
-                            <tr>
+                        while ($row = $resultRecent->fetch_assoc())
+                        {
+                            $countActivity++;
+                        ?>
+                            <tr class="<?= ($countActivity > 3) ? 'hiddenActivity' : ''; ?>">
                                 <td><?= $row['ItemName']; ?></td>
-                                <td><?= $row['Status']; ?></td>
+                                <td><?php if ($row['Status'] == 'Rejected' && !empty($row['RejectReason'])) 
+                                        {
+                                            $row['Status']; ?> (<?php $row['RejectReason'] ?>)</td>
                                 <td><?= $row['ItemDate']; ?></td>
                             </tr>
 
-                        <?php 
+                        <?php
+                            }
                         } 
                         ?>
                     </table>
@@ -140,28 +156,50 @@ $conn->close();
                 <div class="box2">
                     <div class="boxHeader">
                         <h3>Top Contributors</h3>
-                        <button onclick="toggleContributor()">View All</button>
+                        <button id="contributorBtn" onclick="toggleContributor()">View All</button>
                     </div>
 
                     <table>
                         <tr>
-                            <th>Request ID</th>
-                            <th>User</th>
-                            <th>Total Items</th>
+                            <th>Ranking</th>
+                            <th>Name</th>
+                            <th>Total Points</th>
                         </tr>
 
-                        <?php while ($row = $resultRecent->fetch_assoc())
-                        { 
-                        ?>
-
-                            <tr>
-                                <td><?= $row['ItemName']; ?></td>
-                                <td><?= $row['Status']; ?></td>
-                                <td><?= $row['ItemDate']; ?></td>
-                            </tr>
-
                         <?php 
-                        } 
+                        $countContributor = 0;
+
+                        if ($resultContributor->num_rows > 0) 
+                        {
+                            while ($row = $resultContributor->fetch_assoc()) 
+                            {
+                                $countContributor++;
+                                $rankDisplay = $countContributor;
+
+                                if ($countContributor == 1) {
+                                    $rankDisplay = "🥇";
+                                } elseif ($countContributor == 2) {
+                                    $rankDisplay = "🥈";
+                                } elseif ($countContributor == 3) {
+                                    $rankDisplay = "🥉";
+                                }
+                        ?>
+                                <tr class="<?= ($countContributor > 3) ? 'hiddenContributor' : ''; ?>">
+                                    <td><?= $rankDisplay ?></td>
+                                    <td><?= $row['Name']; ?></td>
+                                    <td><?= $row['Points']; ?> pts</td>
+                                </tr>
+                        <?php 
+                            }
+                        }
+                        else 
+                        {
+                        ?>
+                            <tr>
+                                <td colspan="3">No contributors yet</td>
+                            </tr>
+                        <?php
+                        }
                         ?>
                     </table>
                 </div>
