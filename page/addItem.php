@@ -7,14 +7,12 @@ include("../inc/auth.php");
 
 $error = "";
 
-if (isset($_SESSION['error']))
-{
+if (isset($_SESSION['error'])) {
     $error = $_SESSION['error'];
     unset($_SESSION['error']);
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userId = $_SESSION['userid'];
     $item = $_POST['itemName'];
     $category = $_POST['category'];
@@ -23,15 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $description = $_POST['description'];
     $image_url = "";
 
-    if (isset($_FILES['itemImage']) && $_FILES['itemImage']['error'] === 0)
-    {
+    if (isset($_FILES['itemImage']) && $_FILES['itemImage']['error'] === 0) {
         $uploadDir = '../image-UserItem/';
         $originalName = basename($_FILES['itemImage']['name']);
         $newFileName = uniqid('img_') . '_' . $originalName;
         $uploadPath = $uploadDir . $newFileName;
 
-        if (move_uploaded_file($_FILES['itemImage']['tmp_name'], $uploadPath))
-        {
+        if (move_uploaded_file($_FILES['itemImage']['tmp_name'], $uploadPath)) {
             $image_url = $uploadPath;
         }
     }
@@ -39,8 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $sql = "SELECT ItemName FROM item WHERE UserId = '$userId' AND ItemName = '$item'";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0)
-    {
+    if ($result->num_rows > 0) {
         $_SESSION['error'] = "Item already exist";
         header("Location: addItem.php");
         exit();
@@ -49,18 +44,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $prefix = "ITM-";
 
     $sql2 = "SELECT ItemId FROM item WHERE ItemId
-             LIKE '$prefix%' ORDER BY CAST(SUBSTRING(ItemId, " .(strlen($prefix) + 1). ") AS UNSIGNED)
+             LIKE '$prefix%' ORDER BY CAST(SUBSTRING(ItemId, " . (strlen($prefix) + 1) . ") AS UNSIGNED)
              DESC LIMIT 1";
     $result2 = $conn->query($sql2);
 
-    if ($result2->num_rows > 0)
-    {
+    if ($result2->num_rows > 0) {
         $row = $result2->fetch_assoc();
         $lastNum = (int) preg_replace('/[^0-9]/', '', $row['ItemId']);
         $itemId = $prefix . ($lastNum + 1);
-    }
-    else
-    {
+    } else {
         $itemId = $prefix . "1";
     }
 
@@ -68,13 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
              VALUES ('$itemId', '$item', '$category', '$condition', '$description', '$image_url', '$activity', '$userId')";
     $result2 = $conn->query($sql2);
 
-    if ($result2 === TRUE)
-    {
+    if ($result2 === TRUE) {
         $_SESSION['ItemId'] = $itemId;
         $_SESSION['error'] = "Your new item added";
-    }
-    else
-    {
+    } else {
         $_SESSION['error'] = "Your new item failed to add";
     }
     header("Location: addItem.php");
@@ -105,7 +94,7 @@ $conn->close();
         <?php include("sidebar.php"); ?>
 
         <label for="cb" id="overlay"></label>
-        
+
         <div id="content">
             <div class="additem-container">
 
@@ -153,7 +142,7 @@ $conn->close();
                     <div class="condition-group">
                         <input type="radio" id="donate" name="activity" value="Donate" required>
                         <label for="donate" class="condition-btn">Donate</label>
-                        
+
                         <input type="radio" id="recycle" name="activity" value="Recycle" required>
                         <label for="recycle" class="condition-btn">Recycle</label>
                     </div>
@@ -170,24 +159,22 @@ $conn->close();
         </div>
     </div>
 
-<?php 
-if ($error != "")
-{
-?>
-    <div id="alert" class="alert">
-        <div class="popup-box"><br>
-            <p><?= $error; ?></p> <br><br>
-            <button onclick="closePopup()">OK</button>
+    <?php
+    if ($error != "") {
+    ?>
+        <div id="alert" class="alert">
+            <div class="popup-box"><br>
+                <p><?= $error; ?></p> <br><br>
+                <button onclick="closePopup()">OK</button>
+            </div>
         </div>
-    </div>
-<?php 
-}
-?>
+    <?php
+    }
+    ?>
 </body>
 
 <script>
-    function closePopup()
-    {
+    function closePopup() {
         document.getElementById('alert').style.display = 'none';
     }
 </script>

@@ -32,10 +32,13 @@ if (isset($_POST['approve'])) {
 }
 
 if (isset($_POST['reject'])) {
+
     $itemId = $_POST['itemId'];
+    $reason = $_POST['rejectreason'];
 
     $sql = "UPDATE item
-            SET Status='Rejected'
+            SET Status='Rejected',
+                RejectReason='$reason'
             WHERE ItemId='$itemId'";
 
     $conn->query($sql);
@@ -139,17 +142,38 @@ if (isset($_POST['reject'])) {
             <form method="post" class="action-buttons">
                 <input type="hidden" name="itemId" value="<?= $item['ItemId'] ?>">
 
-                <button type="submit" name="approve" class="approve-btn">
+                <button type="submit" name="approve" class="approve-btn" formnovalidate>
                     ✓ Approve
                 </button>
 
-                <button type="submit" name="reject" class="reject-btn">
+                <button type="button" onclick="showRejectBox()" class="reject-btn">
                     ✕ Reject
                 </button>
+
+                <div id="rejectBox" class="reject-box">
+                    <label>Reason for Rejection</label>
+
+                    <textarea
+                        id="rejectreason"
+                        name="rejectreason"
+                        class="reject-textarea"
+                        placeholder="Example: Item image is unclear or item information is incomplete..."></textarea>
+
+                    <button type="submit" name="reject" class="confirm-reject-btn">
+                        Confirm Reject
+                    </button>
+                </div>
             </form>
         </section>
 
     </main>
+    <script>
+        function showRejectBox() {
+            document.getElementById("rejectBox").style.display = "block";
+
+            document.getElementById("rejectreason").required = true;
+        }
+    </script>
 </body>
 
 </html>
