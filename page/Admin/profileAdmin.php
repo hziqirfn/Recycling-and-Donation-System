@@ -1,10 +1,33 @@
+<?php
+
+session_start();
+
+include("../../inc/connect.php");
+include("../../inc/auth.php");
+
+$admin = true;
+
+$adminId = $_SESSION['userid'];
+
+$queryActivity = "
+SELECT *
+FROM activity
+WHERE UserId = '$adminId'
+AND ActivityType = 'Admin'
+ORDER BY ActivityDate DESC
+";
+
+$resultActivity = mysqli_query($conn, $queryActivity);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
@@ -80,50 +103,36 @@
 
                 <div class="profil2">
 
-                    <div class="activity-box">
-                        Approved pickup request - 5 Jun 2026
-                    </div>
+                    <?php
 
-                    <div class="activity-box">
-                        Added new reward item - 7 Jun 2026
-                    </div>
+                    if (mysqli_num_rows($resultActivity) > 0) {
+                        while ($activity = mysqli_fetch_assoc($resultActivity)) {
+                    ?>
 
-                    <div class="activity-box">
-                        Updated item category - 8 Jun 2026
-                    </div>
+                            <div class="activity-box">
+                                <?= $activity['ActivityText']; ?>
+                                -
+                                <?= date('d M Y', strtotime($activity['ActivityDate'])); ?>
+                            </div>
 
-                    <div class="activity-box">
-                        Managed user account - 9 Jun 2026
-                    </div>
-
-                    <div class="activity-box">
-                        Approved reward redemption - 10 Jun 2026
-                    </div>
-
-                    <div class="admin-stats">
-
-                        <div class="stat">
-                            <h3>150</h3>
-                            <p>Users</p>
+                        <?php
+                        }
+                    } else {
+                        ?>
+                        <div class="activity-box">
+                            No activity found
                         </div>
-
-                        <div class="stat">
-                            <h3>85</h3>
-                            <p>Items</p>
-                        </div>
-
-                        <div class="stat">
-                            <h3>32</h3>
-                            <p>Pickups</p>
-                        </div>
-
-                    </div>
+                    <?php
+                    }
+                    ?>
 
                 </div>
 
             </div>
 
         </div>
+
+    </div>
 
     </div>
 

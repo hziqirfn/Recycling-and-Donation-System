@@ -25,6 +25,40 @@ $sqlRecent = "SELECT ItemName, Status, ItemDate
 
 $resultRecent = $conn->query($sqlRecent);
 
+$userId = $_SESSION['userid'];
+$queryActivity = "
+SELECT *
+FROM activity
+WHERE UserId = '$userId'
+AND ActivityType = 'User'
+ORDER BY ActivityDate DESC
+LIMIT 5
+";
+$resultActivity = mysqli_query($conn, $queryActivity);
+
+//Donate
+$userId = $_SESSION['userid'];
+$queryDonate = "
+SELECT COUNT(*) AS totalDonate
+FROM item
+WHERE UserId = '$userId'
+AND ActivityType = 'Donate'
+AND Status = 'Approved'
+";
+$resultDonate = mysqli_query($conn, $queryDonate);
+$totalDonate = mysqli_fetch_assoc($resultDonate)['totalDonate'];
+
+//recycled
+$queryRecycle = "
+SELECT COUNT(*) AS totalRecycle
+FROM item
+WHERE UserId = '$userId'
+AND ActivityType = 'Recycle'
+AND Status = 'Approved'
+";
+
+$resultRecycle = mysqli_query($conn, $queryRecycle);
+$totalRecycle = mysqli_fetch_assoc($resultRecycle)['totalRecycle'];
 ?>
 
 <!DOCTYPE html>
@@ -69,12 +103,12 @@ $resultRecent = $conn->query($sqlRecent);
                 </div>
 
                 <div class="box">
-                    <h3>8</h3>
+                    <h3><?= $totalDonate ?></h3>
                     <p>Donated</p>
                 </div>
 
                 <div class="box">
-                    <h3>7</h3>
+                    <h3><?= $totalRecycle ?></h3>
                     <p>Recycled</p>
                 </div>
             </div>
@@ -87,15 +121,14 @@ $resultRecent = $conn->query($sqlRecent);
                     </div>
 
                     <ul class="activityList" id="activityList">
-                        <?php 
-                        while ($row = $resultRecent->fetch_assoc()) 
-                        { 
+                        <?php
+                        while ($row = $resultRecent->fetch_assoc()) {
                         ?>
                             <li>
                                 <?= $row['ItemName'] ?> - <?= $row['Status'] ?> - <?= $row['ItemDate'] ?>
                             </li>
-                        <?php 
-                        } 
+                        <?php
+                        }
                         ?>
                     </ul>
                 </div>
