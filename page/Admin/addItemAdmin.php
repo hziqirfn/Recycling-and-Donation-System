@@ -74,13 +74,14 @@ $result = $conn->query($sql);
                 <tbody>
                     <?php while ($row = $result->fetch_assoc()) { ?>
                         <tr data-status="<?= strtolower($row['Status']) ?>"
-                            ondblclick="window.location='itemStatusAdmin.php?id=<?= $row['ItemId'] ?>'"
+                            onclick="window.location='itemStatusAdmin.php?id=<?= $row['ItemId'] ?>'"
                             style="cursor:pointer;">
                             <td><?= $row['ItemId'] ?></td>
                             <td><strong><?= $row['ItemName'] ?></strong></td>
                             <td><?= $row['Name'] ?></td>
                             <td><?= $row['Category'] ?></td>
                             <td><?= $row['ItemDate'] ?></td>
+                            <td><?= $row['ActivityType'] ?></td>
                             <td>
                                 <span class="badge badge-<?= strtolower($row['Status']) ?>">
                                     <?= $row['Status'] ?>

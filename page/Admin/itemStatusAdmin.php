@@ -50,6 +50,7 @@ if (isset($_POST['reject'])) {
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item Details</title>
 
     <link rel="stylesheet" href="../../style/global.css">
@@ -62,11 +63,10 @@ if (isset($_POST['reject'])) {
     <?php include("headerAdmin.php"); ?>
     <?php include("sidebarAdmin.php"); ?>
 
+    <label for="cb" id="overlay"></label>
+
     <main class="details-container">
 
-        <a href="addItemAdmin.php" class="back-btn">← Back to Items</a>
-
-        <div class="status-badge">Pending Review</div>
 
         <section class="image-card">
             <img src="../../image-UserItem/<?= $item['Image'] ?>" alt="Item Image">
