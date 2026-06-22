@@ -192,11 +192,11 @@ $conn->close();
             <form method="post" class="action-buttons">
                 <input type="hidden" name="itemId" value="<?= $item['ItemId'] ?>">
 
-                <button type="submit" name="approve" class="approve-btn">
+                <button type="submit" name="approve" class="approve-btn" formnovalidate>
                     Approve
                 </button>
 
-                <button type="submit" name="reject" class="reject-btn">
+                <button type="button" onclick="showRejectBox()" class="reject-btn">
                     Reject
                 </button>
 

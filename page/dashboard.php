@@ -19,7 +19,9 @@ $query = "SELECT COUNT(*) AS totalItem
 $result = mysqli_query($conn, $query);
 $data = mysqli_fetch_assoc($result);
 
-$sqlRecent = "SELECT ItemName, Status, ItemDate
+$totalItem = $data['totalItem'];
+
+$sqlRecent = "SELECT ItemName, Status, ItemDate, RejectReason
               FROM item
               WHERE UserId = '$userId'
               ORDER BY ItemDate DESC
@@ -51,6 +53,14 @@ $queryRecycle = "SELECT COUNT(*) AS totalRecycle
                  AND Status = 'Approved'";
 $resultRecycle = mysqli_query($conn, $queryRecycle);
 $totalRecycle = mysqli_fetch_assoc($resultRecycle)['totalRecycle'];
+
+$sqlContributor = "SELECT Name, Points
+                   FROM user
+                   WHERE Role NOT LIKE '%Admin%'
+                   ORDER BY Points DESC
+                   LIMIT 5";
+
+$resultContributor = $conn->query($sqlContributor);
 
 $conn->close();
 ?>
@@ -114,19 +124,31 @@ $conn->close();
                         <button id="activityBtn" onclick="toggleActivity()">View All</button>
                     </div>
 
-                    <ul class="activityList" id="activityList">
+                    <table>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>User</th>
+                            <th>Total Items</th>
+                        </tr>
+
                         <?php
+                        $countActivity = 0;
+
                         while ($row = $resultRecent->fetch_assoc()) {
+                            $countActivity++;
                         ?>
-                            <li>
-                                <span><?= $row['ItemName'] ?></span>
-                                <span><?= $row['Status'] ?></span>
-                                <span><?= $row['ItemDate'] ?></span>
-                            </li>
-                        <?php
-                        }
-                        ?>
-                    </ul>
+                            <tr class="<?= ($countActivity > 3) ? 'hiddenActivity' : ''; ?>">
+                                <td><?= $row['ItemName']; ?></td>
+                                <td><?php if ($row['Status'] == 'Rejected' && !empty($row['RejectReason'])) {
+                                        $row['Status']; ?> (<?php $row['RejectReason'] ?>)</td>
+                                <td><?= $row['ItemDate']; ?></td>
+                            </tr>
+
+                    <?php
+                                    }
+                                }
+                    ?>
+                    </table>
                 </div>
 
                 <div class="box2">
@@ -135,24 +157,45 @@ $conn->close();
                         <button id="contributorBtn" onclick="toggleContributor()">View All</button>
                     </div>
 
-                    <ol class="contributorList" id="contributorList">
+                    <table>
+                        <tr>
+                            <th>Ranking</th>
+                            <th>Name</th>
+                            <th>Total Points</th>
+                        </tr>
+
                         <?php
                         $countContributor = 0;
 
                         if ($resultContributor->num_rows > 0) {
                             while ($row = $resultContributor->fetch_assoc()) {
                                 $countContributor++;
+                                $rankDisplay = $countContributor;
+
+                                if ($countContributor == 1) {
+                                    $rankDisplay = "🥇";
+                                } elseif ($countContributor == 2) {
+                                    $rankDisplay = "🥈";
+                                } elseif ($countContributor == 3) {
+                                    $rankDisplay = "🥉";
+                                }
                         ?>
-                                <li class="<?= ($countContributor > 3) ? 'hiddenContributor' : ''; ?>">
-                                    <?= $row['Name']; ?> - <?= $row['Points']; ?> pts
-                                </li>
+                                <tr class="<?= ($countContributor > 3) ? 'hiddenContributor' : ''; ?>">
+                                    <td><?= $rankDisplay ?></td>
+                                    <td><?= $row['Name']; ?></td>
+                                    <td><?= $row['Points']; ?> pts</td>
+                                </tr>
                             <?php
                             }
                         } else {
                             ?>
-                            <li>No contributors yet</li>
-                        <?php } ?>
-                    </ol>
+                            <tr>
+                                <td colspan="3">No contributors yet</td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </table>
                 </div>
             </div>
         </div>
