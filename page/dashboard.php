@@ -114,19 +114,27 @@ $conn->close();
                         <button onclick="toggleActivity()">View All</button>
                     </div>
 
-                    <ul class="activityList" id="activityList">
-                        <?php
-                        while ($row = $resultRecent->fetch_assoc()) {
+                    <table>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>User</th>
+                            <th>Total Items</th>
+                        </tr>
+
+                        <?php while ($row = $resultRecent->fetch_assoc())
+                        { 
                         ?>
-                            <li>
-                                <span><?= $row['ItemName'] ?></span>
-                                <span><?= $row['Status'] ?></span>
-                                <span><?= $row['ItemDate'] ?></span>
-                            </li>
-                        <?php
-                        }
+
+                            <tr>
+                                <td><?= $row['ItemName']; ?></td>
+                                <td><?= $row['Status']; ?></td>
+                                <td><?= $row['ItemDate']; ?></td>
+                            </tr>
+
+                        <?php 
+                        } 
                         ?>
-                    </ul>
+                    </table>
                 </div>
 
                 <div class="box2">
@@ -135,13 +143,27 @@ $conn->close();
                         <button onclick="toggleContributor()">View All</button>
                     </div>
 
-                    <ol class="contributorList" id="contributorList">
-                        <li>Ali - 520 pts</li>
-                        <li>Siti - 480 pts</li>
-                        <li>Ahmad - 450 pts</li>
-                        <li class="hiddenContributor">John - 400 pts</li>
-                        <li class="hiddenContributor">User - 250 pts</li>
-                    </ol>
+                    <table>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>User</th>
+                            <th>Total Items</th>
+                        </tr>
+
+                        <?php while ($row = $resultRecent->fetch_assoc())
+                        { 
+                        ?>
+
+                            <tr>
+                                <td><?= $row['ItemName']; ?></td>
+                                <td><?= $row['Status']; ?></td>
+                                <td><?= $row['ItemDate']; ?></td>
+                            </tr>
+
+                        <?php 
+                        } 
+                        ?>
+                    </table>
                 </div>
             </div>
         </div>
