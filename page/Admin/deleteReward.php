@@ -1,21 +1,22 @@
 <?php
 
+session_start();
+
 include("../../inc/connect.php");
+include("../../inc/auth.php");
 
-$id = $_GET['id'];
+if(isset($_GET['id']))
+{
+    $rewardId = $_GET['id'];
 
-$query = "
+    $query = "
+    DELETE FROM reward
+    WHERE RewardId = '$rewardId'
+    ";
 
-DELETE FROM reward_catalog
+    mysqli_query($conn,$query);
 
-WHERE RewardId='$id'
-
-";
-
-mysqli_query($conn,$query);
-
-header("Location: rewardAdmin.php");
-
-exit();
-
+    header("Location: rewardAdmin.php");
+    exit();
+}
 ?>
