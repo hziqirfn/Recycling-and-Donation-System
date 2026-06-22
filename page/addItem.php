@@ -120,7 +120,7 @@ $conn->close();
 
                     <label for="category">Category</label>
                     <select name="category" id="category" required>
-                        <option selected disabled>Select Category</option>
+                        <option value="" selected disabled>Select Category</option>
                         <option value="Electronics">Electronics</option>
                         <option value="Furniture">Furniture</option>
                         <option value="Clothing">Clothing</option>

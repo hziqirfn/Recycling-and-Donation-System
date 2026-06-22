@@ -58,21 +58,23 @@ $conn->close();
 </head>
 
 <body>
-    <?php include("header.php"); ?>
+<?php 
+    include("header.php");
+    include("sidebar.php"); 
+?>
+
+    <label for="cb" id="overlay"></label>
 
     <div id="main">
-        <?php include("sidebar.php"); ?>
-
-        <label for="cb" id="overlay"></label>
-
         <div class="content">
+
             <div class="left-panel">
                 <div class="gambar">
                     <img src="../image/profile1.png" alt="Profile">
                 </div>
 
                 <h2>Profile</h2>
-                <p>Manage your personal informations</p>
+                <p>Manage your personal information</p>
             </div>
 
             <div class="right-panel">
@@ -105,28 +107,28 @@ $conn->close();
         </div>
     </div>
 
-    <?php
-    if ($success != "") {
-    ?>
-        <div id="alert" class="alert">
-            <div class="popup-box"><br>
-                <p><?= $success; ?></p> <br><br>
-                <button onclick="closePopup()">OK</button>
-            </div>
-        </div>
-    <?php
-    }
-    ?>
-
-    <div id="alert" class="alert" style="display:none;">
-        <div class="popup-box">
-            <p id="confirmText"></p>
-            <br>
-            <button id="yesBtn">Yes</button>
-            <button onclick="closePopup()">No</button>
+<?php
+if ($success != "") 
+{
+?>
+    <div id="alert" class="alert">
+        <div class="popup-box"><br>
+            <p><?= $success; ?></p> <br><br>
+            <button onclick="closePopup()">OK</button>
         </div>
     </div>
+<?php
+}
+?>
 
+<div id="confirmAlert" class="alert" style="display:none;">
+    <div class="popup-box">
+        <p id="confirmText"></p>
+        <br>
+        <button id="yesBtn">Yes</button>
+        <button onclick="confirmClosePopup()">No</button>
+    </div>
+</div>
 </body>
 
 </html>
