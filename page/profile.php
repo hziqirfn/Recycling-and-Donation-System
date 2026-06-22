@@ -62,21 +62,23 @@ $conn->close();
 </head>
 
 <body>
-    <?php include("header.php"); ?>
+<?php 
+    include("header.php");
+    include("sidebar.php"); 
+?>
+
+    <label for="cb" id="overlay"></label>
 
     <div id="main">
-        <?php include("sidebar.php"); ?>
-
-        <label for="cb" id="overlay"></label>
-
         <div class="content">
+
             <div class="left-panel">
                 <div class="gambar">
                     <img src="../image/profile1.png" alt="Profile">
                 </div>
 
                 <h2>Profile</h2>
-                <p>Manage your personal informations</p>
+                <p>Manage your personal information</p>
             </div>
 
             <div class="right-panel">

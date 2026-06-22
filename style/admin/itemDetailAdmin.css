@@ -1,24 +1,8 @@
 .details-container {
     margin-left: 260px;
-    padding: 40px;
+    padding: 140px 40px 40px 40px;
     background-color: #f5f7f5;
     min-height: 100vh;
-}
-
-.back-btn {
-    text-decoration: none;
-    color: #1f3d2b;
-    font-weight: bold;
-}
-
-.status-badge {
-    width: fit-content;
-    margin: 10px auto 30px;
-    background: #fff3cd;
-    color: #b7791f;
-    padding: 8px 18px;
-    border-radius: 20px;
-    font-weight: bold;
 }
 
 .image-card {

@@ -205,6 +205,17 @@
 
 @media screen and (max-width:768px){
 
+    #head {
+        height: auto;               /* Lets it expand vertically to fit the two rows */
+        flex-direction: column;     /* Stacks logo text row and navbar row */
+        justify-content: center;
+        align-items: center;
+    }
+
+    #head .side {
+        width: 100%;
+    }
+
    .logo img{
         width: 45px;
         height: 45px;
@@ -220,10 +231,13 @@
     }
 
     .navbar{
-        margin: 20px 20px 20px 10px;
+        margin: 0px 0px 10px 0px;
+        gap: 40px;
     }
 
     .navbar a{
+        width: 90px;
+        text-align: center;
         padding:8px 15px;
         font-size:13px;
     }

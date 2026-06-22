@@ -16,8 +16,13 @@
 
 .left-panel{
     width:250px;
-    text-align:center;
     flex-shrink:0;
+    background:#c8e6c9;
+    border-radius:20px;
+    padding:30px 20px;
+    text-align:center;
+    height:fit-content;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .gambar img{
@@ -31,6 +36,12 @@
 .left-panel h2{
     margin-top:20px;
     font-size:36px;
+    color:#2e7d32;
+}
+
+.left-panel p{
+    margin-top:10px;
+    color:#555;
 }
 
 .right-panel{
@@ -42,6 +53,7 @@
 .profil2{
     background:white;
     border:1px solid #dcdcdc;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius:15px;
     padding:25px;
     width:100%;
@@ -87,6 +99,7 @@
     padding:0 15px;
     margin-bottom:20px;
     box-sizing:border-box;
+    background-color: whitesmoke;
 }
 
 .profil textarea{
@@ -105,11 +118,15 @@
 }
 
 .activity-box{
-    background:white;
-    border:1px solid #ddd;
-    border-radius:12px;
-    padding:18px;
+    background:#f8f8f8;
+    border-left:5px solid #4caf50;
+    border-radius:10px;
+    padding:15px;
     margin-bottom:15px;
+}
+
+.activity-box:hover{
+    background:#eef8ee;
 }
 
 .bottom{
@@ -120,7 +137,7 @@
     display:flex;
     justify-content:flex-end;
     gap:10px;
-    margin-top:20px;
+    margin-top:10px;
 }
 
 .bottom button{
@@ -129,6 +146,15 @@
     border-radius:10px;
     width: 100px;
     cursor:pointer;
+}
+
+.bottom button:first-child{
+    background:#2e7d32;
+    color:white;
+}
+
+.bottom button:first-child:hover {
+    background: #1b5e20;
 }
 
 .alert {
