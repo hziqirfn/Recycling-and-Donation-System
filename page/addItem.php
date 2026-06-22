@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $userId = $_SESSION['userid'];
     $item = $_POST['itemName'];
     $category = $_POST['category'];
+    $activity = $_POST['activity'];
     $condition = $_POST['condition'];
     $description = $_POST['description'];
     $image_url = "";
@@ -63,8 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         $itemId = $prefix . "1";
     }
 
-    $sql2 = "INSERT INTO item (ItemId, ItemName, Category, `Condition`, Description, Image, UserId) 
-             VALUES ('$itemId', '$item', '$category', '$condition', '$description', '$image_url', '$userId')";
+    $sql2 = "INSERT INTO item (ItemId, ItemName, Category, `Condition`, Description, Image, ActivityType, UserId) 
+             VALUES ('$itemId', '$item', '$category', '$condition', '$description', '$image_url', '$activity', '$userId')";
     $result2 = $conn->query($sql2);
 
     if ($result2 === TRUE)
@@ -110,7 +111,7 @@ $conn->close();
 
                 <div class="additem-title">
                     <h2>Add New Item</h2>
-                    <p>List an item and donate it to the community!</p>
+                    <p>Share reusable items with the community or recycle them responsibly</p>
                 </div>
 
                 <form class="additem-form" action="addItem.php" method="post" enctype="multipart/form-data">
@@ -144,6 +145,18 @@ $conn->close();
 
                     <label for="description">Description</label>
                     <textarea name="description" id="description" rows="4"></textarea>
+
+                    <label for="activity">Type of Activity</label>
+                    <small>
+                        We will ensure your item is donated or recycled according to your selection.
+                    </small>
+                    <div class="condition-group">
+                        <input type="radio" id="donate" name="activity" value="Donate" required>
+                        <label for="donate" class="condition-btn">Donate</label>
+                        
+                        <input type="radio" id="recycle" name="activity" value="Recycle" required>
+                        <label for="recycle" class="condition-btn">Recycle</label>
+                    </div>
 
                     <label>Image Item</label>
                     <input type="file" id="itemImage" name="itemImage" accept="image/*" required>

@@ -93,7 +93,8 @@ $conn->close();
                         <input type="email" name="email" value="<?= $_SESSION['email'] ?>" readonly>
 
                         <label>Phone Number</label>
-                        <input type="text" name="phone" class="edit" value="<?= $user['NoPhone'] ?>" placeholder="---" maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g, '')" inputmode="numeric" readonly>
+                        <input type="text" name="phone" class="edit" value="<?= $user['NoPhone'] ?>" placeholder="---" 
+                            maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g, '')" inputmode="numeric" readonly>
 
                         <label>Role</label>
                         <input type="text" name="role" id="role" value="<?= $_SESSION['role'] ?>" readonly>

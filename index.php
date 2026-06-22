@@ -6,23 +6,20 @@
     <meta charset="UTF-8">
     <title>UTeM RecycleHub</title>
     <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="style/global.css">
 </head>
 
 <body>
-
-    <header class="header">
-
-        <div class="logo-section">
-
-            <div class="logo-box">
-                <img src="image/logo.png" alt="Logo">
+    <div id="head">
+        <div class="side">
+            <div class="logo">
+                <img src="image/logo.png" alt="logo">
             </div>
 
-            <div class="logo-text">
+            <div class="text">
                 <h2>UTeM RecycleHub</h2>
                 <p>Recycling & Donation</p>
             </div>
-
         </div>
 
         <nav class="navbar">
@@ -30,8 +27,7 @@
             <a href="page/about.php">ABOUT</a>
             <a href="page/map.php">MAP</a>
         </nav>
-
-    </header>
+    </div>
 
     <section class="hero">
         <h1>Small Effort,<br>Huge Difference</h1>
@@ -77,7 +73,6 @@
     <section class="category">
 
         <h2>What can you Recycle and Donate?</h2>
-
         <div class="cards">
 
             <div class="card clothes">
@@ -108,12 +103,9 @@
             Every small action matters—start recycling and make a difference today.
         </p>
 
-        <a href="page/login.php" class="join-btn">
-            JOIN US NOW →
-        </a>
+        <a href="page/login.php" class="join-btn">JOIN US NOW →</a>
 
     </section>
-
 </body>
 
 </html>
