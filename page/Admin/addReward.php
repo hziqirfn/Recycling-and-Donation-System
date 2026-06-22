@@ -1,45 +1,58 @@
 <?php
 
+session_start();
+
 include("../../inc/connect.php");
+include("../../inc/auth.php");
 
-$id = $_POST['rewardId'];
+if(isset($_POST['rewardId']))
+{
+    $rewardId = $_POST['rewardId'];
+    $rewardName = $_POST['rewardName'];
+    $rewardPoint = $_POST['RewardPoint'];
+    $stock = $_POST['stock'];
+    $rewardRole = $_POST['rewardRole'];
+    $status = $_POST['status'];
 
-$name = $_POST['rewardName'];
+    $check = mysqli_query(
+        $conn,
+        "SELECT * FROM reward
+        WHERE RewardId='$rewardId'"
+    );
 
-$points = $_POST['pointsRequired'];
+    if(mysqli_num_rows($check) > 0)
+    {
+        echo "<script>
+                alert('Reward ID already exists');
+                window.location='rewardAdmin.php';
+              </script>";
+        exit();
+    }
 
-$stock = $_POST['stock'];
+    $query = "
+    INSERT INTO reward
+    (
+        RewardId,
+        RewardName,
+        RewardPoint,
+        Stock,
+        RewardRole,
+        Status
+    )
+    VALUES
+    (
+        '$rewardId',
+        '$rewardName',
+        '$rewardPoint',
+        '$stock',
+        '$rewardRole',
+        '$status'
+    )
+    ";
 
-$status = $_POST['status'];
+    mysqli_query($conn,$query);
 
-$query = "
-
-INSERT INTO reward_catalog
-
-(
-RewardId,
-RewardName,
-PointsRequired,
-Stock,
-Status
-)
-
-VALUES
-
-(
-'$id',
-'$name',
-'$points',
-'$stock',
-'$status'
-)
-
-";
-
-mysqli_query($conn,$query);
-
-header("Location: rewardAdmin.php");
-
-exit();
-
+    header("Location: rewardAdmin.php");
+    exit();
+}
 ?>
