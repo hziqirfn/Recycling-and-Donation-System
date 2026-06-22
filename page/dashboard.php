@@ -144,7 +144,7 @@ $conn->close();
                                     <?php 
                                     if ($row['Status'] == 'Rejected' && !empty($row['RejectReason'])) 
                                         {
-                                            echo htmlspecialchars($row['Status']) . " (" . htmlspecialchars($row['RejectReason']) . ")";                                        }
+                                            echo ($row['Status']) . " (" . ($row['RejectReason']) . ")";                                        }
                                         else
                                         {
                                             echo $row['Status'];
@@ -202,7 +202,7 @@ $conn->close();
                         {
                         ?>
                             <tr>
-                                <td colspan="3">No contributors yet</td>
+                                <td colspan="3" style="text-align: center;">No contributors yet</td>
                             </tr>
                         <?php
                         }
