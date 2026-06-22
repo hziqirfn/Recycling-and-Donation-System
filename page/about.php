@@ -6,24 +6,28 @@
     <meta charset="UTF-8">
     <title>UTeM RecycleHub</title>
     <link rel="stylesheet" href="../style/about.css">
+    <link rel="stylesheet" href="../style/global.css">
 </head>
 
 <body>
-
-    <header class="header">
-
-        <div class="logo-section">
-
-            <div class="logo-box">
-                <img src="../image/logo.png" alt="Logo">
+    <div id="head">
+        <div class="side">
+            <div class="logo">
+                <img src="../image/logo.png" alt="logo">
             </div>
 
-            <div class="logo-text">
+            <div class="text">
                 <h2>UTeM RecycleHub</h2>
                 <p>Recycling & Donation</p>
             </div>
-
         </div>
+
+        <nav class="navbar">
+            <a href="../index.php">HOME</a>
+            <a href="about.php">ABOUT</a>
+            <a href="map.php">MAP</a>
+        </nav>
+    </div>
 
         <nav class="navbar">
             <a href="../index.php">HOME</a>

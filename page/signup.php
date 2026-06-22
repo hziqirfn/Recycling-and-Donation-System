@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $email = $_POST['email'];
     $username = $_POST['username'];
+    $phone = $_POST['phone'];
     $password = $_POST['password'];
     $confPassword = $_POST['confPassword'];
 
@@ -72,8 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
         $userId = $prefix . "1";
     }
 
-    $sql3 = "INSERT INTO user (UserId, Email, Name, Password, Role)
-             VALUES ('$userId', '$email', '$username', '$hash', '$role')";
+    $sql3 = "INSERT INTO user (UserId, Email, Name, Password, NoPhone, Role)
+             VALUES ('$userId', '$email', '$username', '$hash', '$phone', '$role')";
     $result3 = $conn->query($sql3);
 
     if ($result3 === TRUE)
@@ -101,56 +102,65 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UTeM RecycleHub</title>
     <link rel="stylesheet" href="../style/signup.css">
+    <link rel="stylesheet" href="../style/global.css">
 </head>
 
 <body>
 
-    <header class="header">
-        <div class="logo-section">
-            <img src="../image/logo.png" alt="Logo">
-            <div>
+    <div id="head">
+        <div class="side">
+            <div class="logo">
+                <img src="../image/logo.png" alt="logo">
+            </div>
+
+            <div class="text">
                 <h2>UTeM RecycleHub</h2>
                 <p>Recycling & Donation</p>
             </div>
         </div>
-    </header>
+    </div>
 
-    <div class="signup-wrapper">
-        <div class="signup-left">
-            <h1>Sign Up</h1>
-            <p>
-                Welcome! Please create your account to get started.
-            </p>
+    <div class="signup-page">
+        <div class="signup-wrapper">
+            <div class="signup-left">
+                <h1>Sign Up</h1>
+                <p>
+                    Welcome! Please create your account to get started.
+                </p>
 
-            <form action="signup.php" method="post" id="signupForm">
+                <form action="signup.php" method="post" id="signupForm">
 
-                <label for="email">Email</label>
-                <input type="email" name="email" placeholder="abc@email.com" required>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" placeholder="abc@email.com" required>
 
-                <label for="username">Username</label>
-                <input type="text" name="username" placeholder="Username" required>
+                    <label for="username">Username</label>
+                    <input type="text" name="username" placeholder="Username" required>
 
-                <label for="password">Password</label>
-                <input type="password" name="password" placeholder="Password" required>
+                    <label for="phone">Phone Number</label>
+                    <input type="text" name="phone" placeholder="000 000 0000" maxlength="11" 
+                        oninput="this.value=this.value.replace(/[^0-9]/g, '')" inputmode="numeric">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="Password" required>
 
-                <label for="confPassword">Confirm Password</label>
-                <input type="password" name="confPassword" placeholder="Re-Type Password" required>
+                    <label for="confPassword">Confirm Password</label>
+                    <input type="password" name="confPassword" placeholder="Re-Type Password" required>
 
-                <button type="submit">
-                    Sign Up
-                </button>
+                    <button type="submit">
+                        Sign Up
+                    </button>
 
-            </form>
+                </form>
 
-        </div>
+            </div>
 
-        <div class="signup-right">
-            <div class="logo-card">
-                <img src="../image/logo.png" alt="Logo">
-                <h2>UTeM RecycleHub</h2>
+            <div class="signup-right">
+                <div class="logo-card">
+                    <img src="../image/logo.png" alt="Logo">
+                    <h2>UTeM RecycleHub</h2>
+                </div>
             </div>
         </div>
-    </div>
+    </div>    
 
 <?php 
 if ($error != "")

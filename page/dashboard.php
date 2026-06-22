@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 include("../inc/connect.php");
@@ -16,10 +17,10 @@ $data = mysqli_fetch_assoc($result);
 
 $totalItem = $data['totalItem'];
 
-$sqlRecent = "SELECT ItemName, Status, item_date
+$sqlRecent = "SELECT ItemName, Status, ItemDate
               FROM item
               WHERE UserId = '$userId'
-              ORDER BY item_date DESC
+              ORDER BY ItemDate DESC
               LIMIT 5";
 
 $resultRecent = $conn->query($sqlRecent);
@@ -86,11 +87,16 @@ $resultRecent = $conn->query($sqlRecent);
                     </div>
 
                     <ul class="activityList" id="activityList">
-                        <?php while ($row = $resultRecent->fetch_assoc()) { ?>
+                        <?php 
+                        while ($row = $resultRecent->fetch_assoc()) 
+                        { 
+                        ?>
                             <li>
-                                ✔ <?= $row['ItemName'] ?> - <?= $row['Status'] ?> - <?= $row['item_date'] ?>
+                                <?= $row['ItemName'] ?> - <?= $row['Status'] ?> - <?= $row['ItemDate'] ?>
                             </li>
-                        <?php } ?>
+                        <?php 
+                        } 
+                        ?>
                     </ul>
                 </div>
 

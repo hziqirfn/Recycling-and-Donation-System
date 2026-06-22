@@ -1,10 +1,14 @@
 <?php
+
+session_start();
+
 include("../../inc/connect.php");
+include("../../inc/auth.php");
 
 $sql = "SELECT item.ItemId,
                item.ItemName,
                item.Category,
-               item.item_date,
+               item.ItemDate,
                item.Status,
                user.Name
         FROM item
@@ -74,7 +78,7 @@ $result = $conn->query($sql);
                             <td><strong><?= $row['ItemName'] ?></strong></td>
                             <td><?= $row['Name'] ?></td>
                             <td><?= $row['Category'] ?></td>
-                            <td><?= $row['item_date'] ?></td>
+                            <td><?= $row['ItemDate'] ?></td>
                             <td>
                                 <span class="badge badge-<?= strtolower($row['Status']) ?>">
                                     <?= $row['Status'] ?>

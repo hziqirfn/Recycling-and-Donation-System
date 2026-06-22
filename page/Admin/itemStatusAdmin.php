@@ -1,5 +1,9 @@
 <?php
+
+session_start();
+
 include("../../inc/connect.php");
+include("../../inc/auth.php");
 
 $itemId = $_GET['id'];
 
@@ -62,7 +66,7 @@ if (isset($_POST['reject'])) {
         <div class="status-badge">Pending Review</div>
 
         <section class="image-card">
-            <img src="../../image/<?= $item['Image'] ?>" alt="Item Image">
+            <img src="../../image-UserItem/<?= $item['Image'] ?>" alt="Item Image">
 
             <div class="image-text">
                 <h1><?= $item['ItemName'] ?></h1>
@@ -102,7 +106,7 @@ if (isset($_POST['reject'])) {
 
             <div class="info-row">
                 <span>Submitted Date</span>
-                <b><?= $item['item_date'] ?></b>
+                <b><?= $item['ItemDate'] ?></b>
             </div>
         </section>
 
