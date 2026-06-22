@@ -38,10 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $requestId = $prefix . "1";
     }
 
-
     $sql3 = "INSERT INTO pickup_request (RequestId, PickupDate, PickupTime, PickupAddress, Description, UserId)
-                VALUES ('$requestId', '$date', '$time', '$location', '$note', '$userId')";
-
+             VALUES ('$requestId', '$date', '$time', '$location', '$note', '$userId')";
     $success = $conn->query($sql3);
 
     if ($success)
@@ -49,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         foreach ($itemIds as $itemid)
         {
             $sql4 = "INSERT INTO pickup_item (ItemId, RequestId)
-                    VALUES ('$itemid', '$requestId')";
+                     VALUES ('$itemid', '$requestId')";
 
             if (!$conn->query($sql4))
             {
@@ -63,7 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     {
         $_SESSION['RequestId'] = $requestId;
         $_SESSION['error'] = "Your request pickup added";
-    } else {
+    } 
+    else 
+    {
         $_SESSION['error'] = "Your request pickup failed to add";
     }
     header("Location: pickup.php");

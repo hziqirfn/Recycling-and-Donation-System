@@ -10,7 +10,7 @@ include("../../inc/auth.php");
 $queryReward = "
 
 SELECT *
-FROM reward_catalog
+FROM reward
 ORDER BY RewardId ASC
 
 ";
@@ -32,12 +32,12 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTeM RecycleHub</title>
 
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/admin/rewardAdmin.css">
+    <title>UTeM RecycleHub</title>
 </head>
 
 <body class="rewards-page">
@@ -59,31 +59,17 @@ include("sidebarAdmin.php");
     </div>
 
     <div class="header-actions">
-
-       <button class="add-btn"
-               onclick="openAddModal()">
-
+       <button class="add-btn" onclick="openAddModal()">
            + Add Reward
-
        </button>
 
-       <select id="statusFilter"
-               onchange="filterRewards()">
+       <select id="statusFilter" onchange="filterRewards()">
 
-           <option value="all">
-               All Rewards
-           </option>
-
-           <option value="active">
-               Active
-           </option>
-
-           <option value="inactive">
-               Inactive
-           </option>
+           <option value="all">All Rewards</option>
+           <option value="active">Active</option>
+           <option value="inactive">Inactive</option>
 
        </select>
-
     </div>
 
     <div class="total-text">
@@ -99,17 +85,11 @@ include("sidebarAdmin.php");
         <div class="reward-card <?= strtolower($row['Status']); ?>">
 
             <div class="card-top">
-
-                <span class="reward-icon">
-                    🎁
-                </span>
+                <span class="reward-icon">🎁</span>
 
                 <span class="badge <?= ($row['Status']=="Active") ? "badge-active" : "badge-inactive"; ?>">
-
                    <?= $row['Status']; ?>
-
                 </span>
-
             </div>
 
             <h3>
@@ -419,8 +399,6 @@ function closePointModal(){
     </div>
 
 </div>
-
-<?php mysqli_close($conn); ?>
 
 </body>
 </html>

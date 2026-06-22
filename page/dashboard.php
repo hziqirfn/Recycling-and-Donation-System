@@ -7,58 +7,62 @@ include("../inc/auth.php");
 
 $userId = $_SESSION['userid'];
 
+$point = "SELECT Points
+          FROM user
+          WHERE UserId = '$userId'";
+$resultPoint = mysqli_query($conn, $point);
+$dataPoint = mysqli_fetch_assoc($resultPoint);
+
 $query = "SELECT COUNT(*) AS totalItem
           FROM item
           WHERE UserId = '$userId'";
-
 $result = mysqli_query($conn, $query);
-
 $data = mysqli_fetch_assoc($result);
 
 $totalItem = $data['totalItem'];
 
-$sqlRecent = "SELECT ItemName, Status, ItemDate
+$sqlRecent = "SELECT ItemName, Status, ItemDate, RejectReason
               FROM item
               WHERE UserId = '$userId'
               ORDER BY ItemDate DESC
               LIMIT 5";
-
 $resultRecent = $conn->query($sqlRecent);
 
-$userId = $_SESSION['userid'];
-$queryActivity = "
-SELECT *
-FROM activity
-WHERE UserId = '$userId'
-AND ActivityType = 'User'
-ORDER BY ActivityDate DESC
-LIMIT 5
-";
+$queryActivity = "SELECT *
+                  FROM activity
+                  WHERE UserId = '$userId'
+                  AND ActivityType = 'User'
+                  ORDER BY ActivityDate DESC
+                  LIMIT 5";
 $resultActivity = mysqli_query($conn, $queryActivity);
 
 //Donate
-$userId = $_SESSION['userid'];
-$queryDonate = "
-SELECT COUNT(*) AS totalDonate
-FROM item
-WHERE UserId = '$userId'
-AND ActivityType = 'Donate'
-AND Status = 'Approved'
-";
+$queryDonate = "SELECT COUNT(*) AS totalDonate 
+                FROM item
+                WHERE UserId = '$userId'
+                AND ActivityType = 'Donate'
+                AND Status = 'Approved'";
 $resultDonate = mysqli_query($conn, $queryDonate);
 $totalDonate = mysqli_fetch_assoc($resultDonate)['totalDonate'];
 
 //recycled
-$queryRecycle = "
-SELECT COUNT(*) AS totalRecycle
-FROM item
-WHERE UserId = '$userId'
-AND ActivityType = 'Recycle'
-AND Status = 'Approved'
-";
-
+$queryRecycle = "SELECT COUNT(*) AS totalRecycle 
+                 FROM item 
+                 WHERE UserId = '$userId'
+                 AND ActivityType = 'Recycle'
+                 AND Status = 'Approved'";
 $resultRecycle = mysqli_query($conn, $queryRecycle);
 $totalRecycle = mysqli_fetch_assoc($resultRecycle)['totalRecycle'];
+
+$sqlContributor = "SELECT Name, Points
+                   FROM user
+                   WHERE Role NOT LIKE '%Admin%'
+                   ORDER BY Points DESC
+                   LIMIT 10";
+
+$resultContributor = $conn->query($sqlContributor);
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -91,14 +95,14 @@ $totalRecycle = mysqli_fetch_assoc($resultRecycle)['totalRecycle'];
                 </div>
 
                 <div class="boxPoint">
-                    <h3>200</h3>
+                    <h3><?= $dataPoint['Points'] ?></h3>
                     <p>Your Points</p>
                 </div>
             </div>
 
             <div id="content2">
                 <div class="box">
-                    <h2><?php echo $totalItem; ?></h2>
+                    <h2><?= $data['totalItem'] ?></h2>
                     <p>Total Item</p>
                 </div>
 
@@ -117,35 +121,95 @@ $totalRecycle = mysqli_fetch_assoc($resultRecycle)['totalRecycle'];
                 <div class="box2">
                     <div class="boxHeader">
                         <h3>Recent Activity</h3>
-                        <button onclick="toggleActivity()">View All</button>
+                        <button id="activityBtn" onclick="toggleActivity()">View All</button>
                     </div>
 
-                    <ul class="activityList" id="activityList">
+                    <table>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+
                         <?php
+                        $countActivity = 0;
+
                         while ($row = $resultRecent->fetch_assoc()) {
+                            $countActivity++;
                         ?>
-                            <li>
-                                <?= $row['ItemName'] ?> - <?= $row['Status'] ?> - <?= $row['ItemDate'] ?>
-                            </li>
+                            <tr class="<?= ($countActivity > 3) ? 'hiddenActivity' : ''; ?>">
+                                <td><?= $row['ItemName']; ?></td>
+                                <td>
+                                    <?php
+                                    if ($row['Status'] == 'Rejected' && !empty($row['RejectReason'])) {
+                                        echo ($row['Status']) . " (" . ($row['RejectReason']) . ")";
+                                    } else {
+                                        echo $row['Status'];
+                                    }
+                                    ?>
+                                </td>
+                                <td><?= $row['ItemDate']; ?></td>
+                            </tr>
                         <?php
                         }
                         ?>
-                    </ul>
+                    </table>
                 </div>
 
                 <div class="box2">
                     <div class="boxHeader">
                         <h3>Top Contributors</h3>
-                        <button onclick="toggleContributor()">View All</button>
+                        <button id="contributorBtn" onclick="toggleContributor()">View All</button>
                     </div>
 
-                    <ol class="contributorList" id="contributorList">
-                        <li>Ali - 520 pts</li>
-                        <li>Siti - 480 pts</li>
-                        <li>Ahmad - 450 pts</li>
-                        <li class="hiddenContributor">John - 400 pts</li>
-                        <li class="hiddenContributor">User - 250 pts</li>
-                    </ol>
+                    <table>
+                        <tr>
+                            <th>Ranking</th>
+                            <th>Name</th>
+                            <th>Total Points</th>
+                        </tr>
+                        <?php
+                        $countContributor = 0;
+
+                        if ($resultContributor->num_rows > 0) {
+                            while ($row = $resultContributor->fetch_assoc()) {
+
+                                $countContributor++;
+                        ?>
+                                <tr class="<?= ($countContributor > 3) ? 'hiddenContributor' : ''; ?>">
+
+                                    <td>
+                                        <?php
+                                        if ($countContributor == 1) {
+                                            echo "🥇";
+                                        } elseif ($countContributor == 2) {
+                                            echo "🥈";
+                                        } elseif ($countContributor == 3) {
+                                            echo "🥉";
+                                        } else {
+                                            echo "#" . $countContributor;
+                                        }
+                                        ?>
+                                    </td>
+
+                                    <td><?= $row['Name']; ?></td>
+                                    <td><?= $row['Points']; ?> pts</td>
+
+                                </tr>
+
+                            <?php
+                            }
+                        } else {
+                            ?>
+                            <tr>
+                                <td colspan="3" style="text-align:center;">
+                                    No contributors yet
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </table>
                 </div>
             </div>
         </div>
