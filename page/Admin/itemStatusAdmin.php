@@ -18,7 +18,10 @@ $sql = "SELECT item.*,
 $result = $conn->query($sql);
 $item = $result->fetch_assoc();
 
+
+// APPROVE
 if (isset($_POST['approve'])) {
+
     $itemId = $_POST['itemId'];
 
     $sql = "UPDATE item
@@ -27,11 +30,37 @@ if (isset($_POST['approve'])) {
 
     $conn->query($sql);
 
+    // Activity Admin
+    $adminId = $_SESSION['userid'];
+
+    mysqli_query($conn, "
+    INSERT INTO activity(UserId, ActivityText, ActivityType)
+    VALUES(
+        '$adminId',
+        'Approved item $itemId',
+        'Admin'
+    )");
+
+    // Activity User
+    $userId = $item['UserId'];
+    $itemName = $item['ItemName'];
+
+    mysqli_query($conn, "
+    INSERT INTO activity(UserId, ActivityText, ActivityType)
+    VALUES(
+        '$userId',
+        'Your item $itemName has been approved by admin',
+        'User'
+    )");
+
     header("Location: addItemAdmin.php");
     exit();
 }
 
+
+// REJECT
 if (isset($_POST['reject'])) {
+
     $itemId = $_POST['itemId'];
 
     $sql = "UPDATE item
@@ -39,6 +68,29 @@ if (isset($_POST['reject'])) {
             WHERE ItemId='$itemId'";
 
     $conn->query($sql);
+
+    // Activity Admin
+    $adminId = $_SESSION['userid'];
+
+    mysqli_query($conn, "
+    INSERT INTO activity(UserId, ActivityText, ActivityType)
+    VALUES(
+        '$adminId',
+        'Rejected item $itemId',
+        'Admin'
+    )");
+
+    // Activity User
+    $userId = $item['UserId'];
+    $itemName = $item['ItemName'];
+
+    mysqli_query($conn, "
+    INSERT INTO activity(UserId, ActivityText, ActivityType)
+    VALUES(
+        '$userId',
+        'Your item $itemName has been rejected by admin',
+        'User'
+    )");
 
     header("Location: addItemAdmin.php");
     exit();
@@ -125,8 +177,8 @@ if (isset($_POST['reject'])) {
                 <div class="avatar"><?= strtoupper(substr($item['Name'], 0, 1)) ?></div>
                 <div>
                     <b><?= $item['Name'] ?></b>
-                    <p>📞 <?= $item['NoPhone'] ?></p>
-                    <p>✉ <?= $item['Email'] ?></p>
+                    <p>No Phone Number</p>
+                    <p><?= $item['Email'] ?></p>
                     <small><?= $item['UserId'] ?></small>
                 </div>
             </div>
