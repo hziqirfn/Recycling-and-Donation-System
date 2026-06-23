@@ -7,10 +7,17 @@ include("../inc/auth.php");
 
 $userId = $_SESSION['userid'];
 
-$queryPoint = "SELECT Points FROM user WHERE UserId = '$userId'";
-$resultPoint = mysqli_query($conn, $queryPoint);
-$userData = mysqli_fetch_assoc($resultPoint);
-$userPoints = $userData['Points'] ?? 0;
+$queryUser = "
+SELECT Role, Points
+FROM user
+WHERE UserId = '$userId'
+";
+
+$resultUser = mysqli_query($conn, $queryUser);
+$user = mysqli_fetch_assoc($resultUser);
+
+$userRole = $user['Role'];
+$userPoints = $user['Points'];
 
 /* Rank user ikut semua user bukan admin */
 $queryRank = "
@@ -28,8 +35,20 @@ SELECT *
 FROM reward
 WHERE Status='Active'
 AND Stock > 0
+AND (
+    RewardRole = 'Public'
+    OR RewardRole = '$userRole'
+    OR (
+        RewardRole = 'UTeM'
+        AND (
+            '$userRole' = 'Student(UTeM)'
+            OR '$userRole' = 'Staff(UTeM)'
+        )
+    )
+)
 ORDER BY RewardPoint ASC
 ";
+$resultReward = mysqli_query($conn, $queryReward);
 
 $queryCommunity = "
 SELECT Name, Points
