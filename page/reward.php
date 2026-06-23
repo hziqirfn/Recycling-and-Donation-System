@@ -5,10 +5,36 @@ session_start();
 include("../inc/connect.php");
 include("../inc/auth.php");
 
+$userId = $_SESSION['userid'];
+
+$queryPoint = "
+SELECT Points
+FROM user
+WHERE UserId = '$userId'
+";
+
+$resultPoint = mysqli_query($conn, $queryPoint);
+$userData = mysqli_fetch_assoc($resultPoint);
+
+$userPoints = $userData['Points'];
+
+$queryRank = "
+SELECT COUNT(*) + 1 AS UserRank
+FROM user
+WHERE Points > $userPoints
+AND Role != 'Admin'
+";
+
+$resultRank = mysqli_query($conn, $queryRank);
+$rankData = mysqli_fetch_assoc($resultRank);
+
+$userRank = $rankData['UserRank'];
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,12 +67,12 @@ include("../inc/auth.php");
                 <div class="rewards-stats">
                     <div class="stat-card">
                         <h2>Your Points</h2>
-                        <span>1,250</span>
+                        <span><?= $userPoints ?></span>
                     </div>
 
                     <div class="stat-card">
                         <h2>Your Rank</h2>
-                        <span>#15</span>
+                        <span>#<?= $userRank ?></span>
                     </div>
                 </div>
 
@@ -90,7 +116,7 @@ include("../inc/auth.php");
 
                         <div class="leader-item">
                             <div class="rank">#3</div>
-                            
+
                             <div class="leader-info">
                                 <h4>Jason</h4>
                                 <p>2000 Points</p>
@@ -103,7 +129,7 @@ include("../inc/auth.php");
                     <div class="leaderboard-list" id="utemBoard">
                         <div class="leader-item">
                             <div class="rank">#1</div>
-                            
+
                             <div class="leader-info">
                                 <h4>Ali UTeM</h4>
                                 <p>1800 Points</p>
@@ -141,58 +167,59 @@ include("../inc/auth.php");
 
                     <div class="reward-grid">
                         <div class="reward-card">
-                           <span class="reward-points">100 pts</span>
+                            <span class="reward-points">100 pts</span>
 
-                           <h4>Food Voucher</h4>
-                           <button class="redeem-btn" data-reward="Food Voucher">
-                               Redeem Now
-                           </button>
-                        </div>
-
-                        <div class="reward-card">
-                           <span class="reward-points">150 pts</span>
-
-                           <h4>Grab Voucher</h4>
-                           <button class="redeem-btn" data-reward="Grab Voucher">
-                               Redeem Now
-                          </button>
-                        </div>
-
-                        <div class="reward-card">
-                           <span class="reward-points">200 pts</span>
-
-                           <h4>UTeM Merchandise</h4>
-                           <button class="redeem-btn" data-reward="UTeM Merchandise">
+                            <h4>Food Voucher</h4>
+                            <button class="redeem-btn" data-reward="Food Voucher">
                                 Redeem Now
-                           </button>
+                            </button>
                         </div>
 
                         <div class="reward-card">
-                           <span class="reward-points">300 pts</span>
+                            <span class="reward-points">150 pts</span>
 
-                           <h4>Cash Voucher</h4>
-                           <button class="redeem-btn" data-reward="Cash Voucher">
+                            <h4>Grab Voucher</h4>
+                            <button class="redeem-btn" data-reward="Grab Voucher">
                                 Redeem Now
-                           </button>
+                            </button>
+                        </div>
+
+                        <div class="reward-card">
+                            <span class="reward-points">200 pts</span>
+
+                            <h4>UTeM Merchandise</h4>
+                            <button class="redeem-btn" data-reward="UTeM Merchandise">
+                                Redeem Now
+                            </button>
+                        </div>
+
+                        <div class="reward-card">
+                            <span class="reward-points">300 pts</span>
+
+                            <h4>Cash Voucher</h4>
+                            <button class="redeem-btn" data-reward="Cash Voucher">
+                                Redeem Now
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div id="redeemPopup" class="popup">
-    <div class="popup-content">
-        <h2>✅ Success</h2>
-        <p id="rewardText">
-            Reward Redeemed Successfully!
-        </p>
 
-        <button onclick="closePopup()">
-            OK
-        </button>
+    <div id="redeemPopup" class="popup">
+        <div class="popup-content">
+            <h2>✅ Success</h2>
+            <p id="rewardText">
+                Reward Redeemed Successfully!
+            </p>
+
+            <button onclick="closePopup()">
+                OK
+            </button>
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>
