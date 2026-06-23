@@ -6,7 +6,7 @@ $imgPath = "../../image/";
 
 <div id="side">
     <div class="profile">
-        <a href="profile.php">
+        <a href="profileAdmin.php">
             <img src="<?= $imgPath ?>profile.png" alt="profile">Profile</a>
     </div>
 

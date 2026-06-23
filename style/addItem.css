@@ -169,18 +169,26 @@ body {
     z-index: 1000;
 }
 
-.popup-box {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    min-width: 300px;
-    text-align: center;
+.popup-box{
+    min-width:300px;
+    padding:20px;
+    background:white;
+    border-radius:10px;
+    text-align:center;
 }
 
-.popup-box button {
-    padding: 8px 15px;
-    cursor: pointer;
-    width: 30%;
+.popup-box button{
+    width:30%;
+    padding:8px 15px;
+    cursor:pointer;
+    background:#45B058;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.popup-box button:hover{
+    background:#378F46;
 }
 
 @media (max-width: 768px) {

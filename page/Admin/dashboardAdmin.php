@@ -46,12 +46,13 @@ $resultRecent = mysqli_query($conn, $queryRecent);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTeM RecycleHub</title>
+    <link rel="icon" type="image/png" href="../../image/logo.png">
 
     <link rel="stylesheet" href="../../style/global.css">
     <link rel="stylesheet" href="../../style/admin/headerAdmin.css">
     <link rel="stylesheet" href="../../style/admin/sidebarAdmin.css">
     <link rel="stylesheet" href="../../style/admin/dashboardAdmin.css">
+    <title>UTeM RecycleHub</title>
 </head>
 
 <body>
