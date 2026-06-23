@@ -23,12 +23,6 @@ $resultRank = mysqli_query($conn, $queryRank);
 $rankData = mysqli_fetch_assoc($resultRank);
 $userRank = $rankData['UserRank'];
 
-$resultUser = mysqli_query($conn, $queryUser);
-
-$user = mysqli_fetch_assoc($resultUser);
-
-$userPoints = $user['Points'];
-
 $queryReward = "
 SELECT *
 FROM reward
@@ -36,9 +30,27 @@ WHERE Status='Active'
 AND Stock > 0
 ORDER BY RewardPoint ASC
 ";
-$resultCommunity = mysqli_query($conn, $queryCommunity);
 
+$queryCommunity = "
+SELECT Name, Points
+FROM user
+WHERE Role != 'Admin'
+ORDER BY Points DESC
+LIMIT 10
+";
+$resultCommunity = mysqli_query($conn, $queryCommunity);
 $resultReward = mysqli_query($conn, $queryReward);
+
+/* UTeM Leaderboard = Student UTeM sahaja */
+$queryUTeM = "
+SELECT Name, Points
+FROM user
+WHERE UserId LIKE 'STD%'
+AND Role != 'Admin'
+ORDER BY Points DESC
+LIMIT 5
+";
+$resultUTeM = mysqli_query($conn, $queryUTeM);
 
 ?>
 
@@ -115,40 +127,24 @@ $resultReward = mysqli_query($conn, $queryReward);
                                     <p><?= $row['Points'] ?> Points</p>
                                 </div>
                             </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
-
-                        <div class="leader-item">
-                            <div class="rank">#2</div>
-
-                            <div class="leader-info">
-                                <h4>Siti</h4>
-                                <p>2200 Points</p>
-                            </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
-
-                        <div class="leader-item">
-                            <div class="rank">#3</div>
-
-                            <div class="leader-info">
-                                <h4>Jason</h4>
-                                <p>2000 Points</p>
-                            </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
+                        <?php
+                            $rank++;
+                        }
+                        ?>
                     </div>
 
                     <div class="leaderboard-list" id="utemBoard">
-                        <div class="leader-item">
-                            <div class="rank">#1</div>
+                        <?php
+                        $rank = 1;
+                        while ($row = mysqli_fetch_assoc($resultUTeM)) {
+                        ?>
+                            <div class="leader-item">
+                                <div class="rank">#<?= $rank ?></div>
 
-                            <div class="leader-info">
-                                <h4>Ali UTeM</h4>
-                                <p>1800 Points</p>
+                                <div class="leader-info">
+                                    <h4><?= $row['Name'] ?></h4>
+                                    <p><?= $row['Points'] ?> Points</p>
+                                </div>
                             </div>
                         <?php
                             $rank++;
