@@ -7,32 +7,49 @@ include("../inc/auth.php");
 
 $userId = $_SESSION['userid'];
 
-$queryUser = "
-SELECT Points
+$queryPoint = "SELECT Points FROM user WHERE UserId = '$userId'";
+$resultPoint = mysqli_query($conn, $queryPoint);
+$userData = mysqli_fetch_assoc($resultPoint);
+$userPoints = $userData['Points'] ?? 0;
+
+/* Rank user ikut semua user bukan admin */
+$queryRank = "
+SELECT COUNT(*) + 1 AS UserRank
 FROM user
-WHERE UserId='$userId'
+WHERE Points > $userPoints
+AND Role != 'Admin'
 ";
+$resultRank = mysqli_query($conn, $queryRank);
+$rankData = mysqli_fetch_assoc($resultRank);
+$userRank = $rankData['UserRank'];
 
-$resultUser = mysqli_query($conn,$queryUser);
-
-$user = mysqli_fetch_assoc($resultUser);
-
-$userPoints = $user['Points'];
-
-$queryReward = "
-SELECT *
-FROM reward
-WHERE Status='Active'
-AND Stock > 0
-ORDER BY RewardPoint ASC
+/* Community Leaderboard = PB sahaja */
+$queryCommunity = "
+SELECT Name, Points
+FROM user
+WHERE UserId LIKE 'PB%'
+AND Role != 'Admin'
+ORDER BY Points DESC
+LIMIT 5
 ";
+$resultCommunity = mysqli_query($conn, $queryCommunity);
 
-$resultReward = mysqli_query($conn,$queryReward);
+/* UTeM Leaderboard = Student UTeM sahaja */
+$queryUTeM = "
+SELECT Name, Points
+FROM user
+WHERE UserId LIKE 'STD%'
+AND Role != 'Admin'
+ORDER BY Points DESC
+LIMIT 5
+";
+$resultUTeM = mysqli_query($conn, $queryUTeM);
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,12 +83,12 @@ $resultReward = mysqli_query($conn,$queryReward);
                 <div class="rewards-stats">
                     <div class="stat-card">
                         <h2>Your Points</h2>
-                        <span><?= $userPoints; ?></span>
+                        <span><?= $userPoints ?></span>
                     </div>
 
                     <div class="stat-card">
                         <h2>Your Rank</h2>
-                        <span>#15</span>
+                        <span>#<?= $userRank ?></span>
                     </div>
                 </div>
 
@@ -91,73 +108,41 @@ $resultReward = mysqli_query($conn,$queryReward);
                     </div>
 
                     <div class="leaderboard-list" id="communityBoard">
-                        <div class="leader-item">
-                            <div class="rank">#1</div>
+                        <?php
+                        $rank = 1;
+                        while ($row = mysqli_fetch_assoc($resultCommunity)) {
+                        ?>
+                            <div class="leader-item">
+                                <div class="rank">#<?= $rank ?></div>
 
-                            <div class="leader-info">
-                                <h4>Ahmad</h4>
-                                <p>2500 Points</p>
+                                <div class="leader-info">
+                                    <h4><?= $row['Name'] ?></h4>
+                                    <p><?= $row['Points'] ?> Points</p>
+                                </div>
                             </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
-
-                        <div class="leader-item">
-                            <div class="rank">#2</div>
-
-                            <div class="leader-info">
-                                <h4>Siti</h4>
-                                <p>2200 Points</p>
-                            </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
-
-                        <div class="leader-item">
-                            <div class="rank">#3</div>
-                            
-                            <div class="leader-info">
-                                <h4>Jason</h4>
-                                <p>2000 Points</p>
-                            </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
+                        <?php
+                            $rank++;
+                        }
+                        ?>
                     </div>
 
                     <div class="leaderboard-list" id="utemBoard">
-                        <div class="leader-item">
-                            <div class="rank">#1</div>
-                            
-                            <div class="leader-info">
-                                <h4>Ali UTeM</h4>
-                                <p>1800 Points</p>
+                        <?php
+                        $rank = 1;
+                        while ($row = mysqli_fetch_assoc($resultUTeM)) {
+                        ?>
+                            <div class="leader-item">
+                                <div class="rank">#<?= $rank ?></div>
+
+                                <div class="leader-info">
+                                    <h4><?= $row['Name'] ?></h4>
+                                    <p><?= $row['Points'] ?> Points</p>
+                                </div>
                             </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
-
-                        <div class="leader-item">
-                            <div class="rank">#2</div>
-
-                            <div class="leader-info">
-                                <h4>Aina UTeM</h4>
-                                <p>1600 Points</p>
-                            </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
-
-                        <div class="leader-item">
-                            <div class="rank">#3</div>
-
-                            <div class="leader-info">
-                                <h4>Hakim UTeM</h4>
-                                <p>1500 Points</p>
-                            </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
+                        <?php
+                            $rank++;
+                        }
+                        ?>
                     </div>
                 </div>
 
@@ -165,57 +150,40 @@ $resultReward = mysqli_query($conn,$queryReward);
                     <h2>Available Rewards</h2>
 
                     <div class="reward-grid">
-                    <?php
+                        <div class="reward-card">
+                            <span class="reward-points">100 pts</span>
 
-                    if(mysqli_num_rows($resultReward) > 0)
-                    {
-                       while($row = mysqli_fetch_assoc($resultReward))
-                       {
-                    ?>
+                            <h4>Food Voucher</h4>
+                            <button class="redeem-btn" data-reward="Food Voucher">
+                                Redeem Now
+                            </button>
+                        </div>
 
-                       <div class="reward-card">
+                        <div class="reward-card">
+                            <span class="reward-points">150 pts</span>
 
-                           <div class="reward-icon">
-                               🎁
-                           </div>
+                            <h4>Grab Voucher</h4>
+                            <button class="redeem-btn" data-reward="Grab Voucher">
+                                Redeem Now
+                            </button>
+                        </div>
 
-                           <h3>
-                               <?= $row['RewardName']; ?>
-                           </h3>
+                        <div class="reward-card">
+                            <span class="reward-points">200 pts</span>
 
-                           <p>
-                               Required Points:
-                               <?= $row['RewardPoint']; ?>
-                           </p>
+                            <h4>UTeM Merchandise</h4>
+                            <button class="redeem-btn" data-reward="UTeM Merchandise">
+                                Redeem Now
+                            </button>
+                        </div>
 
-                           <p>
-                               Stock:
-                               <?= $row['Stock']; ?>
-                           </p>
+                        <div class="reward-card">
+                            <span class="reward-points">300 pts</span>
 
-                           <button class="redeem-btn">
-
-                               Redeem
-
-                           </button>
-
-                       </div>
-
-                    <?php
-                        }
-                    }
-                    else
-                    {
-                    ?>
-
-                        <div class="empty-state">
-
-                            <h3>No Reward Available</h3>
-
-                            <p>
-                               Please check again later.
-                            </p>
-
+                            <h4>Cash Voucher</h4>
+                            <button class="redeem-btn" data-reward="Cash Voucher">
+                                Redeem Now
+                            </button>
                         </div>
 
                     <?php
@@ -227,19 +195,20 @@ $resultReward = mysqli_query($conn,$queryReward);
             </div>
         </div>
     </div>
-    
-    <div id="redeemPopup" class="popup">
-    <div class="popup-content">
-        <h2>✅ Success</h2>
-        <p id="rewardText">
-            Reward Redeemed Successfully!
-        </p>
 
-        <button onclick="closePopup()">
-            OK
-        </button>
+    <div id="redeemPopup" class="popup">
+        <div class="popup-content">
+            <h2>✅ Success</h2>
+            <p id="rewardText">
+                Reward Redeemed Successfully!
+            </p>
+
+            <button onclick="closePopup()">
+                OK
+            </button>
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>
