@@ -13,7 +13,7 @@ FROM user
 WHERE UserId='$userId'
 ";
 
-$resultUser = mysqli_query($conn,$queryUser);
+$resultUser = mysqli_query($conn, $queryUser);
 
 $user = mysqli_fetch_assoc($resultUser);
 
@@ -27,12 +27,13 @@ AND Stock > 0
 ORDER BY RewardPoint ASC
 ";
 
-$resultReward = mysqli_query($conn,$queryReward);
+$resultReward = mysqli_query($conn, $queryReward);
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -115,7 +116,7 @@ $resultReward = mysqli_query($conn,$queryReward);
 
                         <div class="leader-item">
                             <div class="rank">#3</div>
-                            
+
                             <div class="leader-info">
                                 <h4>Jason</h4>
                                 <p>2000 Points</p>
@@ -128,7 +129,7 @@ $resultReward = mysqli_query($conn,$queryReward);
                     <div class="leaderboard-list" id="utemBoard">
                         <div class="leader-item">
                             <div class="rank">#1</div>
-                            
+
                             <div class="leader-info">
                                 <h4>Ali UTeM</h4>
                                 <p>1800 Points</p>
@@ -165,81 +166,94 @@ $resultReward = mysqli_query($conn,$queryReward);
                     <h2>Available Rewards</h2>
 
                     <div class="reward-grid">
-                    <?php
+                        <?php
 
-                    if(mysqli_num_rows($resultReward) > 0)
-                    {
-                       while($row = mysqli_fetch_assoc($resultReward))
-                       {
-                    ?>
+                        if (mysqli_num_rows($resultReward) > 0) {
+                            while ($row = mysqli_fetch_assoc($resultReward)) {
+                        ?>
 
-                       <div class="reward-card">
+                                <div class="reward-card">
 
-                           <div class="reward-icon">
-                               🎁
-                           </div>
+                                    <div class="reward-icon">
+                                        🎁
+                                    </div>
 
-                           <h3>
-                               <?= $row['RewardName']; ?>
-                           </h3>
+                                    <h3>
+                                        <?= $row['RewardName']; ?>
+                                    </h3>
 
-                           <p>
-                               Required Points:
-                               <?= $row['RewardPoint']; ?>
-                           </p>
+                                    <p>
+                                        Required Points:
+                                        <?= $row['RewardPoint']; ?>
+                                    </p>
 
-                           <p>
-                               Stock:
-                               <?= $row['Stock']; ?>
-                           </p>
+                                    <p>
+                                        Stock:
+                                        <?= $row['Stock']; ?>
+                                    </p>
 
-                           <button class="redeem-btn">
+                                    <form action="redeemReward.php" method="POST">
+                                        <input type="hidden" name="rewardId" value="<?= $row['RewardId']; ?>">
 
-                               Redeem
+                                        <button type="submit" class="redeem-btn">
+                                            Redeem
+                                        </button>
+                                    </form>
 
-                           </button>
+                                </div>
 
-                       </div>
+                            <?php
+                            }
+                        } else {
+                            ?>
 
-                    <?php
+                            <div class="empty-state">
+
+                                <h3>No Reward Available</h3>
+
+                                <p>
+                                    Please check again later.
+                                </p>
+
+                            </div>
+
+                        <?php
                         }
-                    }
-                    else
-                    {
-                    ?>
-
-                        <div class="empty-state">
-
-                            <h3>No Reward Available</h3>
-
-                            <p>
-                               Please check again later.
-                            </p>
-
-                        </div>
-
-                    <?php
-                    }
-                    ?>
+                        ?>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div id="redeemPopup" class="popup">
-    <div class="popup-content">
-        <h2>✅ Success</h2>
-        <p id="rewardText">
-            Reward Redeemed Successfully!
-        </p>
 
-        <button onclick="closePopup()">
-            OK
-        </button>
-    </div>
-</div>
+    <?php if (isset($_SESSION['redeem_status'])) { ?>
+
+        <div id="redeemPopup" class="popup" style="display:flex;">
+            <div class="popup-content">
+
+                <?php if ($_SESSION['redeem_status'] == "success") { ?>
+                    <h2>✅ Success</h2>
+                <?php } else { ?>
+                    <h2>❌ Not Successful</h2>
+                <?php } ?>
+
+                <p>
+                    <?= $_SESSION['redeem_message']; ?>
+                </p>
+
+                <button onclick="closePopup()">
+                    OK
+                </button>
+            </div>
+        </div>
+
+    <?php
+        unset($_SESSION['redeem_status']);
+        unset($_SESSION['redeem_message']);
+    }
+    ?>
 
 </body>
+
 </html>

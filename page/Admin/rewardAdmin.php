@@ -13,9 +13,9 @@ FROM reward
 ORDER BY RewardId ASC
 ";
 
-$resultReward = mysqli_query($conn,$queryReward);
+$resultReward = mysqli_query($conn, $queryReward);
 
-if(!$resultReward){
+if (!$resultReward) {
     die(mysqli_error($conn));
 }
 
@@ -30,10 +30,9 @@ $pointResult = mysqli_query(
 
 $points = [];
 
-while($rowPoint = mysqli_fetch_assoc($pointResult))
-{
+while ($rowPoint = mysqli_fetch_assoc($pointResult)) {
     $points[$rowPoint['ActivityType']]
-    = $rowPoint['PointConfigure'];
+        = $rowPoint['PointConfigure'];
 }
 
 /* QUERY BARU UNTUK DISPLAY */
@@ -64,102 +63,100 @@ $conn->close();
 
 <body class="rewards-page">
 
-<?php 
-
-include("headerAdmin.php");
-include("sidebarAdmin.php"); 
-
-?>
-
-<label for="cb" id="overlay"></label>
-
-<div class="dashboard-container">
-
-    <div class="dashboard-header">
-        <h2>Reward Management</h2>
-        <p>Manage reward items and point redemption.</p>
-    </div>
-
-    <div class="header-actions">
-
-        <button class="add-btn"
-                onclick="openAddModal()">
-            + Add Reward
-        </button>
-
-        <select id="statusFilter"
-                onchange="filterRewards()">
-
-            <option value="all">All Rewards</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-
-        </select>
-
-        <select id="roleFilter"
-                onchange="filterRewards()">
-
-            <option value="all">
-                All Roles
-            </option>
-
-            <option value="utem">
-                UTeM
-            </option>
-
-            <option value="public">
-                Public
-            </option>
- 
-
-        </select>
-
-    </div>
-
-    <div class="total-text">
-        <strong><?= $totalReward; ?></strong> total rewards
-    </div>
-
-    <div class="reward-grid">
-
     <?php
-    if($totalReward > 0)
-    {
-        while($row = mysqli_fetch_assoc($resultReward))
-        {
+
+    include("headerAdmin.php");
+    include("sidebarAdmin.php");
+
     ?>
 
-    <div class="reward-card
-         <?= strtolower($row['Status']); ?>
-         <?= strtolower($row['RewardRole']); ?>">
+    <label for="cb" id="overlay"></label>
 
-        <div class="card-top">
+    <div class="dashboard-container">
 
-            <span class="reward-icon">🎁</span>
+        <div class="dashboard-header">
+            <h2>Reward Management</h2>
+            <p>Manage reward items and point redemption.</p>
+        </div>
 
-            <span class="badge <?= ($row['Status']=="Active")
-            ? "badge-active"
-            : "badge-inactive"; ?>">
+        <div class="header-actions">
 
-                <?= $row['Status']; ?>
+            <button class="add-btn"
+                onclick="openAddModal()">
+                + Add Reward
+            </button>
 
-            </span>
+            <select id="statusFilter"
+                onchange="filterRewards()">
+
+                <option value="all">All Rewards</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+
+            </select>
+
+            <select id="roleFilter"
+                onchange="filterRewards()">
+
+                <option value="all">
+                    All Roles
+                </option>
+
+                <option value="utem">
+                    UTeM
+                </option>
+
+                <option value="public">
+                    Public
+                </option>
+
+
+            </select>
 
         </div>
 
-        <h3><?= $row['RewardName']; ?></h3>
+        <div class="total-text">
+            <strong><?= $totalReward; ?></strong> total rewards
+        </div>
 
-        <h2><?= $row['RewardPoint']; ?> pts</h2>
+        <div class="reward-grid">
 
-        <p>Stock: <?= $row['Stock']; ?></p>
+            <?php
+            if ($totalReward > 0) {
+                while ($row = mysqli_fetch_assoc($resultReward)) {
+            ?>
 
-        <p>Role: <?= $row['RewardRole']; ?></p>
+                    <div class="reward-card
+         <?= strtolower($row['Status']); ?>
+         <?= strtolower($row['RewardRole']); ?>">
 
-        <div class="card-actions">
+                        <div class="card-top">
 
-            <button class="edit-btn"
+                            <span class="reward-icon">🎁</span>
 
-                onclick="openEditModal(
+                            <span class="badge <?= ($row['Status'] == "Active")
+                                                    ? "badge-active"
+                                                    : "badge-inactive"; ?>">
+
+                                <?= $row['Status']; ?>
+
+                            </span>
+
+                        </div>
+
+                        <h3><?= $row['RewardName']; ?></h3>
+
+                        <h2><?= $row['RewardPoint']; ?> pts</h2>
+
+                        <p>Stock: <?= $row['Stock']; ?></p>
+
+                        <p>Role: <?= $row['RewardRole']; ?></p>
+
+                        <div class="card-actions">
+
+                            <button class="edit-btn"
+
+                                onclick="openEditModal(
                 '<?= $row['RewardId']; ?>',
                 '<?= $row['RewardName']; ?>',
                 '<?= $row['RewardPoint']; ?>',
@@ -168,333 +165,360 @@ include("sidebarAdmin.php");
                 '<?= $row['Status']; ?>'
                 )">
 
-                Edit
+                                Edit
 
-            </button>
+                            </button>
 
-            <a class="delete-btn"
-               href="deleteReward.php?id=<?= $row['RewardId']; ?>"
-               onclick="return confirm('Delete this reward?')">
+                            <a class="delete-btn"
+                                href="deleteReward.php?id=<?= $row['RewardId']; ?>"
+                                onclick="return confirm('Delete this reward?')">
 
-                Delete
+                                Delete
 
-            </a>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                <?php
+                }
+            } else {
+                ?>
+
+                <div class="empty-state">
+
+                    <h3>No Rewards Available</h3>
+
+                    <p>
+                        Click Add Reward to create your first reward.
+                    </p>
+
+                </div>
+
+            <?php
+            }
+            ?>
+
+        </div>
+
+        <div class="points-card">
+
+            <div class="points-header">
+                <h2>Points Configuration</h2>
+
+                <button class="edit-btn" onclick="openPointModal()">
+                    Update Points
+                </button>
+            </div>
+
+            <div class="points-grid">
+
+                <?php
+                while ($rowPoint = mysqli_fetch_assoc($pointDisplay)) {
+                ?>
+
+                    <div class="point-item">
+
+                        <span>
+                            <?= $rowPoint['ActivityType']; ?>
+                        </span>
+
+                        <strong>
+                            <?= $rowPoint['PointConfigure']; ?> pts
+                        </strong>
+
+                    </div>
+
+                <?php
+                }
+                ?>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="pointModal" class="modal">
+
+        <div class="modal-content">
+
+            <h2>Update Point Configuration</h2>
+
+            <form action="updatePoints.php" method="POST">
+
+                <label>Donate</label>
+
+                <input type="number"
+                    name="donate"
+                    value="<?= isset($points['Donate']) ? $points['Donate'] : 0; ?>"
+                    required>
+
+                <label>Recycle</label>
+
+                <input type="number"
+                    name="recycle"
+                    value="<?= isset($points['Recycle']) ? $points['Recycle'] : 0; ?>"
+                    required>
+
+                <button type="submit">
+                    Save
+                </button>
+
+                <button type="button"
+                    onclick="closePointModal()">
+                    Cancel
+                </button>
+
+            </form>
 
         </div>
 
     </div>
 
-    <?php
-        }
-    }
-    else
-    {
-    ?>
+    <div id="addModal" class="modal">
 
-    <div class="empty-state">
+        <div class="modal-content">
 
-        <h3>No Rewards Available</h3>
+            <h2>Add Reward</h2>
 
-        <p>
-            Click Add Reward to create your first reward.
-        </p>
+            <form action="addReward.php"
+                method="POST">
 
-    </div>
+                <input type="text"
+                    name="rewardId"
+                    placeholder="Reward ID"
+                    required>
 
-    <?php
-    }
-    ?>
+                <input type="text"
+                    name="rewardName"
+                    placeholder="Reward Name"
+                    required>
 
-</div>
+                <input type="number"
+                    name="RewardPoint"
+                    placeholder="Points"
+                    required>
 
-    <div class="points-card">
+                <input type="number"
+                    name="stock"
+                    placeholder="Stock"
+                    required>
 
-        <div class="points-header">
-            <h2>Points Configuration</h2>
+                <select name="rewardRole" required>
 
-            <button class="edit-btn" onclick="openPointModal()">
-                Update Points
-            </button>
-        </div>
-    
-        <div class="points-grid">
+                    <option value="UTeM">
+                        UTeM
+                    </option>
 
-        <?php
-        while($rowPoint = mysqli_fetch_assoc($pointDisplay))
-        {
-        ?>
+                    <option value="Public">
+                        Public
+                    </option>
 
-           <div class="point-item">
+                </select>
 
-               <span>
-                   <?= $rowPoint['ActivityType']; ?>
-               </span>
+                <select name="status">
 
-               <strong>
-                   <?= $rowPoint['PointConfigure']; ?> pts
-               </strong>
+                    <option value="Active">
+                        Active
+                    </option>
 
-           </div>
+                    <option value="Inactive">
+                        Inactive
+                    </option>
 
-        <?php
-        }
-        ?>
+                </select>
 
-        </div>
-    </div>
-</div>
+                <button type="submit">
+                    Save
+                </button>
 
-
-<div id="pointModal" class="modal">
-
-    <div class="modal-content">
-
-        <h2>Update Point Configuration</h2>
-
-        <form action="updatePoints.php" method="POST">
-
-    <label>Donate</label>
-
-    <input type="number"
-           name="donate"
-           value="<?= isset($points['Donate']) ? $points['Donate'] : 0; ?>"
-           required>
-
-    <label>Recycle</label>
-
-    <input type="number"
-           name="recycle"
-           value="<?= isset($points['Recycle']) ? $points['Recycle'] : 0; ?>"
-           required>
-
-    <button type="submit">
-        Save
-    </button>
-
-    <button type="button"
-            onclick="closePointModal()">
-        Cancel
-    </button>
-
-</form>
-
-    </div>
-
-</div>
-
-<div id="addModal" class="modal">
-
-    <div class="modal-content">
-
-        <h2>Add Reward</h2>
-
-        <form action="addReward.php"
-              method="POST">
-
-            <input type="text"
-                   name="rewardId"
-                   placeholder="Reward ID"
-                   required>
-
-            <input type="text"
-                   name="rewardName"
-                   placeholder="Reward Name"
-                   required>
-
-            <input type="number"
-                   name="RewardPoint"
-                   placeholder="Points"
-                   required>
-
-            <input type="number"
-                   name="stock"
-                   placeholder="Stock"
-                   required>
-
-            <select name="rewardRole" required>
-
-                <option value="UTeM">
-                    UTeM
-                </option>
-
-                <option value="Public">
-                    Public
-                </option>
-
-            </select>
-
-            <select name="status">
-
-                <option value="Active">
-                    Active
-                </option>
-
-                <option value="Inactive">
-                    Inactive
-                </option>
-
-            </select>
-
-            <button type="submit">
-                Save
-            </button>
-
-            <button type="button"
+                <button type="button"
                     onclick="closeAddModal()">
 
-                Cancel
+                    Cancel
 
-            </button>
+                </button>
 
-        </form>
+            </form>
+
+        </div>
 
     </div>
 
-</div>
+    <div id="editModal" class="modal">
 
-<div id="editModal" class="modal">
+        <div class="modal-content">
 
-    <div class="modal-content">
+            <h2>Edit Reward</h2>
 
-        <h2>Edit Reward</h2>
+            <form action="editReward.php"
+                method="POST">
 
-        <form action="editReward.php"
-              method="POST">
+                <input type="text"
+                    id="editRewardId"
+                    name="rewardId"
+                    readonly>
 
-            <input type="text"
-                   id="editRewardId"
-                   name="rewardId"
-                   readonly>
+                <input type="text"
+                    id="editRewardName"
+                    name="rewardName"
+                    required>
 
-            <input type="text"
-                   id="editRewardName"
-                   name="rewardName"
-                   required>
+                <input type="number"
+                    id="editPoints"
+                    name="RewardPoint"
+                    required>
 
-            <input type="number"
-                   id="editPoints"
-                   name="RewardPoint"
-                   required>
+                <input type="number"
+                    id="editStock"
+                    name="stock"
+                    required>
 
-            <input type="number"
-                   id="editStock"
-                   name="stock"
-                   required>
-            
-            <select id="editRewardRole"
+                <select id="editRewardRole"
                     name="rewardRole">
 
-                <option value="UTeM">
-                    UTeM
-                </option>
+                    <option value="UTeM">
+                        UTeM
+                    </option>
 
-                <option value="Public">
-                    Public
-                </option>
+                    <option value="Public">
+                        Public
+                    </option>
 
-            </select>
+                </select>
 
-            <select id="editStatus"
+                <select id="editStatus"
                     name="status">
 
-                <option value="Active">
-                    Active
-                </option>
+                    <option value="Active">
+                        Active
+                    </option>
 
-                <option value="Inactive">
-                    Inactive
-                </option>
+                    <option value="Inactive">
+                        Inactive
+                    </option>
 
-            </select>
+                </select>
 
-            <button type="submit">
-                Update
-            </button>
+                <button type="submit">
+                    Update
+                </button>
 
-            <button type="button"
+                <button type="button"
                     onclick="closeEditModal()">
 
-                Cancel
+                    Cancel
 
-            </button>
+                </button>
 
-        </form>
+            </form>
+
+        </div>
 
     </div>
 
-</div>
-
-<script>
-
-function openAddModal(){
-    document.getElementById("addModal").style.display = "flex";
-}
-
-function closeAddModal(){
-    document.getElementById("addModal").style.display = "none";
-}
-
-function openEditModal(id,name,points,stock,rewardRole,status){
-
-    document.getElementById("editRewardId").value = id;
-    document.getElementById("editRewardName").value = name;
-    document.getElementById("editPoints").value = points;
-    document.getElementById("editStock").value = stock;
-    document.getElementById("editRewardRole").value = rewardRole;
-    document.getElementById("editStatus").value = status;
-
-    document.getElementById("editModal").style.display = "flex";
-}
-
-function closeEditModal(){
-    document.getElementById("editModal").style.display = "none";
-}
-
-function filterRewards(){
-
-    let status =
-    document.getElementById("statusFilter").value;
-
-    let role =
-    document.getElementById("roleFilter").value;
-
-    let cards =
-    document.querySelectorAll(".reward-card");
-
-    cards.forEach(card => {
-
-        let statusMatch =
-        (status === "all") ||
-        card.classList.contains(status);
-
-        let roleMatch =
-        (role === "all") ||
-        card.classList.contains(role);
-
-        if(statusMatch && roleMatch){
-
-            card.style.display = "block";
-
-        }
-        else{
-
-            card.style.display = "none";
-
+    <script>
+        function openAddModal() {
+            document.getElementById("addModal").style.display = "flex";
         }
 
-    });
+        function closeAddModal() {
+            document.getElementById("addModal").style.display = "none";
+        }
 
-}
+        function openEditModal(id, name, points, stock, rewardRole, status) {
 
-function openPointModal(){
-    document.getElementById("pointModal").style.display = "flex";
-}
+            document.getElementById("editRewardId").value = id;
+            document.getElementById("editRewardName").value = name;
+            document.getElementById("editPoints").value = points;
+            document.getElementById("editStock").value = stock;
+            document.getElementById("editRewardRole").value = rewardRole;
+            document.getElementById("editStatus").value = status;
 
-function closePointModal(){
-    document.getElementById("pointModal").style.display = "none";
-}
+            document.getElementById("editModal").style.display = "flex";
+        }
 
-</script>
+        function closeEditModal() {
+            document.getElementById("editModal").style.display = "none";
+        }
 
+        function filterRewards() {
+
+            let status =
+                document.getElementById("statusFilter").value;
+
+            let role =
+                document.getElementById("roleFilter").value;
+
+            let cards =
+                document.querySelectorAll(".reward-card");
+
+            cards.forEach(card => {
+
+                let statusMatch =
+                    (status === "all") ||
+                    card.classList.contains(status);
+
+                let roleMatch =
+                    (role === "all") ||
+                    card.classList.contains(role);
+
+                if (statusMatch && roleMatch) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+        function openPointModal() {
+            document.getElementById("pointModal").style.display = "flex";
+        }
+
+        function closePointModal() {
+            document.getElementById("pointModal").style.display = "none";
+        }
+
+        function closeDeletePopup() {
+            document.getElementById("deletePopup").style.display = "none";
+        }
+    </script>
+    <?php
+    if (isset($_SESSION['delete_status'])) {
+    ?>
+
+        <div id="deletePopup" class="modal" style="display:flex;">
+            <div class="modal-content">
+
+                <?php if ($_SESSION['delete_status'] == "success") { ?>
+                    <h2>✅ Success</h2>
+                <?php } else { ?>
+                    <h2>❌ Failed</h2>
+                <?php } ?>
+
+                <p>
+                    <?= $_SESSION['delete_message']; ?>
+                </p>
+
+                <button onclick="closeDeletePopup()">
+                    OK
+                </button>
+
+            </div>
+        </div>
+
+    <?php
+        unset($_SESSION['delete_status']);
+        unset($_SESSION['delete_message']);
+    }
+    ?>
 </body>
+
 </html>

@@ -36,9 +36,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $conn->query($sql);
 
+        if ($newStatus == 'Collected') {
+
+    $sqlItem = "
+    SELECT UserId, ActivityType
+    FROM item
+    WHERE ItemId = '$targetItemId'
+    ";
+
+    $resultItem = mysqli_query($conn, $sqlItem);
+    $itemData = mysqli_fetch_assoc($resultItem);
+
+    if ($itemData) {
+
+        $userId = $itemData['UserId'];
+        $activityType = $itemData['ActivityType'];
+
+        $sqlPoint = "
+        SELECT PointConfigure
+        FROM point_configure
+        WHERE ActivityType = '$activityType'
+        ";
+
+        $resultPoint = mysqli_query($conn, $sqlPoint);
+        $pointData = mysqli_fetch_assoc($resultPoint);
+
+        if ($pointData) {
+
+            $points = $pointData['PointConfigure'];
+
+            mysqli_query($conn, "
+            UPDATE user
+            SET Points = Points + $points
+            WHERE UserId = '$userId'
+            ");
+
+            mysqli_query($conn, "
+            INSERT INTO activity
+            (
+                UserId,
+                ActivityText,
+                ActivityType
+            )
+            VALUES
+            (
+                '$userId',
+                'You earned $points points from $activityType item collection',
+                'User'
+            )");
+
         header("Location: pickupTrackAdmin.php?id=$requestId&selected_item=$targetItemId");
         exit();
-    }
+    }}}}
 
     if (isset($_POST['save_modal_data'])) {
         $modalItemId = mysqli_real_escape_string($conn, $_POST['modal_item_id']);
