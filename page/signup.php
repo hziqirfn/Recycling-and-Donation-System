@@ -27,8 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
         exit();
     }
 
-    $sql = "SELECT * FROM user WHERE Email = '$email'";
-    $result = $conn->query($sql);
+    $stmt = $conn->prepare("SELECT * FROM user WHERE Email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) 
     {
@@ -169,7 +171,7 @@ if ($error != "")
 ?>
     <div id="alert" class="alert">
         <div class="popup-box"><br>
-            <p><?= $error; ?></p> <br><br>
+            <p><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></p> <br><br>
             <button onclick="closePopup()">OK</button>
         </div>
     </div>

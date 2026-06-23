@@ -496,7 +496,5 @@ function closePointModal(){
 
 </script>
 
-<?php mysqli_close($conn); ?>
-
 </body>
 </html>

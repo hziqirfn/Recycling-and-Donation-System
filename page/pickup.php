@@ -124,13 +124,13 @@ $conn->close();
                             {
                                 $currentCategory = $row['Category'];
                         ?>
-                                <div class="category-header"><?= $currentCategory ?></div>
+                                <div class="category-header"><?= htmlspecialchars($currentCategory, ENT_QUOTES, 'UTF-8'); ?></div>
                         <?php
                         }
                         ?>
                             <label class="option-row">
                                 <input type="checkbox" name="itemId[]" value="<?= $row['ItemId'] ?>">
-                                <span class="item-text"><?= $row['ItemName'] ?></span>
+                                <span class="item-text"><?= htmlspecialchars($row['ItemName'], ENT_QUOTES, 'UTF-8'); ?></span>
                             </label>
                         <?php
                         }
@@ -198,7 +198,7 @@ $conn->close();
     ?>
         <div id="alert" class="alert">
             <div class="popup-box"><br>
-                <p><?= $error; ?></p> <br><br>
+                <p><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></p> <br><br>
                 <button onclick="closePopup()">OK</button>
             </div>
         </div>
