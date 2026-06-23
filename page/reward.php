@@ -7,11 +7,21 @@ include("../inc/auth.php");
 
 $userId = $_SESSION['userid'];
 
-$queryUser = "
-SELECT Points
+$queryPoint = "SELECT Points FROM user WHERE UserId = '$userId'";
+$resultPoint = mysqli_query($conn, $queryPoint);
+$userData = mysqli_fetch_assoc($resultPoint);
+$userPoints = $userData['Points'] ?? 0;
+
+/* Rank user ikut semua user bukan admin */
+$queryRank = "
+SELECT COUNT(*) + 1 AS UserRank
 FROM user
-WHERE UserId='$userId'
+WHERE Points > $userPoints
+AND Role != 'Admin'
 ";
+$resultRank = mysqli_query($conn, $queryRank);
+$rankData = mysqli_fetch_assoc($resultRank);
+$userRank = $rankData['UserRank'];
 
 $resultUser = mysqli_query($conn, $queryUser);
 
@@ -26,8 +36,18 @@ WHERE Status='Active'
 AND Stock > 0
 ORDER BY RewardPoint ASC
 ";
+$resultCommunity = mysqli_query($conn, $queryCommunity);
 
-$resultReward = mysqli_query($conn, $queryReward);
+/* UTeM Leaderboard = Student UTeM sahaja */
+$queryUTeM = "
+SELECT Name, Points
+FROM user
+WHERE UserId LIKE 'STD%'
+AND Role != 'Admin'
+ORDER BY Points DESC
+LIMIT 5
+";
+$resultUTeM = mysqli_query($conn, $queryUTeM);
 
 ?>
 
@@ -67,12 +87,12 @@ $resultReward = mysqli_query($conn, $queryReward);
                 <div class="rewards-stats">
                     <div class="stat-card">
                         <h2>Your Points</h2>
-                        <span><?= $userPoints; ?></span>
+                        <span><?= $userPoints ?></span>
                     </div>
 
                     <div class="stat-card">
                         <h2>Your Rank</h2>
-                        <span>#15</span>
+                        <span>#<?= $userRank ?></span>
                     </div>
                 </div>
 
@@ -92,73 +112,41 @@ $resultReward = mysqli_query($conn, $queryReward);
                     </div>
 
                     <div class="leaderboard-list" id="communityBoard">
-                        <div class="leader-item">
-                            <div class="rank">#1</div>
+                        <?php
+                        $rank = 1;
+                        while ($row = mysqli_fetch_assoc($resultCommunity)) {
+                        ?>
+                            <div class="leader-item">
+                                <div class="rank">#<?= $rank ?></div>
 
-                            <div class="leader-info">
-                                <h4>Ahmad</h4>
-                                <p>2500 Points</p>
+                                <div class="leader-info">
+                                    <h4><?= $row['Name'] ?></h4>
+                                    <p><?= $row['Points'] ?> Points</p>
+                                </div>
                             </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
-
-                        <div class="leader-item">
-                            <div class="rank">#2</div>
-
-                            <div class="leader-info">
-                                <h4>Siti</h4>
-                                <p>2200 Points</p>
-                            </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
-
-                        <div class="leader-item">
-                            <div class="rank">#3</div>
-
-                            <div class="leader-info">
-                                <h4>Jason</h4>
-                                <p>2000 Points</p>
-                            </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
+                        <?php
+                            $rank++;
+                        }
+                        ?>
                     </div>
 
                     <div class="leaderboard-list" id="utemBoard">
-                        <div class="leader-item">
-                            <div class="rank">#1</div>
+                        <?php
+                        $rank = 1;
+                        while ($row = mysqli_fetch_assoc($resultUTeM)) {
+                        ?>
+                            <div class="leader-item">
+                                <div class="rank">#<?= $rank ?></div>
 
-                            <div class="leader-info">
-                                <h4>Ali UTeM</h4>
-                                <p>1800 Points</p>
+                                <div class="leader-info">
+                                    <h4><?= $row['Name'] ?></h4>
+                                    <p><?= $row['Points'] ?> Points</p>
+                                </div>
                             </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
-
-                        <div class="leader-item">
-                            <div class="rank">#2</div>
-
-                            <div class="leader-info">
-                                <h4>Aina UTeM</h4>
-                                <p>1600 Points</p>
-                            </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
-
-                        <div class="leader-item">
-                            <div class="rank">#3</div>
-
-                            <div class="leader-info">
-                                <h4>Hakim UTeM</h4>
-                                <p>1500 Points</p>
-                            </div>
-
-                            <span class="point-badge">+3</span>
-                        </div>
+                        <?php
+                            $rank++;
+                        }
+                        ?>
                     </div>
                 </div>
 
