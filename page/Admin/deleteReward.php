@@ -5,18 +5,23 @@ session_start();
 include("../../inc/connect.php");
 include("../../inc/auth.php");
 
-if(isset($_GET['id']))
+$id = $_GET['id'];
+
+$sql = "DELETE FROM reward
+        WHERE RewardId='$id'";
+
+if(mysqli_query($conn, $sql))
 {
-    $rewardId = $_GET['id'];
-
-    $query = "
-    DELETE FROM reward
-    WHERE RewardId = '$rewardId'
-    ";
-
-    mysqli_query($conn,$query);
-
-    header("Location: rewardAdmin.php");
-    exit();
+    $_SESSION['delete_status'] = "success";
+    $_SESSION['delete_message'] = "Reward deleted successfully!";
 }
+else
+{
+    $_SESSION['delete_status'] = "failed";
+    $_SESSION['delete_message'] = "Failed to delete reward!";
+}
+
+header("Location: rewardAdmin.php");
+exit();
+
 ?>
