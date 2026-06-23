@@ -23,12 +23,6 @@ $resultRank = mysqli_query($conn, $queryRank);
 $rankData = mysqli_fetch_assoc($resultRank);
 $userRank = $rankData['UserRank'];
 
-$resultUser = mysqli_query($conn, $queryUser);
-
-$user = mysqli_fetch_assoc($resultUser);
-
-$userPoints = $user['Points'];
-
 $queryReward = "
 SELECT *
 FROM reward
@@ -36,7 +30,16 @@ WHERE Status='Active'
 AND Stock > 0
 ORDER BY RewardPoint ASC
 ";
+
+$queryCommunity = "
+SELECT Name, Points
+FROM user
+WHERE Role != 'Admin'
+ORDER BY Points DESC
+LIMIT 10
+";
 $resultCommunity = mysqli_query($conn, $queryCommunity);
+$resultReward = mysqli_query($conn, $queryReward);
 
 /* UTeM Leaderboard = Student UTeM sahaja */
 $queryUTeM = "
